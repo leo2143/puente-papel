@@ -1,8 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Shantell+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 @import 'tailwindcss';
-
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
 
-@theme inline {
-    --font-sans: Instrument Sans, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+@theme {
+    --font-sans: 'Roboto', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
 }
+
+:root {
+    --secondary-color: #F7B4B3;
+    --secondary-50-color: #f7b4b3b8;
+    --secondary-100-color: #f7b4b399;
+    --secondary-200-color: #f7b4b366;
+    --quaternary-color: #000000;
+    --quinary-color: #FFFFFF;
+    --primary-color: #D90000;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Shantell Sans', cursive;
+}
+
+.bg-primary-color {
+    background-color: var(--primary-color);
+}
+
+.bg-secondary-color {
+    background-color: var(--secondary-color);
+}
+
+.text-primary-color {
+    color: var(--primary-color);
+}
+
+.text-secondary-color {
+    color: var(--secondary-color);
+}
+
+.bg-secondary-50-color {
+    background-color: var(--secondary-50-color);
+}
+
+.bg-secondary-100-color {
+    background-color: var(--secondary-100-color);
+}
+
+.bg-secondary-200-color {
+    background-color: var(--secondary-200-color);
+}
+
