@@ -17,55 +17,61 @@
     </style>
 </head>
 
-<body class="bg-blue-50 h-full">
-    <div id="app" class=" h-full ">
+<body class=" h-full relative">
+    {{-- Canvas para ThpaceGL - Fondo de toda la página --}}
+    <canvas id="make-me-cool" class="fixed inset-0 w-full h-full z-0"></canvas>
+    
+    <div id="app" class="relative z-10 h-full">
         {{-- Header - Fila 1 (56px) --}}
             <x-header />
 
         {{-- Main Content - Fila 2 (1fr - toma el espacio restante) --}}
         <main class="overflow-y-auto">
-            {{-- (esto es un comentario de Blade)
-            Dentro de un componente, vamos a tener por defecto acceso a una
-            variable llamada "$slot".
-            Como sucede en otros frameworks de componentes (como Vue),
-            $slot va a tener el contenido que se le incluya dentro del
-            componente cuando se lo invoque.
-            Por ejemplo, si llaman a este componente en otro de esta forma:
+            {{-- Contenido principal --}}
+            <div>
+                {{-- (esto es un comentario de Blade)
+                Dentro de un componente, vamos a tener por defecto acceso a una
+                variable llamada "$slot".
+                Como sucede en otros frameworks de componentes (como Vue),
+                $slot va a tener el contenido que se le incluya dentro del
+                componente cuando se lo invoque.
+                Por ejemplo, si llaman a este componente en otro de esta forma:
 
-                <x-layouts.main>
-                    <h1>¡Hola mundo!</h1>
-                </x-layouts.main>
+                    <x-layouts.main>
+                        <h1>¡Hola mundo!</h1>
+                    </x-layouts.main>
 
-            $slot contendría el "<h1>¡Hola mundo!</h1>".
+                $slot contendría el "<h1>¡Hola mundo!</h1>".
 
-            ¿Qué pasa con la doble llave?
-            Las dobles llaves son la forma en Blade para imprimir un valor
-            en pantalla.
+                ¿Qué pasa con la doble llave?
+                Las dobles llaves son la forma en Blade para imprimir un valor
+                en pantalla.
 
-            Es decir, escribir:
+                Es decir, escribir:
 
-                {{ expresión }}
+                    {{ expresión }}
 
-            Es exactamente lo mismo que escribir:
+                Es exactamente lo mismo que escribir:
 
-            <?= e(expresión); ?>
+                <?= e(expresión); ?>
 
-            Les debe llamar la atención es esa función e().
-            La función e() (que viene de "escape") es equivalente a la
-            función nativa de php htmlspecialchars().
-            Esto es muy importante, porque nos protege de un tipo de
-            ataque llamado Cross-Site Scripting (XSS).
+                Les debe llamar la atención es esa función e().
+                La función e() (que viene de "escape") es equivalente a la
+                función nativa de php htmlspecialchars().
+                Esto es muy importante, porque nos protege de un tipo de
+                ataque llamado Cross-Site Scripting (XSS).
 
-            Si realmente quieren imprimir la expresión sin escaparla con
-            e(), Blade lo permite con una sintaxis diferente:
+                Si realmente quieren imprimir la expresión sin escaparla con
+                e(), Blade lo permite con una sintaxis diferente:
 
-            {!! expresión !!}
+                {!! expresión !!}
 
-            Esto sí es idéntico a:
+                Esto sí es idéntico a:
 
-            <?= expresión; ?>
-            --}}
-            {{ $slot }}
+                <?= expresión; ?>
+                --}}
+                {{ $slot }}
+            </div>
         </main>
 
         {{-- Footer - Fila 3 (100px) --}}

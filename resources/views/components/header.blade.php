@@ -132,7 +132,7 @@
     </div>
 </div>
 
-<header class="bg-secondary-color shadow-md ">
+<header class="bg-secondary-color/30 backdrop-blur-sm backdrop-saturate-150 shadow-lg border-b border-white/20">
     {{-- Barra superior oscura --}}
 
     {{-- Navegación principal --}}
@@ -267,7 +267,8 @@
             opacity: 1,
             y: 0,
             duration: 0.6,
-            ease: "power2.out"
+            ease: "power2.out",
+            clearProps: "transform,opacity" // Limpiar propiedades después de la animación
         });
     });
 </script>

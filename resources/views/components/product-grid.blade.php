@@ -20,9 +20,9 @@ $gridClasses = match ($columns) {
 };
 ?>
 
-<section class="product-grid-section bg-white rounded-2xl shadow-lg overflow-hidden mx-4 my-6">
+<section class="product-grid-section rounded-2xl shadow-lg overflow-hidden mx-4 my-6">
     {{-- Título de la sección --}}
-    <div class="bg-pink-100 px-6 py-4">
+    <div class="bg-secondary-color/30 backdrop-blur-sm backdrop-saturate-150 border-b border-white/20 px-6 py-4">
         <h2 class="text-2xl md:text-3xl font-bold text-gray-800 leading-tight">
             {{ $title }}
         </h2>
@@ -89,7 +89,7 @@ $gridClasses = match ($columns) {
 
     {{-- Botón "Ver más" --}}
     @if($seeMoreUrl && count($products) > 0)
-    <footer class="bg-pink-100 px-6 py-4">
+    <footer class="bg-secondary-color/30 backdrop-blur-sm backdrop-saturate-150 border-t border-white/20 px-6 py-4">
         <a href="{{ $seeMoreUrl }}"
             class="flex items-center justify-between text-red-600 hover:text-red-700 font-medium transition-colors duration-200 group">
             <span>{{ $seeMoreText }}</span>
