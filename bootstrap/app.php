@@ -11,7 +11,15 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        // Registrar middleware para autenticación web
+        $middleware->alias([
+            'web.auth' => \App\Http\Middleware\WebAuth::class,
+        ]);
+        
+        // Aplicar middleware WebAuth a todas las rutas web
+        $middleware->web(append: [
+            \App\Http\Middleware\WebAuth::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

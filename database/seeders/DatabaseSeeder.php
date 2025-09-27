@@ -24,7 +24,10 @@ class DatabaseSeeder extends Seeder
             'is_active' => true,
         ]);
 
-        // Ejecutar el seeder de productos
-        $this->call(ProductSeeder::class);
+        // Ejecutar los seeders
+        $this->call([
+            ProductSeeder::class,
+            BlogPostSeeder::class,
+        ]);
     }
 }
