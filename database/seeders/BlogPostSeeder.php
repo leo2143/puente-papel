@@ -16,8 +16,12 @@ class BlogPostSeeder extends Seeder
         if (!$user) {
             $user = User::create([
                 'name' => 'Admin',
+                'last_name' => 'Puente Papel',
                 'email' => 'admin@puentepapel.com',
+                'phone' => '1234567890',
                 'password' => bcrypt('password'),
+                'role' => 'admin',
+                'is_active' => true,
             ]);
         }
 

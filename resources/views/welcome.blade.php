@@ -1,11 +1,5 @@
 <x-layouts.main>
-    {{-- Productos destacados desde la base de datos --}}
-    @if ($featuredProducts->count() > 0)
-        <section class="max-w-7xl mx-auto">
-            <x-product-grid :product="$featuredProducts" title="Productos Destacados" subtitle="Nuestros productos más populares"
-                see-more-url="{{ route('product.index') }}" see-more-text="Ver todos los productos" :columns="4" />
-        </section>
-    @endif
+
 
     {{-- Productos de comunicación --}}
     @if ($communicationProducts->count() > 0)
@@ -16,14 +10,6 @@
         </section>
     @endif
 
-    {{-- Productos de lectura --}}
-    @if ($readingProducts->count() > 0)
-        <section class="max-w-7xl mx-auto">
-            <x-product-grid :product="$readingProducts" title="Lectura y comprensión"
-                subtitle="Herramientas para mejorar la lectura" see-more-url="{{ route('product.index') }}"
-                see-more-text="Ver más" :columns="4" />
-        </section>
-    @endif
 
     {{-- Fallback: Si no hay productos, mostrar mensaje --}}
     @if ($featuredProducts->count() == 0 && $communicationProducts->count() == 0 && $readingProducts->count() == 0)

@@ -20,18 +20,32 @@
 
         {{-- Perfil de usuario --}}
         <div class="p-6 border-b border-gray-200 z-[999999]">
-            <div class="flex items-center space-x-4">
-                <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
-                    <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                    </svg>
+            @auth
+                <div class="flex items-center space-x-4">
+                    <div class="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center">
+                        <span class="text-white text-sm font-medium">
+                            {{ substr(auth()->user()->name, 0, 1) }}{{ substr(auth()->user()->last_name, 0, 1) }}
+                        </span>
+                    </div>
+                    <div>
+                        <p class="text-gray-800 font-medium">{{ auth()->user()->name }} {{ auth()->user()->last_name }}</p>
+                        <p class="text-sm text-gray-500">{{ auth()->user()->email }}</p>
+                    </div>
                 </div>
-                <div>
-                    <p class="text-gray-800 font-medium">Nombre de usuario</p>
-                    <p class="text-sm text-gray-500">Usuario registrado</p>
+            @else
+                <div class="flex items-center space-x-4">
+                    <div class="w-12 h-12 bg-gray-300 rounded-full flex items-center justify-center">
+                        <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="text-gray-800 font-medium">Invitado</p>
+                        <p class="text-sm text-gray-500">No has iniciado sesión</p>
+                    </div>
                 </div>
-            </div>
+            @endauth
         </div>
 
         {{-- Lista de navegación --}}
@@ -77,6 +91,66 @@
                     </a>
                 </li>
 
+                {{-- Autenticación --}}
+                @auth
+                    {{-- Mi Perfil --}}
+                    <li class="mobile-menu-item">
+                        <a href="{{ route('auth.profile') }}"
+                            class="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 transition-colors duration-200 group">
+                            <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                            </svg>
+                            <span class="text-gray-800 group-hover:text-red-600 transition-colors duration-200">Mi
+                                Perfil</span>
+                        </a>
+                    </li>
+
+                    {{-- Cerrar Sesión --}}
+                    <li class="mobile-menu-item">
+                        <form action="{{ route('auth.logout') }}" method="POST" class="block">
+                            @csrf
+                            <button type="submit"
+                                class="w-full flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 transition-colors duration-200 group text-left">
+                                <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
+                                    </path>
+                                </svg>
+                                <span class="text-gray-800 group-hover:text-red-600 transition-colors duration-200">Cerrar
+                                    Sesión</span>
+                            </button>
+                        </form>
+                    </li>
+                @else
+                    {{-- Iniciar Sesión --}}
+                    <li class="mobile-menu-item">
+                        <a href="{{ route('auth.login') }}"
+                            class="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 transition-colors duration-200 group">
+                            <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1">
+                                </path>
+                            </svg>
+                            <span class="text-gray-800 group-hover:text-red-600 transition-colors duration-200">Iniciar
+                                Sesión</span>
+                        </a>
+                    </li>
+
+                    {{-- Registrarse --}}
+                    <li class="mobile-menu-item">
+                        <a href="{{ route('auth.register') }}"
+                            class="flex items-center space-x-3 p-3 rounded-lg bg-red-600 text-white hover:bg-red-700 transition-colors duration-200 group">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z">
+                                </path>
+                            </svg>
+                            <span>Registrarse</span>
+                        </a>
+                    </li>
+                @endauth
+
                 {{-- Servicios (con dropdown) --}}
                 <li class="mobile-menu-item">
                     <button id="services-toggle"
@@ -98,7 +172,7 @@
 
                     {{-- Submenú de servicios --}}
                     <div id="services-submenu" class="hidden mt-2 ml-6 space-y-1">
-                        <a href="#"
+                        <a href="{{ route('blog.index') }}"
                             class="block p-3 rounded-lg bg-red-600 text-white hover:bg-red-700 transition-colors duration-200">
                             Blog
                         </a>
@@ -122,20 +196,6 @@
                             class="text-gray-800 group-hover:text-red-600 transition-colors duration-200">Ayuda</span>
                     </a>
                 </li>
-
-                {{-- Cerrar Sesión --}}
-                <li class="mobile-menu-item">
-                    <a href="#"
-                        class="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 transition-colors duration-200 group">
-                        <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
-                            </path>
-                        </svg>
-                        <span class="text-gray-800 group-hover:text-red-600 transition-colors duration-200">Cerrar
-                            Sesión</span>
-                    </a>
-                </li>
             </ul>
         </div>
 
@@ -155,7 +215,9 @@
     <x-nav />
 
     {{-- Breadcrumbs --}}
-    <x-breadcrumbs />
+    @isset($breadcrumbs)
+        <x-breadcrumbs :breadcrumbs="$breadcrumbs" />
+    @endisset
 </header>
 
 <script>

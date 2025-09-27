@@ -22,13 +22,6 @@ class Product extends Model
         'images',
         'image_path',
         'stock',
-        'is_active',
-        'user_id'
+        'is_active'
     ];
-
-    // Relación con User
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
 }
