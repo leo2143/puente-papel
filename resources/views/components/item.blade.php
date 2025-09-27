@@ -1,23 +1,34 @@
-{{-- resources/views/components/item.blade.php --}}
+@props(['product' => null])
 
 <?php
-// Datos del producto (en un caso real, estos vendrían del controlador)
-$product = $product ?? [
-    'id' => 1,
-    'title' => 'Nuestra historia en pictos',
-    'price' => 30000,
-    'author' => 'Silvana',
-    'language' => 'Español',
-    'publisher' => 'Puente Papel',
-    'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
-    'images' => [
-        'https://via.placeholder.com/400x500/FF6B35/FFFFFF?text=Imagen+1',
-        'https://via.placeholder.com/400x500/4ECDC4/FFFFFF?text=Imagen+2',
-        'https://via.placeholder.com/400x500/45B7D1/FFFFFF?text=Imagen+3',
-        'https://via.placeholder.com/400x500/96CEB4/FFFFFF?text=Imagen+4'
-    ],
-    'quantity' => 1
-];
+// Verificar que el producto existe
+if (!$product) {
+    // Datos por defecto si no se pasa el producto
+    $productData = [
+        'id' => 1,
+        'title' => 'Producto de ejemplo',
+        'price' => 30000,
+        'author' => 'Autor no especificado',
+        'language' => 'Español',
+        'publisher' => 'Puente Papel',
+        'description' => 'Descripción no disponible',
+        'images' => ['https://via.placeholder.com/400x500/FF6B35/FFFFFF?text=Imagen+1', 'https://via.placeholder.com/400x500/4ECDC4/FFFFFF?text=Imagen+2', 'https://via.placeholder.com/400x500/45B7D1/FFFFFF?text=Imagen+3', 'https://via.placeholder.com/400x500/96CEB4/FFFFFF?text=Imagen+4'],
+        'quantity' => 1,
+    ];
+} else {
+    // Datos del producto desde la base de datos
+    $productData = [
+        'id' => $product->id,
+        'title' => $product->title,
+        'price' => $product->price ?? 0,
+        'author' => $product->author ?? 'Autor no especificado',
+        'language' => $product->language ?? 'Español',
+        'publisher' => $product->publisher ?? 'Puente Papel',
+        'description' => $product->description ?? 'Descripción no disponible',
+        'images' => $product->images ? json_decode($product->images, true) : ['https://via.placeholder.com/400x500/FF6B35/FFFFFF?text=Imagen+1', 'https://via.placeholder.com/400x500/4ECDC4/FFFFFF?text=Imagen+2', 'https://via.placeholder.com/400x500/45B7D1/FFFFFF?text=Imagen+3', 'https://via.placeholder.com/400x500/96CEB4/FFFFFF?text=Imagen+4'],
+        'quantity' => 1,
+    ];
+}
 
 $currentImageIndex = 0;
 ?>
@@ -31,22 +42,23 @@ $currentImageIndex = 0;
                 <div class="relative overflow-hidden rounded-lg bg-gray-100">
                     {{-- Contenedor de imágenes --}}
                     <div id="image-container" class="relative h-96 lg:h-[500px]">
-                        @foreach($product['images'] as $index => $image)
-                        <div class="image-slide absolute inset-0 transition-all duration-500 ease-in-out {{ $index === 0 ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-full' }}">
-                            <img src="{{ $image }}"
-                                alt="{{ $product['title'] }} - Imagen {{ $index + 1 }}"
-                                class="w-full h-full object-cover">
+                        @foreach ($productData['images'] as $index => $image)
+                            <div
+                                class="image-slide absolute inset-0 transition-all duration-500 ease-in-out {{ $index === 0 ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-full' }}">
+                                <img src="{{ $image }}"
+                                    alt="{{ $productData['title'] }} - Imagen {{ $index + 1 }}"
+                                    class="w-full h-full object-cover">
 
-                            {{-- Overlay de texto (como en la imagen original) --}}
-                            @if($index === 0)
-                            <div class="absolute top-4 left-4 right-4">
-                                <div class="bg-orange-500 text-white px-4 py-2 rounded-lg text-center">
-                                    <p class="text-sm font-semibold">6 EFEMERIDES ESCOLARES</p>
-                                    <p class="text-xs">NARRADAS CON PICTOGRAMAS</p>
-                                </div>
+                                {{-- Overlay de texto (como en la imagen original) --}}
+                                @if ($index === 0)
+                                    <div class="absolute top-4 left-4 right-4">
+                                        <div class="bg-orange-500 text-white px-4 py-2 rounded-lg text-center">
+                                            <p class="text-sm font-semibold">6 EFEMERIDES ESCOLARES</p>
+                                            <p class="text-xs">NARRADAS CON PICTOGRAMAS</p>
+                                        </div>
+                                    </div>
+                                @endif
                             </div>
-                            @endif
-                        </div>
                         @endforeach
                     </div>
 
@@ -54,22 +66,25 @@ $currentImageIndex = 0;
                     <button id="prev-btn"
                         class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full p-2 shadow-lg transition-all duration-300 z-10">
                         <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7">
+                            </path>
                         </svg>
                     </button>
 
                     <button id="next-btn"
                         class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full p-2 shadow-lg transition-all duration-300 z-10">
                         <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                            </path>
                         </svg>
                     </button>
 
                     {{-- Indicadores de imagen --}}
                     <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-                        @foreach($product['images'] as $index => $image)
-                        <button class="image-indicator w-3 h-3 rounded-full {{ $index === 0 ? 'bg-white' : 'bg-white bg-opacity-50' }} transition-all duration-300"
-                            data-index="{{ $index }}"></button>
+                        @foreach ($productData['images'] as $index => $image)
+                            <button
+                                class="image-indicator w-3 h-3 rounded-full {{ $index === 0 ? 'bg-white' : 'bg-white bg-opacity-50' }} transition-all duration-300"
+                                data-index="{{ $index }}"></button>
                         @endforeach
                     </div>
                 </div>
@@ -79,8 +94,10 @@ $currentImageIndex = 0;
             <div class="space-y-6">
                 {{-- Título y Precio --}}
                 <div>
-                    <h1 class="text-3xl font-bold text-gray-900 mb-2">{{ $product['title'] }}</h1>
-                    <p class="text-2xl font-semibold text-red-600">{{ number_format($product['price'], 0, ',', '.') }}$</p>
+                    <h1 class="text-3xl font-bold text-gray-900 mb-2">
+                        {{ $productData['title'] ?? 'Título del producto' }}</h1>
+                    <p class="text-2xl font-semibold text-red-600">
+                        ${{ number_format($productData['price'], 0, ',', '.') }}</p>
                     <a href="#" class="text-red-600 text-sm hover:underline">Ver medios de pagos</a>
                 </div>
 
@@ -88,14 +105,18 @@ $currentImageIndex = 0;
                 <div class="flex items-center space-x-4">
                     <label for="quantity" class="text-gray-700 font-medium">Cantidad:</label>
                     <div class="relative">
-                        <select id="quantity" class="appearance-none bg-gray-100 border border-gray-300 rounded-lg px-4 py-2 pr-8 text-gray-700 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent">
-                            @for($i = 1; $i <= 10; $i++)
-                                <option value="{{ $i }}" {{ $i === $product['quantity'] ? 'selected' : '' }}>{{ $i }}</option>
-                                @endfor
+                        <select id="quantity"
+                            class="appearance-none bg-gray-100 border border-gray-300 rounded-lg px-4 py-2 pr-8 text-gray-700 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent">
+                            @for ($i = 1; $i <= 10; $i++)
+                                <option value="{{ $i }}"
+                                    {{ $i === $productData['quantity'] ? 'selected' : '' }}>{{ $i }}
+                                </option>
+                            @endfor
                         </select>
                         <div class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
                             <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7"></path>
                             </svg>
                         </div>
                     </div>
@@ -103,10 +124,12 @@ $currentImageIndex = 0;
 
                 {{-- Botones de Acción --}}
                 <div class="space-y-3">
-                    <button class="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105">
+                    <button
+                        class="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105">
                         Comprar ahora
                     </button>
-                    <button class="w-full bg-pink-300 hover:bg-pink-400 text-gray-800 font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105">
+                    <button
+                        class="w-full bg-pink-300 hover:bg-pink-400 text-gray-800 font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105">
                         Añadir al carrito
                     </button>
                 </div>
@@ -117,19 +140,19 @@ $currentImageIndex = 0;
                     <div class="space-y-2">
                         <div class="flex justify-between">
                             <span class="text-gray-600">Título del libro:</span>
-                            <span class="font-medium">{{ $product['title'] }}</span>
+                            <span class="font-medium">{{ $productData['title'] }}</span>
                         </div>
                         <div class="flex justify-between">
                             <span class="text-gray-600">Autor:</span>
-                            <span class="font-medium">{{ $product['author'] }}</span>
+                            <span class="font-medium">{{ $productData['author'] }}</span>
                         </div>
                         <div class="flex justify-between">
                             <span class="text-gray-600">Idioma:</span>
-                            <span class="font-medium">{{ $product['language'] }}</span>
+                            <span class="font-medium">{{ $productData['language'] }}</span>
                         </div>
                         <div class="flex justify-between">
                             <span class="text-gray-600">Editorial del libro:</span>
-                            <span class="font-medium">{{ $product['publisher'] }}</span>
+                            <span class="font-medium">{{ $productData['publisher'] }}</span>
                         </div>
                     </div>
                 </div>
@@ -137,7 +160,7 @@ $currentImageIndex = 0;
                 {{-- Descripción --}}
                 <div>
                     <h3 class="text-lg font-semibold text-gray-900 mb-2">Descripción</h3>
-                    <p class="text-gray-600 leading-relaxed">{{ $product['description'] }}</p>
+                    <p class="text-gray-600 leading-relaxed">{{ $productData['description'] }}</p>
                 </div>
             </div>
         </div>
@@ -146,7 +169,7 @@ $currentImageIndex = 0;
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const images = <?php echo json_encode($product['images']); ?>;
+        const images = <?php echo json_encode($productData['images']); ?>;
         let currentIndex = 0;
 
         const imageContainer = document.getElementById('image-container');

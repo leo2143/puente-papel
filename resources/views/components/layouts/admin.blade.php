@@ -6,15 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ $title ?? '' }} :: Panel de administración de DV Películas</title>
-    <link rel="stylesheet" href="<?= url('css/bootstrap.min.css'); ?>">
-    <link rel="stylesheet" href="<?= url('css/styles.css'); ?>">
+    <link rel="stylesheet" href="<?= url('css/bootstrap.min.css') ?>">
+    <link rel="stylesheet" href="<?= url('css/styles.css') ?>">
 </head>
 
 <body>
     <div class="d-flex">
         <nav class="col-3 bg-body-tertiary">
             <div class="container-fluid">
-                <a class="navbar-brand" href="<?= route('home'); ?>">DV Películas</a>
+                <a class="navbar-brand" href="<?= route('home') ?>">DV Películas</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Mostrar / ocultar navegación">
                     <span class="navbar-toggler-icon"></span>
@@ -22,13 +22,13 @@
                 <div class="" id="navbarNav">
                     <ul class="">
                         <li class="nav-item">
-                            <a class="nav-link" href="<?= route('home'); ?>">Home</a>
+                            <a class="nav-link" href="<?= route('home') ?>">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?= route('about'); ?>">Nosotros</a>
+                            <a class="nav-link" href="<?= route('about') ?>">Nosotros</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?= route('products.index'); ?>">Productos</a>
+                            <a class="nav-link" href="<?= route('product.index') ?>">Productos</a>
                         </li>
                     </ul>
                 </div>
@@ -59,7 +59,7 @@
 
             Es exactamente lo mismo que escribir:
 
-            <?= e(expresión); ?>
+            <?= e(expresión) ?>
 
             Les debe llamar la atención es esa función e().
             La función e() (que viene de "escape") es equivalente a la
@@ -74,7 +74,7 @@
 
             Esto sí es idéntico a:
 
-            <?= expresión; ?>
+            <?= expresión ?>
             --}}
             {{ $slot }}
         </main>

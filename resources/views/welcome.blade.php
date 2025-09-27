@@ -1,73 +1,37 @@
 <x-layouts.main>
-    {{-- Ejemplo de uso del componente ProductGrid --}}
-    <section class="max-w-7xl mx-auto">
-        <x-product-grid
-            :products="[
-                [
-                    'name' => 'Juego de Comunicación',
-                    'description' => 'Tablero educativo para mejorar la comunicación y el lenguaje en niños. Incluye actividades interactivas y materiales didácticos.',
-                    'price' => 30000,
-                    'image' => '/assets/images/producto-1.jpg'
-                ],
-                [
-                    'name' => 'Kit de Lectura',
-                    'description' => 'Conjunto completo de herramientas para desarrollar habilidades de lectura y comprensión lectora.',
-                    'price' => 25000,
-                    'image' => '/assets/images/producto-2.jpg'
-                ],
-                [
-                    'name' => 'Material Didáctico',
-                    'description' => 'Recursos educativos diseñados para estimular el aprendizaje y la creatividad en el aula.',
-                    'price' => 35000,
-                    'image' => '/assets/images/producto-3.jpg'
-                ],
-                [
-                    'name' => 'Juego Interactivo',
-                    'description' => 'Actividad lúdica que combina diversión y aprendizaje para niños de todas las edades.',
-                    'price' => 28000,
-                    'image' => '/assets/images/producto-4.jpg'
-                ]
-            ]"
-            title="Comunicación y lenguaje"
-            subtitle="Productos educativos para el desarrollo del lenguaje"
-            see-more-url="{{ route('products.index') }}"
-            see-more-text="Ver más"
-            :columns="4" />
+    {{-- Productos destacados desde la base de datos --}}
+    @if ($featuredProducts->count() > 0)
+        <section class="max-w-7xl mx-auto">
+            <x-product-grid :product="$featuredProducts" title="Productos Destacados" subtitle="Nuestros productos más populares"
+                see-more-url="{{ route('product.index') }}" see-more-text="Ver todos los productos" :columns="4" />
+        </section>
+    @endif
 
+    {{-- Productos de comunicación --}}
+    @if ($communicationProducts->count() > 0)
+        <section class="max-w-7xl mx-auto">
+            <x-product-grid :product="$communicationProducts" title="Comunicación y lenguaje"
+                subtitle="Productos educativos para el desarrollo del lenguaje"
+                see-more-url="{{ route('product.index') }}" see-more-text="Ver más" :columns="4" />
+        </section>
+    @endif
 
-                <x-product-grid
-            :products="[
-                [
-                    'name' => 'Juego de Comunicación',
-                    'description' => 'Tablero educativo para mejorar la comunicación y el lenguaje en niños. Incluye actividades interactivas y materiales didácticos.',
-                    'price' => 30000,
-                    'image' => '/assets/images/producto-1.jpg'
-                ],
-                [
-                    'name' => 'Kit de Lectura',
-                    'description' => 'Conjunto completo de herramientas para desarrollar habilidades de lectura y comprensión lectora.',
-                    'price' => 25000,
-                    'image' => '/assets/images/producto-2.jpg'
-                ],
-                [
-                    'name' => 'Material Didáctico',
-                    'description' => 'Recursos educativos diseñados para estimular el aprendizaje y la creatividad en el aula.',
-                    'price' => 35000,
-                    'image' => '/assets/images/producto-3.jpg'
-                ],
-                [
-                    'name' => 'Juego Interactivo',
-                    'description' => 'Actividad lúdica que combina diversión y aprendizaje para niños de todas las edades.',
-                    'price' => 28000,
-                    'image' => '/assets/images/producto-4.jpg'
-                ]
-            ]"
-            title="Comunicación y lenguaje"
-            subtitle="Productos educativos para el desarrollo del lenguaje"
-            see-more-url="{{ route('products.index') }}"
-            see-more-text="Ver más"
-            :columns="4" />
-    </section>
+    {{-- Productos de lectura --}}
+    @if ($readingProducts->count() > 0)
+        <section class="max-w-7xl mx-auto">
+            <x-product-grid :product="$readingProducts" title="Lectura y comprensión"
+                subtitle="Herramientas para mejorar la lectura" see-more-url="{{ route('product.index') }}"
+                see-more-text="Ver más" :columns="4" />
+        </section>
+    @endif
+
+    {{-- Fallback: Si no hay productos, mostrar mensaje --}}
+    @if ($featuredProducts->count() == 0 && $communicationProducts->count() == 0 && $readingProducts->count() == 0)
+        <section class="max-w-7xl mx-auto text-center py-12">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Próximamente</h2>
+            <p class="text-gray-600">Estamos preparando productos increíbles para ti.</p>
+        </section>
+    @endif
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
