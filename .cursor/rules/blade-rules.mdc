@@ -104,7 +104,7 @@
                                     ## 🗄️ BASE DE DATOS MYSQL
 
                                     ### Diseño de base de datos:
-                                    - Usar nombres descriptivos en inglés: `users`, `products`, `orders`
+                                    - Usar nombres descriptivos en inglés: `users`, `product`, `orders`
                                     - Claves primarias: `id` (INT AUTO_INCREMENT)
                                     - Claves foráneas: `user_id`, `product_id`, `order_id`
                                     - Índices apropiados para consultas frecuentes
@@ -231,19 +231,19 @@ export default {
 
                                       public function getAllProducts()
                                       {
-                                        $sql = "SELECT * FROM products WHERE active = 1 ORDER BY name";
+                                        $sql = "SELECT * FROM product WHERE active = 1 ORDER BY name";
                                         return $this->db->query($sql)->fetchAll();
                                       }
 
                                       public function getProductById($id)
                                       {
-                                        $sql = "SELECT * FROM products WHERE id = ?";
+                                        $sql = "SELECT * FROM product WHERE id = ?";
                                         return $this->db->query($sql, [$id])->fetch();
                                       }
 
                                       public function createProduct($data)
                                       {
-                                        $sql = "INSERT INTO products (name, description, price, category_id) VALUES (?, ?, ?, ?)";
+                                        $sql = "INSERT INTO product (name, description, price, category_id) VALUES (?, ?, ?, ?)";
                                         return $this->db->query($sql, [
                                           $data['name'],
                                           $data['description'],
@@ -352,7 +352,7 @@ export default {
                                           <a href="/" class="nav-link" aria-current="page">Inicio</a>
                                         </li>
                                         <li class="nav-item">
-                                          <a href="/products" class="nav-link">Productos</a>
+                                          <a href="/product" class="nav-link">Productos</a>
                                         </li>
                                         <li class="nav-item">
                                           <a href="/about" class="nav-link">Acerca de</a>
@@ -437,7 +437,7 @@ export default {
                                       public function getActiveProducts()
                                       {
                                         try {
-                                          $sql = "SELECT * FROM products WHERE status = 'active' ORDER BY name";
+                                          $sql = "SELECT * FROM product WHERE status = 'active' ORDER BY name";
                                           return $this->database->query($sql)->fetchAll();
                                         } catch (Exception $e) {
                                           $this->logger->error('Error obteniendo productos: ' . $e->getMessage());

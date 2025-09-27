@@ -5,13 +5,14 @@ namespace App\View\Components;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+use Illuminate\Database\Eloquent\Collection;
 
 class ProductGrid extends Component
 {
     /**
-     * Array de productos
+     * Array o Collection de productos
      */
-    public array $products;
+    public $product;
 
     /**
      * Título de la sección
@@ -42,14 +43,14 @@ class ProductGrid extends Component
      * Create a new component instance.
      */
     public function __construct(
-        array $products = [],
+        $product = [],
         string $title = 'Productos',
         ?string $subtitle = null,
         ?string $seeMoreUrl = null,
         string $seeMoreText = 'Ver más',
         int $columns = 4
     ) {
-        $this->products = $products;
+        $this->product = $product;
         $this->title = $title;
         $this->subtitle = $subtitle;
         $this->seeMoreUrl = $seeMoreUrl;

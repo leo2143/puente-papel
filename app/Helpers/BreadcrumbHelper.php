@@ -21,9 +21,9 @@ class BreadcrumbHelper
                 ['name' => 'Inicio', 'url' => route('home'), 'active' => false],
                 ['name' => 'Acerca de', 'url' => route('about'), 'active' => true]
             ],
-            'products.index' => [
+            'product.index' => [
                 ['name' => 'Inicio', 'url' => route('home'), 'active' => false],
-                ['name' => 'Productos', 'url' => route('products.index'), 'active' => true]
+                ['name' => 'Productos', 'url' => route('product.index'), 'active' => true]
             ],
             'item.example' => [
                 ['name' => 'Inicio', 'url' => route('home'), 'active' => false],

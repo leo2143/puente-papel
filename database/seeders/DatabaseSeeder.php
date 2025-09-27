@@ -16,8 +16,15 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+            'name' => 'admin',
+            'email' => 'test@puentepapel.com',
+            'last_name' => 'Test Last Name',
+            'phone' => '1165893493',    
+            'role' => 'admin',
+            'is_active' => true,
         ]);
+
+        // Ejecutar el seeder de productos
+        $this->call(ProductSeeder::class);
     }
 }
