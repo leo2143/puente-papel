@@ -25,7 +25,7 @@ if (!$product) {
         'language' => $product->language ?? 'Español',
         'publisher' => $product->publisher ?? 'Puente Papel',
         'description' => $product->description ?? 'Descripción no disponible',
-        'images' => $product->images ? json_decode($product->images, true) : ['https://via.placeholder.com/400x500/FF6B35/FFFFFF?text=Imagen+1', 'https://via.placeholder.com/400x500/4ECDC4/FFFFFF?text=Imagen+2', 'https://via.placeholder.com/400x500/45B7D1/FFFFFF?text=Imagen+3', 'https://via.placeholder.com/400x500/96CEB4/FFFFFF?text=Imagen+4'],
+        'images' => $product->image_url ? [$product->image_url] : ['https://via.placeholder.com/400x500/FF6B35/FFFFFF?text=Sin+Imagen'],
         'quantity' => 1,
     ];
 }

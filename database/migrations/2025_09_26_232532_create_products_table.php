@@ -19,10 +19,9 @@ return new class extends Migration
             $table->string('publisher')->nullable();
             $table->string('category');
             $table->string('image')->nullable();
-            $table->text('images')->nullable(); // Para JSON de múltiples imágenes
-            $table->string('image_path')->nullable();
             $table->integer('stock')->default(0);
             $table->boolean('is_active')->default(true);
+            $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();
         });
     }

@@ -22,10 +22,10 @@
                                 <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
                             </svg>
                         </div>
-                        <h3
+                        <h2
                             class="text-xl font-bold bg-gradient-to-r from-pink-400 to-red-400 bg-clip-text text-transparent">
                             Puente Papel
-                        </h3>
+                        </h2>
                     </div>
                     <p class="text-gray-300 text-sm leading-relaxed">
                         Conectamos ideas a través del papel. Especialistas en materiales educativos y recursos
@@ -58,7 +58,7 @@
 
                 {{-- Columna 2: Enlaces rápidos --}}
                 <div class="space-y-4">
-                    <h4 class="text-lg font-semibold text-pink-400">Enlaces Rápidos</h4>
+                    <h3 class="text-lg font-semibold text-pink-400">Enlaces Rápidos</h3>
                     <ul class="space-y-2">
                         <li><a href="{{ route('home') }}"
                                 class="text-gray-300 hover:text-pink-400 transition-colors duration-200 text-sm">Inicio</a>
@@ -80,7 +80,7 @@
 
                 {{-- Columna 3: Categorías --}}
                 <div class="space-y-4">
-                    <h4 class="text-lg font-semibold text-pink-400">Categorías</h4>
+                    <h3 class="text-lg font-semibold text-pink-400">Categorías</h3>
                     <ul class="space-y-2">
                         <li><a href="#"
                                 class="text-gray-300 hover:text-pink-400 transition-colors duration-200 text-sm">Material
@@ -102,7 +102,7 @@
 
                 {{-- Columna 4: Contacto --}}
                 <div class="space-y-4">
-                    <h4 class="text-lg font-semibold text-pink-400">Contacto</h4>
+                    <h3 class="text-lg font-semibold text-pink-400">Contacto</h3>
                     <div class="space-y-3">
                         <div class="flex items-center space-x-3">
                             <div class="w-8 h-8 bg-pink-600 rounded-full flex items-center justify-center">

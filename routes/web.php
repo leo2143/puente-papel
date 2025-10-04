@@ -5,13 +5,16 @@ use App\Http\Controllers\BlogPostController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Web\AuthController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\Admin\BlogController as AdminBlogController;
+use App\Http\Controllers\AboutController;
 
 // Rutas públicas
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/about', function () {
-    return view('about');
-})->name('about');
+Route::get('/sobre-nosotros', [AboutController::class, 'index'])->name('about');
 
 // Rutas de autenticación
 Route::group(['prefix' => 'auth', 'as' => 'auth.'], function () {
@@ -36,27 +39,20 @@ Route::get('/product/{product}', [ProductController::class, 'show'])->name('prod
 Route::get('/blog', [BlogPostController::class, 'index'])->name('blog.index');
 Route::get('/blog/{post}', [BlogPostController::class, 'show'])->name('blog.show');
 
-// Rutas protegidas (requieren autenticación)
-Route::middleware('auth')->group(function () {
-    // CRUD completo para Blog Posts
-    Route::resource('admin/blog', BlogPostController::class)->except(['index', 'show']);
+// Rutas de administración (requieren autenticación y rol admin)
+Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+    // Dashboard
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
     
-    // CRUD completo para Productos
-    Route::resource('admin/product', ProductController::class)->except(['index', 'show']);
+    // Usuarios
+    Route::resource('users', UserController::class);
+    Route::patch('users/{user}/toggle-status', [UserController::class, 'toggleStatus'])->name('users.toggle-status');
     
-    // Rutas adicionales
-    Route::get('/admin/blog', [BlogPostController::class, 'index'])->name('admin.blog.index');
-    Route::get('/admin/product', [ProductController::class, 'index'])->name('admin.product.index');
+    // Productos
+    Route::resource('product', AdminProductController::class)->except(['index', 'show']);
+    Route::get('product', [AdminProductController::class, 'index'])->name('product.index');
+    
+    // Blog
+    Route::resource('blog', AdminBlogController::class)->except(['index', 'show']);
+    Route::get('blog', [AdminBlogController::class, 'index'])->name('blog.index');
 });
-
-// Ruta de ejemplo
-Route::get('/item', function () {
-    $customBreadcrumbs = [
-        ['name' => 'Inicio', 'url' => route('home'), 'active' => false],
-        ['name' => 'Product', 'url' => '#', 'active' => false],
-        ['name' => 'Blog', 'url' => '#', 'active' => false],
-        ['name' => 'Detalle del Producto', 'url' => route('item.example'), 'active' => true]
-    ]; 
-
-    return view('item-example', compact('customBreadcrumbs'));
-})->name('item.example');
