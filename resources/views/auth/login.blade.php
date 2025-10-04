@@ -20,8 +20,7 @@
         <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
             <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
                 {{-- Mostrar mensajes de error --}}
-                @if ($errors->any())
-                    <div class="mb-4 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">
+                @if ($errors->any()) 
                         <ul class="list-disc list-inside">
                             @foreach ($errors->all() as $error)
                                 <li>{{ $error }}</li>

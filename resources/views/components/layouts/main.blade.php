@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ $title ?? '' }} :: DV Películas</title>
-    <link rel="stylesheet" href="<?= url('css/styles.css'); ?>">
+    <link rel="stylesheet" href="<?= url('css/styles.css') ?>">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -20,13 +20,13 @@
 <body class=" h-full relative">
     {{-- Canvas para ThpaceGL - Fondo de toda la página --}}
     <canvas id="make-me-cool" class="fixed inset-0 w-full h-full z-0"></canvas>
-    
+
     <div id="app" class="relative z-10 h-full">
         {{-- Header - Fila 1 (56px) --}}
-            <x-header />
+        <x-header class="relative z-50" />
 
         {{-- Main Content - Fila 2 (1fr - toma el espacio restante) --}}
-        <main class="overflow-y-auto">
+        <main class="overflow-y-auto relative z-10">
             {{-- Contenido principal --}}
             <div>
                 {{-- (esto es un comentario de Blade)
@@ -53,7 +53,7 @@
 
                 Es exactamente lo mismo que escribir:
 
-                <?= e(expresión); ?>
+                <?= e(expresión) ?>
 
                 Les debe llamar la atención es esa función e().
                 La función e() (que viene de "escape") es equivalente a la
@@ -68,14 +68,14 @@
 
                 Esto sí es idéntico a:
 
-                <?= expresión; ?>
+                <?= expresión ?>
                 --}}
                 {{ $slot }}
             </div>
         </main>
 
         {{-- Footer - Fila 3 (100px) --}}
-            <x-footer />
+        <x-footer />
     </div>
 
     <script src="{{ url('js/bootstrap.bundle.min.js') }}"></script>

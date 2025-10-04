@@ -1,0 +1,166 @@
+<x-layouts.admin>
+    <x-slot:title>Crear Producto</x-slot:title>
+
+    @php
+        $breadcrumbs = [
+            ['name' => 'Productos', 'url' => route('admin.product.index'), 'active' => false],
+            ['name' => 'Crear Producto', 'url' => '#', 'active' => true],
+        ];
+    @endphp
+
+    {{-- Header --}}
+    <section>
+        <div class="flex items-center justify-between mb-8">
+            <div>
+                <h1 class="text-3xl font-bold text-gray-800">Crear Nuevo Producto</h1>
+                <p class="text-gray-600 mt-2">Agrega un nuevo producto al catálogo</p>
+            </div>
+            <a href="{{ route('admin.product.index') }}"
+                class="inline-flex items-center space-x-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors duration-200">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                </svg>
+                <span>Volver al listado</span>
+            </a>
+        </div>
+
+        {{-- Formulario --}}
+        <form action="{{ route('admin.product.store') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                {{-- Columna principal --}}
+                <div class="lg:col-span-2 space-y-6">
+                    {{-- Título --}}
+                    <div>
+                        <label for="title" class="block text-sm font-medium text-gray-700 mb-2">
+                            Título del Producto *
+                        </label>
+                        <input type="text" id="title" name="title" value="{{ old('title') }}"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent text-lg"
+                            placeholder="Escribe el título del producto..." required>
+                        @error('title')
+                            <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    {{-- Nombre (opcional) --}}
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
+                            Nombre (opcional)
+                        </label>
+                        <input type="text" id="name" name="name" value="{{ old('name') }}"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                            placeholder="Nombre alternativo del producto...">
+                        @error('name')
+                            <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    {{-- Descripción --}}
+                    <div>
+                        <label for="description" class="block text-sm font-medium text-gray-700 mb-2">
+                            Descripción *
+                        </label>
+                        <textarea id="description" name="description" rows="6"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                            placeholder="Describe el producto..." required>{{ old('description') }}</textarea>
+                        @error('description')
+                            <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
+
+                {{-- Sidebar --}}
+                <div class="space-y-6">
+                    {{-- Configuración --}}
+                    <div class="bg-white p-6 rounded-lg border border-gray-200">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">Configuración</h3>
+
+                        <div class="space-y-4">
+                            {{-- Precio --}}
+                            <div>
+                                <label for="price" class="block text-sm font-medium text-gray-700 mb-2">
+                                    Precio
+                                </label>
+                                <input type="number" id="price" name="price" value="{{ old('price') }}"
+                                    step="0.01" min="0"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                                    placeholder="0.00">
+                                @error('price')
+                                    <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            {{-- Categoría --}}
+                            <div>
+                                <label for="category" class="block text-sm font-medium text-gray-700 mb-2">
+                                    Categoría
+                                </label>
+                                <input type="text" id="category" name="category" value="{{ old('category') }}"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                                    placeholder="Ej: Comunicación, Lectura, etc.">
+                                @error('category')
+                                    <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            {{-- Estado --}}
+                            <div>
+                                <label for="status" class="block text-sm font-medium text-gray-700 mb-2">
+                                    Estado
+                                </label>
+                                <select id="status" name="status"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
+                                    <option value="active" {{ old('status') == 'active' ? 'selected' : '' }}>Activo
+                                    </option>
+                                    <option value="inactive" {{ old('status') == 'inactive' ? 'selected' : '' }}>
+                                        Inactivo</option>
+                                </select>
+                                @error('status')
+                                    <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- Imagen --}}
+                    <div class="bg-white p-6 rounded-lg border border-gray-200">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">Imagen del Producto</h3>
+
+                        <x-image-upload name="image" type="products" required="true" class="w-full" />
+                    </div>
+
+                    {{-- Acciones --}}
+                    <div class="bg-white p-6 rounded-lg border border-gray-200">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">Acciones</h3>
+
+                        <div class="space-y-3">
+                            <button type="submit"
+                                class="w-full bg-red-600 hover:bg-red-700 text-white font-medium py-3 px-4 rounded-lg transition-colors duration-200">
+                                Crear Producto
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Vista previa de imagen
+            document.getElementById('image').addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        document.getElementById('preview-img').src = e.target.result;
+                        document.getElementById('image-preview').classList.remove('hidden');
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        });
+    </script>
+</x-layouts.admin>

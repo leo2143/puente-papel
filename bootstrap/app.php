@@ -14,6 +14,8 @@ return Application::configure(basePath: dirname(__DIR__))
         // Registrar middleware para autenticación web
         $middleware->alias([
             'web.auth' => \App\Http\Middleware\WebAuth::class,
+            'admin' => \App\Http\Middleware\AdminMiddleware::class,
+            'auth' => \App\Http\Middleware\Authenticate::class,
         ]);
         
         // Aplicar middleware WebAuth a todas las rutas web

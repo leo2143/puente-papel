@@ -1,7 +1,7 @@
 <x-layouts.main>
     <x-slot:title>Productos</x-slot:title>
 
-    <div class="container mx-auto p-8">
+    <section class="container mx-auto p-8">
         <div class="flex justify-between items-center mb-6">
             <h1 class="text-3xl font-bold">Nuestros Productos</h1>
         </div>
@@ -16,8 +16,8 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach ($product as $producto)
                     <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
-                        @if ($producto->image || $producto->image_path)
-                            <img src="{{ $producto->image ?? asset($producto->image_path) }}"
+                        @if ($producto->image_url)
+                            <img src="{{ $producto->image_url }}"
                                 alt="{{ $producto->title ?? $producto->name }}"
                                 class="w-full h-48 object-cover rounded-lg mb-4">
                         @else
@@ -26,7 +26,7 @@
                             </div>
                         @endif
 
-                        <h3 class="text-xl font-semibold mb-2">{{ $producto->title ?? $producto->name }}</h3>
+                        <h2 class="text-xl font-semibold mb-2">{{ $producto->title ?? $producto->name }}</h2>
                         <p class="text-gray-600 mb-4">{{ Str::limit($producto->description, 100) }}</p>
 
                         <div class="flex justify-between items-center mb-4">
@@ -58,9 +58,9 @@
             </div>
         @else
             <div class="text-center py-12">
-                <h3 class="text-xl text-gray-600 mb-4">No hay productos disponibles</h3>
+                <h2 class="text-xl text-gray-600 mb-4">No hay productos disponibles</h2>
                 <p class="text-gray-500">Pronto agregaremos nuevos productos a nuestro catálogo.</p>
             </div>
         @endif
-    </div>
+    </section>
 </x-layouts.main>
