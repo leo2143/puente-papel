@@ -63,13 +63,16 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 
 
+verificar los x-slot:title
+checks->
 
-FALTA POR HACER------>
+validacion de estructura
+views:
+welcome -> OK
+Header -> OK
+Footer -> OK
+producto->index -> OK
+producto->index -> OK
+welcome -> OK
 
-    Imagen cuando no tiene acceso a la pagina
-    todo el panel de admin 
-        administrar productos
-        blogs
-        usuarios
-        
-    aplicar markdown para crear posts
+
