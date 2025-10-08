@@ -39,16 +39,15 @@
     @endif
 
     {{-- Formulario --}}
-    <form action="{{ route('admin.blog.update', $post) }}" method="POST" enctype="multipart/form-data" id="blog-form">
-        @csrf
-        @method('PUT')
-        
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {{-- Columna principal - Editor --}}
-            <div class="lg:col-span-2 space-y-6">
+    <div class="bg-pink-50 px-8 py-6 rounded-2xl max-w-2xl mx-auto">
+        <form action="{{ route('admin.blog.update', $post) }}" method="POST" enctype="multipart/form-data" id="blog-form">
+            @csrf
+            @method('PUT')
+            
+            <div class="space-y-6">
                 {{-- Título --}}
                 <div>
-                    <label for="title" class="block text-sm font-medium text-gray-700 mb-2">
+                    <label for="title" class="block text-sm font-medium text-gray-800 mb-2">
                         Título del Post *
                     </label>
                     <input type="text" 
@@ -65,7 +64,7 @@
 
                 {{-- Editor Markdown --}}
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                    <label class="block text-sm font-medium text-gray-800 mb-2">
                         Contenido del Post *
                     </label>
                     <div class="border border-gray-300 rounded-lg overflow-hidden">
@@ -76,74 +75,51 @@
                         <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
                     @enderror
                 </div>
-            </div>
 
-            {{-- Sidebar - Configuración --}}
-            <div class="space-y-6">
                 {{-- Estado --}}
-                <div class="bg-white p-6 rounded-lg border border-gray-200">
-                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Configuración</h3>
-                    
-                    <div class="space-y-4">
-                        <div>
-                            <label for="status" class="block text-sm font-medium text-gray-700 mb-2">
-                                Estado
-                            </label>
-                            <select id="status" name="status" 
-                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
-                                <option value="draft" {{ old('status', $post->status) == 'draft' ? 'selected' : '' }}>Borrador</option>
-                                <option value="published" {{ old('status', $post->status) == 'published' ? 'selected' : '' }}>Publicado</option>
-                            </select>
-                            @error('status')
-                                <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
-                            @enderror
-                        </div>
+                <div>
+                    <label for="status" class="block text-sm font-medium text-gray-800 mb-2">
+                        Estado
+                    </label>
+                    <select id="status" name="status" 
+                            class="w-full px-4 py-3 bg-pink-100 border-2 border-pink-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 text-gray-800 transition-all duration-300">
+                        <option value="draft" {{ old('status', $post->status) == 'draft' ? 'selected' : '' }}>Borrador</option>
+                        <option value="published" {{ old('status', $post->status) == 'published' ? 'selected' : '' }}>Publicado</option>
+                    </select>
+                    @error('status')
+                        <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
 
-                        {{-- Imagen destacada --}}
-                        <div>
-                            <label for="featured_image" class="block text-sm font-medium text-gray-700 mb-2">
-                                Imagen Destacada
-                            </label>
-                            <x-image-upload 
-                                name="featured_image" 
-                                type="blog" 
-                                :currentImage="$post->featured_image"
-                                class="w-full"
-                            />
-                        </div>
-                    </div>
+                {{-- Imagen destacada --}}
+                <div>
+                    <label for="featured_image" class="block text-sm font-medium text-gray-800 mb-2">
+                        Imagen Destacada
+                    </label>
+                    <x-image-upload 
+                        name="featured_image" 
+                        type="blog" 
+                        :currentImage="$post->featured_image"
+                        class="w-full"
+                    />
                 </div>
 
                 {{-- Acciones --}}
-                <div class="bg-white p-6 rounded-lg border border-gray-200">
-                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Acciones</h3>
+                <div class="pt-4 space-y-3">
+                    <button type="submit" 
+                            class="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 hover:shadow-lg">
+                        Actualizar Post
+                    </button>
                     
-                    <div class="space-y-3">
-                        <button type="submit" 
-                                class="w-full bg-red-600 hover:bg-red-700 text-white font-medium py-3 px-4 rounded-lg transition-colors duration-200">
-                            Actualizar Post
-                        </button>
-                        
-                        <button type="button" 
-                                id="preview-btn"
-                                class="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-3 px-4 rounded-lg transition-colors duration-200">
-                            Vista Previa
-                        </button>
-                    </div>
-                </div>
-
-                {{-- Información del post --}}
-                <div class="bg-blue-50 p-6 rounded-lg border border-blue-200">
-                    <h3 class="text-lg font-semibold text-blue-800 mb-3">📝 Información</h3>
-                    <div class="text-sm text-blue-700 space-y-2">
-                        <p><strong>Autor:</strong> {{ $post->user->name }}</p>
-                        <p><strong>Creado:</strong> {{ $post->created_at->format('d/m/Y H:i') }}</p>
-                        <p><strong>Última actualización:</strong> {{ $post->updated_at->format('d/m/Y H:i') }}</p>
-                    </div>
+                    <button type="button" 
+                            id="preview-btn"
+                            class="w-full bg-pink-100 hover:bg-pink-200 text-gray-800 font-medium py-3 px-6 rounded-xl transition-all duration-300 border-2 border-pink-300">
+                        Vista Previa
+                    </button>
                 </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 
     {{-- Scripts para Editor Markdown --}}
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>

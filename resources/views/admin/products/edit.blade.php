@@ -24,23 +24,22 @@
     </div>
 
     {{-- Formulario --}}
-    <form action="{{ route('admin.product.update', $product) }}" method="POST" enctype="multipart/form-data">
-        @csrf
-        @method('PUT')
-        
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {{-- Columna principal --}}
-            <div class="lg:col-span-2 space-y-6">
+    <div class="bg-pink-50 px-8 py-6 rounded-2xl max-w-2xl mx-auto">
+        <form action="{{ route('admin.product.update', $product) }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
+            
+            <div class="space-y-6">
                 {{-- Título --}}
                 <div>
-                    <label for="title" class="block text-sm font-medium text-gray-700 mb-2">
+                    <label for="title" class="block text-sm font-medium text-gray-800 mb-2">
                         Título del Producto *
                     </label>
                     <input type="text" 
                            id="title" 
                            name="title" 
                            value="{{ old('title', $product->title) }}"
-                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent text-lg"
+                           class="w-full px-4 py-3 bg-pink-100 border-2 border-pink-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 text-gray-800 transition-all duration-300"
                            placeholder="Escribe el título del producto..."
                            required>
                     @error('title')
@@ -50,14 +49,14 @@
 
                 {{-- Nombre (opcional) --}}
                 <div>
-                    <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
+                    <label for="name" class="block text-sm font-medium text-gray-800 mb-2">
                         Nombre (opcional)
                     </label>
                     <input type="text" 
                            id="name" 
                            name="name" 
                            value="{{ old('name', $product->name) }}"
-                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                           class="w-full px-4 py-3 bg-pink-100 border-2 border-pink-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 text-gray-800 transition-all duration-300"
                            placeholder="Nombre alternativo del producto...">
                     @error('name')
                         <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
@@ -66,83 +65,74 @@
 
                 {{-- Descripción --}}
                 <div>
-                    <label for="description" class="block text-sm font-medium text-gray-700 mb-2">
+                    <label for="description" class="block text-sm font-medium text-gray-800 mb-2">
                         Descripción *
                     </label>
                     <textarea id="description" 
                               name="description" 
                               rows="6"
-                              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                              class="w-full px-4 py-3 bg-pink-100 border-2 border-pink-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 text-gray-800 transition-all duration-300"
                               placeholder="Describe el producto..."
                               required>{{ old('description', $product->description) }}</textarea>
                     @error('description')
                         <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
                     @enderror
                 </div>
-            </div>
 
-            {{-- Sidebar --}}
-            <div class="space-y-6">
-                {{-- Configuración --}}
-                <div class="bg-white p-6 rounded-lg border border-gray-200">
-                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Configuración</h3>
-                    
-                    <div class="space-y-4">
-                        {{-- Precio --}}
-                        <div>
-                            <label for="price" class="block text-sm font-medium text-gray-700 mb-2">
-                                Precio
-                            </label>
-                            <input type="number" 
-                                   id="price" 
-                                   name="price" 
-                                   value="{{ old('price', $product->price) }}"
-                                   step="0.01"
-                                   min="0"
-                                   class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
-                                   placeholder="0.00">
-                            @error('price')
-                                <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
-                            @enderror
-                        </div>
+                {{-- Precio --}}
+                <div>
+                    <label for="price" class="block text-sm font-medium text-gray-800 mb-2">
+                        Precio
+                    </label>
+                    <input type="number" 
+                           id="price" 
+                           name="price" 
+                           value="{{ old('price', $product->price) }}"
+                           step="0.01"
+                           min="0"
+                           class="w-full px-4 py-3 bg-pink-100 border-2 border-pink-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 text-gray-800 transition-all duration-300"
+                           placeholder="0.00">
+                    @error('price')
+                        <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
 
-                        {{-- Categoría --}}
-                        <div>
-                            <label for="category" class="block text-sm font-medium text-gray-700 mb-2">
-                                Categoría
-                            </label>
-                            <input type="text" 
-                                   id="category" 
-                                   name="category" 
-                                   value="{{ old('category', $product->category) }}"
-                                   class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
-                                   placeholder="Ej: Comunicación, Lectura, etc.">
-                            @error('category')
-                                <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
-                            @enderror
-                        </div>
+                {{-- Categoría --}}
+                <div>
+                    <label for="category" class="block text-sm font-medium text-gray-800 mb-2">
+                        Categoría
+                    </label>
+                    <input type="text" 
+                           id="category" 
+                           name="category" 
+                           value="{{ old('category', $product->category) }}"
+                           class="w-full px-4 py-3 bg-pink-100 border-2 border-pink-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 text-gray-800 transition-all duration-300"
+                           placeholder="Ej: Comunicación, Lectura, etc.">
+                    @error('category')
+                        <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
 
-                        {{-- Estado --}}
-                        <div>
-                            <label for="status" class="block text-sm font-medium text-gray-700 mb-2">
-                                Estado
-                            </label>
-                            <select id="status" name="status" 
-                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
-                                <option value="active" {{ old('status', $product->status ?? 'active') == 'active' ? 'selected' : '' }}>Activo</option>
-                                <option value="inactive" {{ old('status', $product->status ?? 'active') == 'inactive' ? 'selected' : '' }}>Inactivo</option>
-                            </select>
-                            @error('status')
-                                <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
-                            @enderror
-                        </div>
-                    </div>
+                {{-- Estado --}}
+                <div>
+                    <label for="status" class="block text-sm font-medium text-gray-800 mb-2">
+                        Estado
+                    </label>
+                    <select id="status" name="status" 
+                            class="w-full px-4 py-3 bg-pink-100 border-2 border-pink-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 text-gray-800 transition-all duration-300">
+                        <option value="active" {{ old('status', $product->status ?? 'active') == 'active' ? 'selected' : '' }}>Activo</option>
+                        <option value="inactive" {{ old('status', $product->status ?? 'active') == 'inactive' ? 'selected' : '' }}>Inactivo</option>
+                    </select>
+                    @error('status')
+                        <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 {{-- Imagen --}}
-                <div class="bg-white p-6 rounded-lg border border-gray-200">
-                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Imagen del Producto</h3>
-                    
+                <div>
+                    <label class="block text-sm font-medium text-gray-800 mb-2">
+                        Imagen del Producto
+                    </label>
                     <x-image-upload 
                         name="image" 
                         type="products" 
@@ -152,19 +142,15 @@
                 </div>
 
                 {{-- Acciones --}}
-                <div class="bg-white p-6 rounded-lg border border-gray-200">
-                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Acciones</h3>
-                    
-                    <div class="space-y-3">
-                        <button type="submit" 
-                                class="w-full bg-red-600 hover:bg-red-700 text-white font-medium py-3 px-4 rounded-lg transition-colors duration-200">
-                            Actualizar Producto
-                        </button>
-                    </div>
+                <div class="pt-4">
+                    <button type="submit" 
+                            class="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 hover:shadow-lg">
+                        Actualizar Producto
+                    </button>
                 </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
