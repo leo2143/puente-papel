@@ -12,7 +12,7 @@
 
     <article class="max-w-4xl mx-auto px-4 py-8">
         {{-- Header del post --}}
-        <header class="mb-8">
+        <header class="bg-pink-50 px-8 py-6 rounded-2xl mb-8 border-2 border-pink-200">
             {{-- Imagen destacada --}}
             @if($post->featured_image_url)
                 <div class="mb-6 rounded-2xl overflow-hidden shadow-lg">
@@ -32,8 +32,8 @@
             <div class="flex flex-wrap items-center gap-4 text-sm text-gray-600 mb-6">
                 @if($post->user)
                     <div class="flex items-center space-x-2">
-                        <div class="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center">
-                            <span class="text-white text-sm font-medium">
+                        <div class="w-8 h-8 bg-pink-300 rounded-full flex items-center justify-center border border-pink-400">
+                            <span class="text-gray-800 text-sm font-medium">
                                 {{ substr($post->user->name, 0, 1) }}
                             </span>
                         </div>
@@ -62,9 +62,11 @@
         </header>
 
         {{-- Contenido del post --}}
-        <div class="prose prose-lg max-w-none">
-            <div class="text-gray-800 leading-relaxed">
-                {!! nl2br(e($post->content)) !!}
+        <div class="bg-pink-50 px-8 py-6 rounded-2xl border-2 border-pink-200">
+            <div class="prose prose-lg max-w-none">
+                <div class="text-gray-800 leading-relaxed">
+                    {!! nl2br(e($post->content)) !!}
+                </div>
             </div>
         </div>
 
@@ -83,7 +85,7 @@
                 <div class="flex items-center space-x-4">
                     <span class="text-sm text-gray-600">Compartir:</span>
                     <button onclick="sharePost()" 
-                            class="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors duration-200"
+                            class="p-2 rounded-xl bg-pink-100 hover:bg-pink-200 transition-colors duration-200 border-2 border-pink-300"
                             title="Compartir artículo">
                         <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

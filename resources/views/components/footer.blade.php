@@ -16,12 +16,7 @@
                 {{-- Columna 1: Información de la empresa --}}
                 <div class="space-y-4">
                     <div class="flex items-center space-x-2">
-                        <div
-                            class="w-8 h-8 bg-gradient-to-r from-pink-500 to-red-500 rounded-lg flex items-center justify-center">
-                            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-                            </svg>
-                        </div>
+                        <img src="{{ asset('storage/images/puente_papel_icon.png') }}" alt="Puente Papel" class="w-10 h-8">
                         <h2
                             class="text-xl font-bold bg-gradient-to-r from-pink-400 to-red-400 bg-clip-text text-transparent">
                             Puente Papel

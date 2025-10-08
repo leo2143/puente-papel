@@ -34,8 +34,8 @@ $currentImageIndex = 0;
 ?>
 
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 p-6">
+    <div class="bg-pink-50 rounded-2xl shadow-lg overflow-hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 p-8">
 
             {{-- Sección de Imágenes --}}
             <div class="relative">
@@ -106,7 +106,7 @@ $currentImageIndex = 0;
                     <label for="quantity" class="text-gray-700 font-medium">Cantidad:</label>
                     <div class="relative">
                         <select id="quantity"
-                            class="appearance-none bg-gray-100 border border-gray-300 rounded-lg px-4 py-2 pr-8 text-gray-700 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent">
+                            class="appearance-none bg-pink-100 border-2 border-pink-300 rounded-xl px-4 py-2 pr-8 text-gray-800 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all duration-300">
                             @for ($i = 1; $i <= 10; $i++)
                                 <option value="{{ $i }}"
                                     {{ $i === $productData['quantity'] ? 'selected' : '' }}>{{ $i }}
@@ -125,18 +125,18 @@ $currentImageIndex = 0;
                 {{-- Botones de Acción --}}
                 <div class="space-y-3">
                     <button
-                        class="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105">
+                        class="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 hover:shadow-lg">
                         Comprar ahora
                     </button>
                     <button
-                        class="w-full bg-pink-300 hover:bg-pink-400 text-gray-800 font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105">
+                        class="w-full bg-pink-100 hover:bg-pink-200 text-gray-800 font-semibold py-3 px-6 rounded-xl transition-all duration-300 border-2 border-pink-300 hover:shadow-lg">
                         Añadir al carrito
                     </button>
                 </div>
 
                 {{-- Características del Producto --}}
-                <div class="bg-gray-50 rounded-lg p-4">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Características</h3>
+                <div class="bg-pink-100 rounded-xl p-4 border-2 border-pink-300">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Características</h3>
                     <div class="space-y-2">
                         <div class="flex justify-between">
                             <span class="text-gray-600">Título del libro:</span>
@@ -159,7 +159,7 @@ $currentImageIndex = 0;
 
                 {{-- Descripción --}}
                 <div>
-                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Descripción</h3>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Descripción</h3>
                     <p class="text-gray-600 leading-relaxed">{{ $productData['description'] }}</p>
                 </div>
             </div>
@@ -259,7 +259,7 @@ $currentImageIndex = 0;
         });
 
         // Animación de entrada para el componente
-        gsap.fromTo('.grid', {
+        gsap.fromTo('.bg-pink-50', {
             opacity: 0,
             y: 50
         }, {
