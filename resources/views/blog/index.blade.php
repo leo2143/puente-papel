@@ -1,5 +1,5 @@
 <x-layouts.main>
-    <x-slot:title>Blog :: Puente Papel</x-slot:title>
+    <x-slot:title>Blog</x-slot:title>
 
     {{-- Header del blog --}}
     <section class="max-w-7xl mx-auto px-4 py-8">

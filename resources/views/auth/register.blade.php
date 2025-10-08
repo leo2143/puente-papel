@@ -1,5 +1,5 @@
 <x-layouts.main>
-    <x-slot:title>Registrarse - Puente Papel</x-slot:title>
+    <x-slot:title>Registrarse</x-slot:title>
 
     {{-- Breadcrumbs --}}
     @php

@@ -1,5 +1,5 @@
 <x-layouts.main>
-    <x-slot:title>Mi Perfil - Puente Papel</x-slot:title>
+    <x-slot:title>Mi Perfil</x-slot:title>
 
     {{-- Breadcrumbs --}}
     @php

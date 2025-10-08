@@ -1,5 +1,5 @@
 <x-layouts.main>
-    <x-slot:title>Iniciar Sesión - Puente Papel</x-slot:title>
+    <x-slot:title>Iniciar Sesión</x-slot:title>
 
     {{-- Breadcrumbs --}}
     @php

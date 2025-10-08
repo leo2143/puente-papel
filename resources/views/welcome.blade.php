@@ -1,4 +1,5 @@
 <x-layouts.main>
+    <x-slot:title>Inicio</x-slot:title>
     {{-- Hero Section --}}
     <section class="bg-pink-50 px-4 py-8 rounded-2xl max-w-6xl mx-auto mb-12 mt-8 text-center border-2 border-pink-200">
         <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Bienvenido a Puente Papel</h1>

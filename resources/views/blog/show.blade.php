@@ -1,5 +1,5 @@
 <x-layouts.main>
-    <x-slot:title>{{ $post->title }} :: Blog Puente Papel</x-slot:title>
+    <x-slot:title>{{ $post->title }}</x-slot:title>
 
     {{-- Breadcrumbs --}}
     @php

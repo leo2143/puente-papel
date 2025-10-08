@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
                 'phone' => '1165893493',
                 'role' => 'admin',
                 'is_active' => true,
-                'password' => '$2y$12$U.VQae6Caakl7UXZ/maQEe.Sss030.vyQERI8FoFMEoS.S0Yise4G', // password
+                'password' => '$2y$12$oE4wGgKgTB1nLzDiXy1jf.gQqgHqT95a/OQnmgj3MXaWcr0buQ/A.', // password
                 'email_verified_at' => '2025-10-04 19:17:34',
                 'remember_token' => 'Ioai25h9xZ',
             ],
