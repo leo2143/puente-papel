@@ -1,78 +1,185 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Puente Papel
 
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  <img src="public/storage/images/puente_papel_icon.png" alt="Puente Papel Logo" width="200">
 </p>
 
-## About Laravel
+<p align="center">
+  <strong>Materiales educativos especializados para el desarrollo del lenguaje y la comunicación</strong>
+</p>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 📚 Sobre Puente Papel
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Puente Papel es una plataforma web que ofrece libros y material didáctico adaptado a todo tipo de necesidades lectoras y comunicativas. Nuestro objetivo es conectar a cada niño y a cada joven con historias y experiencias que enriquezcan su vida y expandan su imaginación.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 🎯 Características principales
 
-## Learning Laravel
+- **Productos educativos especializados** con pictogramas y herramientas visuales
+- **Blog educativo** con contenido sobre desarrollo del lenguaje
+- **Sistema de usuarios** con roles de administrador y usuario
+- **Panel de administración** para gestión de productos y contenido
+- **Diseño responsive** optimizado para todos los dispositivos
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 🚀 Instalación y Configuración
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Requisitos previos
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- PHP 8.1 o superior
+- Composer
+- Node.js y NPM
+- MySQL/MariaDB
+- Servidor web (Apache/Nginx)
 
-## Laravel Sponsors
+### Pasos de instalación
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+1. **Clonar el repositorio**
+   ```bash
+   git clone [URL_DEL_REPOSITORIO]
+   cd puente-papel
+   ```
 
-### Premium Partners
+2. **Instalar dependencias de PHP**
+   ```bash
+   composer install
+   ```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+3. **Instalar dependencias de Node.js**
+   ```bash
+   npm install
+   ```
 
-## Contributing
+4. **Configurar variables de entorno**
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+5. **Configurar la base de datos**
+   - Crear una base de datos MySQL
+   - Actualizar las credenciales en el archivo `.env`:
+   ```env
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=puente_papel
+   DB_USERNAME=tu_usuario
+   DB_PASSWORD=tu_contraseña
+   ```
 
-## Code of Conduct
+6. **Ejecutar migraciones y seeders**
+   ```bash
+   php artisan migrate:fresh --seed
+   ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+7. **Crear enlace simbólico para storage**
+   ```bash
+   php artisan storage:link
+   ```
 
-## Security Vulnerabilities
+8. **Compilar assets**
+   ```bash
+   npm run build
+   ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+9. **Iniciar el servidor de desarrollo**
+   ```bash
+   php artisan serve
+   ```
 
-## License
+## 👥 Usuarios de prueba
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+El sistema incluye usuarios predefinidos para testing:
 
+### Usuario Administrador
+- **Email:** `test@puentepapel.com`
+- **Contraseña:** `puentepapel`
+- **Rol:** Admin
+- **Acceso:** Panel de administración completo
 
+### Usuario Regular
+- **Email:** `leitoorellana58@gmail.com`
+- **Contraseña:** `leonardoorellana2`
+- **Rol:** User
+- **Acceso:** Funcionalidades de usuario
 
+## 🛠️ Tecnologías utilizadas
 
-verificar los x-slot:title
-checks->
+- **Backend:** Laravel 11
+- **Frontend:** Blade Templates, Tailwind CSS
+- **Base de datos:** MySQL/MariaDB
+- **Autenticación:** Laravel Breeze
+- **Assets:** Vite
+- **Animaciones:** GSAP
 
-validacion de estructura
-views:
-welcome -> OK
-Header -> OK
-Footer -> OK
-producto->index -> OK
-producto->index -> OK
-welcome -> OK
+## 📁 Estructura del proyecto
 
+```
+puente-papel/
+├── app/
+│   ├── Http/Controllers/     # Controladores
+│   ├── Models/              # Modelos Eloquent
+│   ├── Services/            # Servicios de negocio
+│   └── View/Components/     # Componentes Blade
+├── database/
+│   ├── migrations/          # Migraciones de BD
+│   └── seeders/            # Seeders con datos iniciales
+├── resources/
+│   ├── views/              # Vistas Blade
+│   ├── css/                # Estilos CSS
+│   └── js/                 # JavaScript
+├── storage/
+│   └── app/public/         # Archivos públicos (imágenes)
+└── public/
+    └── storage/            # Enlace simbólico a storage
+```
 
+## 🎨 Características de diseño
+
+- **Paleta de colores:** Rosa y rojo como colores principales
+- **Responsive design:** Mobile-first approach
+- **Accesibilidad:** Cumple estándares WCAG
+- **Animaciones:** Transiciones suaves con GSAP
+
+## 📝 Funcionalidades
+
+### Para usuarios
+- Navegación por productos educativos
+- Lectura de blog educativo
+- Sistema de autenticación
+- Perfil de usuario
+
+### Para administradores
+- Panel de administración
+- Gestión de productos
+- Gestión de posts del blog
+- Gestión de usuarios
+- Subida de imágenes
+
+## 🔧 Comandos útiles
+
+```bash
+# Limpiar cache
+php artisan cache:clear
+php artisan config:clear
+php artisan view:clear
+
+# Regenerar autoload
+composer dump-autoload
+
+# Ejecutar tests
+php artisan test
+
+# Compilar assets en modo desarrollo
+npm run dev
+
+# Compilar assets para producción
+npm run build
+```
+
+## 📞 Soporte
+
+Para soporte técnico o consultas sobre el proyecto, contacta al equipo de desarrollo.
+
+## 📄 Licencia
+
+Este proyecto es privado y está protegido por derechos de autor de Puente Papel.
