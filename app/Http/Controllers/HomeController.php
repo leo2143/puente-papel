@@ -12,25 +12,46 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // Obtener productos destacados (puedes agregar filtros aquí)
+        // Obtener productos destacados (todos los productos activos)
         $featuredProducts = Product::where('is_active', true)
             ->latest()
             ->take(8) // Limitar a 8 productos
             ->get();
 
-        // Obtener productos por categoría (ejemplo)
+        // Obtener productos por categoría - Comunicación
         $communicationProducts = Product::where('is_active', true)
-            ->where('category', 'comunicacion') // Ajusta según tu lógica de categorías
+            ->where('category', 'comunicacion')
             ->latest()
             ->take(4)
             ->get();
 
+        // Obtener productos por categoría - Lectura
         $readingProducts = Product::where('is_active', true)
-            ->where('category', 'lectura') // Ajusta según tu lógica de categorías
+            ->where('category', 'lectura')
             ->latest()
             ->take(4)
             ->get();
 
-        return view('welcome', compact('featuredProducts', 'communicationProducts', 'readingProducts'));
+        // Obtener productos por categoría - Matemáticas
+        $mathProducts = Product::where('is_active', true)
+            ->where('category', 'matematicas')
+            ->latest()
+            ->take(4)
+            ->get();
+
+        // Obtener productos por categoría - Ciencias
+        $scienceProducts = Product::where('is_active', true)
+            ->where('category', 'ciencias')
+            ->latest()
+            ->take(4)
+            ->get();
+
+        return view('welcome', compact(
+            'featuredProducts', 
+            'communicationProducts', 
+            'readingProducts',
+            'mathProducts',
+            'scienceProducts'
+        ));
     }
 }

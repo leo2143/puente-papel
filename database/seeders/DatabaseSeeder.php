@@ -13,16 +13,35 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // Crear usuarios desde los datos del CSV
+        $users = [
+            [
+                'name' => 'admin',
+                'email' => 'test@puentepapel.com',
+                'last_name' => 'Test Last Name',
+                'phone' => '1165893493',
+                'role' => 'admin',
+                'is_active' => true,
+                'password' => '$2y$12$U.VQae6Caakl7UXZ/maQEe.Sss030.vyQERI8FoFMEoS.S0Yise4G', // password
+                'email_verified_at' => '2025-10-04 19:17:34',
+                'remember_token' => 'Ioai25h9xZ',
+            ],
+            [
+                'name' => 'leonardo',
+                'email' => 'leitoorellana58@gmail.com',
+                'last_name' => 'orellana',
+                'phone' => '451312313213',
+                'role' => 'user',
+                'is_active' => true,
+                'password' => '$2y$12$3XY3do.3PaoYbtRaHzVMPuWr4rxTARk9BdkcAx/.4lfPxnpApIk66', // password
+                'email_verified_at' => null,
+                'remember_token' => null,
+            ],
+        ];
 
-        User::factory()->create([
-            'name' => 'admin',
-            'email' => 'test@puentepapel.com',
-            'last_name' => 'Test Last Name',
-            'phone' => '1165893493',    
-            'role' => 'admin',
-            'is_active' => true,
-        ]);
+        foreach ($users as $userData) {
+            User::create($userData);
+        }
 
         // Ejecutar los seeders
         $this->call([

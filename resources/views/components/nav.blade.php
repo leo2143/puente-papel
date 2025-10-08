@@ -18,7 +18,7 @@
                 <div class="relative">
                     <label for="search-input-mobile" class="sr-only">Buscar</label>
                     <input type="text" id="search-input-mobile" placeholder="Buscar"
-                        class="w-full px-4 py-2 pr-10 border border-red-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent text-gray-800"
+                        class="w-full px-4 py-2 pr-10 bg-pink-100 border-2 border-pink-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 text-gray-800 transition-all duration-300"
                         aria-label="Campo de búsqueda">
                     <div class="absolute inset-y-0 right-0 flex items-center pr-3">
                         <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -35,11 +35,8 @@
                 {{-- Botón carrito móvil --}}
                 <button id="cart-btn-mobile" class="p-2 rounded-lg hover:bg-gray-200 transition-colors duration-200"
                     aria-label="Abrir carrito de compras" aria-expanded="false" aria-controls="cart-sidebar">
-                    <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m6-5v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6m8 0V9a2 2 0 00-2-2H9a2 2 0 00-2 2v4.01">
-                        </path>
+                    <svg class="w-10 h-10 text-red-600" fill="currentColor" viewBox="0 0 512 512" aria-hidden="true">
+                        <path d="M351.9 329.506H206.81l-3.072-12.56H368.16l26.63-116.019-217.23-26.04-9.952-58.09h-50.4v21.946h31.894l35.233 191.246a32.927 32.927 0 1 0 36.363 21.462h100.244a32.825 32.825 0 1 0 30.957-21.945zM181.427 197.45l186.51 22.358-17.258 75.195H198.917z"/>
                     </svg>
                 </button>
             </div>
@@ -52,12 +49,12 @@
 
             <div class="mb-4 flex items-center">
                 <a href="{{ route('home') }}" class="flex items-center text-2xl font-bold text-gray-800 hover:text-red-600 transition-colors duration-200">
-                    <img src="{{ asset('images/utils/puente_papel_icon.png') }}" alt="Puente Papel" class="w-16 h-12 mr-2">
+                    <img src="{{ asset('storage/images/puente_papel_icon.png') }}" alt="Puente Papel" class="w-16 h-12 mr-2">
                 </a>
                 <div class="relative max-w-2xl mx-auto">
                     <label for="search-input-desktop" class="sr-only">Buscar</label>
                     <input type="text" id="search-input-desktop" placeholder="Buscar productos, artículos..."
-                        class="w-full px-6 py-3 pr-12 border border-red-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent text-gray-800 text-lg"
+                        class="w-full px-6 py-3 pr-12 bg-pink-100 border-2 border-pink-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 text-gray-800 text-lg transition-all duration-300"
                         aria-label="Campo de búsqueda">
                     <div class="absolute inset-y-0 right-0 flex items-center pr-4">
                         <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -101,11 +98,8 @@
                     {{-- Botón carrito desktop --}}
                     <button id="cart-btn-desktop" class="p-2 rounded-lg hover:bg-gray-200 transition-colors duration-200"
                         aria-label="Abrir carrito de compras" aria-expanded="false" aria-controls="cart-sidebar">
-                        <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                            aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m6-5v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6m8 0V9a2 2 0 00-2-2H9a2 2 0 00-2 2v4.01">
-                            </path>
+                        <svg class="w-10 h-10 text-red-600" fill="currentColor" viewBox="0 0 512 512" aria-hidden="true">
+                            <path d="M351.9 329.506H206.81l-3.072-12.56H368.16l26.63-116.019-217.23-26.04-9.952-58.09h-50.4v21.946h31.894l35.233 191.246a32.927 32.927 0 1 0 36.363 21.462h100.244a32.825 32.825 0 1 0 30.957-21.945zM181.427 197.45l186.51 22.358-17.258 75.195H198.917z"/>
                         </svg>
                     </button>
 
@@ -169,15 +163,7 @@
                                     </svg>
                                     Mis Pedidos
                                 </a>
-                                <a href="#"
-                                    class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200">
-                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m6-5v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6m8 0V9a2 2 0 00-2-2H9a2 2 0 00-2 2v4.01">
-                                        </path>
-                                    </svg>
-                                    Carrito
-                                </a>
+
 
                                 <div class="border-t border-gray-100"></div>
 
