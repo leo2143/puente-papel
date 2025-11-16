@@ -20,7 +20,6 @@ class BlogPostController extends Controller
         return view('blog.index', compact('posts'));
     }
 
-
     /**
      * Display the specified resource.
      */
@@ -34,5 +33,4 @@ class BlogPostController extends Controller
         $post->load('user');
         return view('blog.show', compact('post'));
     }
-
 }

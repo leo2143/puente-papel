@@ -1,25 +1,19 @@
 <x-layouts.admin>
     <x-slot:title>Crear Producto</x-slot:title>
 
-    @php
-        $breadcrumbs = [
-            ['name' => 'Productos', 'url' => route('admin.product.index'), 'active' => false],
-            ['name' => 'Crear Producto', 'url' => '#', 'active' => true],
-        ];
-    @endphp
-
     {{-- Header --}}
     <section>
         <div class="flex items-center justify-between mb-8">
             <div>
-                <h1 class="text-3xl font-bold text-gray-800">Crear Nuevo Producto</h1>
+                <h2 class="text-3xl font-bold text-gray-800">Crear Nuevo Producto</h2>
                 <p class="text-gray-600 mt-2">Agrega un nuevo producto al catálogo</p>
             </div>
             <a href="{{ route('admin.product.index') }}"
                 class="inline-flex items-center space-x-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors duration-200">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                        d="M10 19l-7-7m0 0l7-7m-7 7h18">
+                    </path>
                 </svg>
                 <span>Volver al listado</span>
             </a>
@@ -75,8 +69,8 @@
                         <label for="price" class="block text-sm font-medium text-gray-800 mb-2">
                             Precio
                         </label>
-                        <input type="number" id="price" name="price" value="{{ old('price') }}"
-                            step="0.01" min="0"
+                        <input type="number" id="price" name="price" value="{{ old('price') }}" step="0.01"
+                            min="0"
                             class="w-full px-4 py-3 bg-pink-100 border-2 border-pink-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 text-gray-800 transition-all duration-300"
                             placeholder="0.00">
                         @error('price')
@@ -104,10 +98,9 @@
                         </label>
                         <select id="status" name="status"
                             class="w-full px-4 py-3 bg-pink-100 border-2 border-pink-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 text-gray-800 transition-all duration-300">
-                            <option value="active" {{ old('status') == 'active' ? 'selected' : '' }}>Activo
+                            <option value="active" {{ old('status') == 'active' ? 'selected' : '' }}>Activo</option>
+                            <option value="inactive" {{ old('status') == 'inactive' ? 'selected' : '' }}>Inactivo
                             </option>
-                            <option value="inactive" {{ old('status') == 'inactive' ? 'selected' : '' }}>
-                                Inactivo</option>
                         </select>
                         @error('status')
                             <p class="text-red-600 text-sm mt-1">{{ $message }}</p>

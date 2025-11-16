@@ -41,16 +41,16 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        // Usar validate() en vez de Validator::make()
+        $request->validate([
             'email' => 'required|email',
             'password' => 'required|string|min:6',
+        ], [
+            'email.required' => 'El correo electrónico es obligatorio.',
+            'email.email' => 'El correo electrónico debe ser válido.',
+            'password.required' => 'La contraseña es obligatoria.',
+            'password.min' => 'La contraseña debe tener al menos :min caracteres.',
         ]);
-
-        if ($validator->fails()) {
-            return redirect()->back()
-                ->withErrors($validator)
-                ->withInput($request->except('password'));
-        }
 
         $credentials = $request->only('email', 'password');
 
@@ -69,13 +69,15 @@ class AuthController extends Controller
             $cookie = cookie('jwt_token', $token, 60); // 1 hora
 
             return redirect()->intended(route('home'))
-                ->with('success', '¡Bienvenido de vuelta!')
+                ->with('feedback.message', '¡Bienvenido de vuelta!')
+                ->with('feedback.type', 'success')
                 ->withCookie($cookie);
 
         } catch (\Exception $e) {
-            return redirect()->back()
-                ->withErrors(['email' => 'Error al iniciar sesión'])
-                ->withInput($request->except('password'));
+            return back()
+                ->withInput()
+                ->with('feedback.message', 'Error al iniciar sesión. Verifica tus credenciales.')
+                ->with('feedback.type', 'danger');
         }
     }
 
@@ -84,19 +86,24 @@ class AuthController extends Controller
      */
     public function register(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        // Usar validate() en vez de Validator::make()
+        $request->validate([
             'name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'phone' => 'required|string|max:20',
-            'password' => 'required|string|min:6|confirmed',
+            'password' => 'required|string|min:8|confirmed',
+        ], [
+            'name.required' => 'El nombre es obligatorio.',
+            'last_name.required' => 'El apellido es obligatorio.',
+            'email.required' => 'El correo electrónico es obligatorio.',
+            'email.email' => 'El correo electrónico debe ser válido.',
+            'email.unique' => 'Este correo electrónico ya está registrado.',
+            'phone.required' => 'El teléfono es obligatorio.',
+            'password.required' => 'La contraseña es obligatoria.',
+            'password.min' => 'La contraseña debe tener al menos :min caracteres.',
+            'password.confirmed' => 'Las contraseñas no coinciden.',
         ]);
-
-        if ($validator->fails()) {
-            return redirect()->back()
-                ->withErrors($validator)
-                ->withInput($request->except('password', 'password_confirmation'));
-        }
 
         try {
             $user = User::create([
@@ -119,14 +126,16 @@ class AuthController extends Controller
             session(['jwt_token' => $token]);
             $cookie = cookie('jwt_token', $token, 60); // 1 hora
 
-            return redirect()->route('home')
-                ->with('success', '¡Cuenta creada exitosamente!')
+            return to_route('home')
+                ->with('feedback.message', '¡Cuenta creada exitosamente!')
+                ->with('feedback.type', 'success')
                 ->withCookie($cookie);
 
         } catch (\Exception $e) {
-            return redirect()->back()
-                ->withErrors(['email' => 'Error al crear la cuenta'])
-                ->withInput($request->except('password', 'password_confirmation'));
+            return back()
+                ->withInput()
+                ->with('feedback.message', 'Error al crear la cuenta. Intenta nuevamente.')
+                ->with('feedback.type', 'danger');
         }
     }
 
@@ -147,12 +156,17 @@ class AuthController extends Controller
 
         // Limpiar sesión y autenticación
         Auth::logout();
-        session()->forget('jwt_token');
         
+        // IMPORTANTE: Invalidar sesión y regenerar token CSRF (seguridad)
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        
+        session()->forget('jwt_token');
         $cookie = cookie()->forget('jwt_token');
 
-        return redirect()->route('home')
-            ->with('success', 'Sesión cerrada exitosamente')
+        return to_route('home')
+            ->with('feedback.message', 'Sesión cerrada exitosamente')
+            ->with('feedback.type', 'success')
             ->withCookie($cookie);
     }
 

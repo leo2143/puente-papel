@@ -4,283 +4,283 @@
 
 /* Contenedor principal del upload */
 .image-upload-container {
-    @apply relative w-full;
+  @apply relative w-full;
 }
 
 /* Input file oculto */
 .image-upload-input {
-    @apply absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10;
+  @apply absolute inset-0 z-10 h-full w-full cursor-pointer opacity-0;
 }
 
 /* Label personalizado para el botón de upload */
 .image-upload-label {
-    @apply flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors duration-200;
+  @apply flex h-32 w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 transition-colors duration-200 hover:bg-gray-100;
 }
 
 .image-upload-label:hover {
-    @apply border-red-400 bg-red-50;
+  @apply border-red-400 bg-red-50;
 }
 
 .image-upload-label.dragover {
-    @apply border-red-500 bg-red-100;
+  @apply border-red-500 bg-red-100;
 }
 
 /* Contenido del label */
 .image-upload-content {
-    @apply flex flex-col items-center justify-center pt-5 pb-6;
+  @apply flex flex-col items-center justify-center pt-5 pb-6;
 }
 
 /* Icono de upload */
 .image-upload-icon {
-    @apply w-8 h-8 mb-4 text-gray-500;
+  @apply mb-4 h-8 w-8 text-gray-500;
 }
 
 .image-upload-label:hover .image-upload-icon {
-    @apply text-red-500;
+  @apply text-red-500;
 }
 
 /* Texto del upload */
 .image-upload-text {
-    @apply mb-2 text-sm text-gray-500;
+  @apply mb-2 text-sm text-gray-500;
 }
 
 .image-upload-label:hover .image-upload-text {
-    @apply text-red-600;
+  @apply text-red-600;
 }
 
 /* Texto de formato */
 .image-upload-format {
-    @apply text-xs text-gray-400;
+  @apply text-xs text-gray-400;
 }
 
 /* Preview de imagen */
 .image-preview-container {
-    @apply relative w-full;
+  @apply relative w-full;
 }
 
 .image-preview {
-    @apply w-full h-48 object-cover rounded-lg border border-gray-200;
+  @apply h-48 w-full rounded-lg border border-gray-200 object-cover;
 }
 
 .image-preview-overlay {
-    @apply absolute inset-0 bg-black/50 opacity-0 hover:opacity-100 transition-opacity duration-200 rounded-lg flex items-center justify-center;
+  @apply absolute inset-0 flex items-center justify-center rounded-lg bg-black/50 opacity-0 transition-opacity duration-200 hover:opacity-100;
 }
 
 .image-preview-actions {
-    @apply flex space-x-2;
+  @apply flex space-x-2;
 }
 
 .image-preview-btn {
-    @apply px-3 py-1 text-sm font-medium rounded-md transition-colors duration-200;
+  @apply rounded-md px-3 py-1 text-sm font-medium transition-colors duration-200;
 }
 
 .image-preview-btn.edit {
-    @apply bg-blue-600 text-white hover:bg-blue-700;
+  @apply bg-blue-600 text-white hover:bg-blue-700;
 }
 
 .image-preview-btn.delete {
-    @apply bg-red-600 text-white hover:bg-red-700;
+  @apply bg-red-600 text-white hover:bg-red-700;
 }
 
 /* Botón de cambio de imagen */
 .image-change-btn {
-    @apply mt-2 px-4 py-2 text-sm font-medium text-red-600 bg-red-50 border border-red-200 rounded-md hover:bg-red-100 hover:border-red-300 transition-colors duration-200;
+  @apply mt-2 rounded-md border border-red-200 bg-red-50 px-4 py-2 text-sm font-medium text-red-600 transition-colors duration-200 hover:border-red-300 hover:bg-red-100;
 }
 
 /* Estados de carga */
 .image-upload-loading {
-    @apply flex items-center justify-center w-full h-32 border-2 border-dashed border-gray-300 rounded-lg bg-gray-50;
+  @apply flex h-32 w-full items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-50;
 }
 
 .image-upload-spinner {
-    @apply animate-spin rounded-full h-8 w-8 border-b-2 border-red-600;
+  @apply h-8 w-8 animate-spin rounded-full border-b-2 border-red-600;
 }
 
 /* Mensajes de error */
 .image-upload-error {
-    @apply mt-2 text-sm text-red-600;
+  @apply mt-2 text-sm text-red-600;
 }
 
 /* Mensajes de éxito */
 .image-upload-success {
-    @apply mt-2 text-sm text-green-600;
+  @apply mt-2 text-sm text-green-600;
 }
 
 /* Responsive */
 @media (max-width: 640px) {
-    .image-upload-label {
-        @apply h-24;
-    }
-    
-    .image-preview {
-        @apply h-32;
-    }
-    
-    .image-upload-content {
-        @apply pt-3 pb-4;
-    }
-    
-    .image-upload-icon {
-        @apply w-6 h-6 mb-2;
-    }
-    
-    .image-upload-text {
-        @apply text-xs;
-    }
+  .image-upload-label {
+    @apply h-24;
+  }
+
+  .image-preview {
+    @apply h-32;
+  }
+
+  .image-upload-content {
+    @apply pt-3 pb-4;
+  }
+
+  .image-upload-icon {
+    @apply mb-2 h-6 w-6;
+  }
+
+  .image-upload-text {
+    @apply text-xs;
+  }
 }
 
 /* Animaciones */
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .image-preview-container {
-    animation: fadeIn 0.3s ease-out;
+  animation: fadeIn 0.3s ease-out;
 }
 
 /* Efectos hover mejorados */
 .image-upload-label:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .image-preview-container:hover .image-preview-overlay {
-    @apply opacity-100;
+  @apply opacity-100;
 }
 
 /* Estilos para drag and drop */
 .image-upload-container.drag-over {
-    @apply border-2 border-red-500/50;
+  @apply border-2 border-red-500/50;
 }
 
 .image-upload-container.drag-over .image-upload-label {
-    @apply border-red-500 bg-red-100;
+  @apply border-red-500 bg-red-100;
 }
 
 /* Estilos para imagen existente */
 .image-existing-container {
-    @apply relative w-full;
+  @apply relative w-full;
 }
 
 .image-existing-preview {
-    @apply w-full h-48 object-cover rounded-lg border border-gray-200;
+  @apply h-48 w-full rounded-lg border border-gray-200 object-cover;
 }
 
 .image-existing-overlay {
-    @apply absolute inset-0 bg-black/0 hover:bg-black/50 transition-all duration-200 rounded-lg flex items-center justify-center;
+  @apply absolute inset-0 flex items-center justify-center rounded-lg bg-black/0 transition-all duration-200 hover:bg-black/50;
 }
 
 .image-existing-actions {
-    @apply flex space-x-2 opacity-0 hover:opacity-100 transition-opacity duration-200;
+  @apply flex space-x-2 opacity-0 transition-opacity duration-200 hover:opacity-100;
 }
 
 .image-existing-btn {
-    @apply px-3 py-1 text-sm font-medium rounded-md transition-colors duration-200;
+  @apply rounded-md px-3 py-1 text-sm font-medium transition-colors duration-200;
 }
 
 .image-existing-btn.change {
-    @apply bg-blue-600 text-white hover:bg-blue-700;
+  @apply bg-blue-600 text-white hover:bg-blue-700;
 }
 
 .image-existing-btn.remove {
-    @apply bg-red-600 text-white hover:bg-red-700;
+  @apply bg-red-600 text-white hover:bg-red-700;
 }
 
 /* Estilos para múltiples imágenes */
 .image-multiple-container {
-    @apply flex flex-wrap gap-4;
+  @apply flex flex-wrap gap-4;
 }
 
 .image-multiple-item {
-    @apply relative;
+  @apply relative;
 }
 
 .image-multiple-preview {
-    @apply w-full h-24 object-cover rounded-lg border border-gray-200;
+  @apply h-24 w-full rounded-lg border border-gray-200 object-cover;
 }
 
 .image-multiple-overlay {
-    @apply absolute inset-0 bg-black/0 hover:bg-black/50 transition-all duration-200 rounded-lg flex items-center justify-center;
+  @apply absolute inset-0 flex items-center justify-center rounded-lg bg-black/0 transition-all duration-200 hover:bg-black/50;
 }
 
 .image-multiple-actions {
-    @apply flex space-x-1 opacity-0 hover:opacity-100 transition-opacity duration-200;
+  @apply flex space-x-1 opacity-0 transition-opacity duration-200 hover:opacity-100;
 }
 
 .image-multiple-btn {
-    @apply px-2 py-1 text-xs font-medium rounded transition-colors duration-200;
+  @apply rounded px-2 py-1 text-xs font-medium transition-colors duration-200;
 }
 
 .image-multiple-btn.edit {
-    @apply bg-blue-600 text-white hover:bg-blue-700;
+  @apply bg-blue-600 text-white hover:bg-blue-700;
 }
 
 .image-multiple-btn.delete {
-    @apply bg-red-600 text-white hover:bg-red-700;
+  @apply bg-red-600 text-white hover:bg-red-700;
 }
 
 /* Estilos para progress bar */
 .image-upload-progress {
-    @apply w-full bg-gray-200 rounded-full h-2 mt-2;
+  @apply mt-2 h-2 w-full rounded-full bg-gray-200;
 }
 
 .image-upload-progress-bar {
-    @apply bg-red-600 h-2 rounded-full transition-all duration-300;
+  @apply h-2 rounded-full bg-red-600 transition-all duration-300;
 }
 
 /* Estilos para placeholder */
 .image-placeholder {
-    @apply w-full h-32 bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center;
+  @apply flex h-32 w-full items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-100;
 }
 
 .image-placeholder-icon {
-    @apply w-8 h-8 text-gray-400;
+  @apply h-8 w-8 text-gray-400;
 }
 
 .image-placeholder-text {
-    @apply text-sm text-gray-500 mt-2;
+  @apply mt-2 text-sm text-gray-500;
 }
 
 /* Estilos para validación */
 .image-upload-valid {
-    @apply border-green-300 bg-green-50;
+  @apply border-green-300 bg-green-50;
 }
 
 .image-upload-invalid {
-    @apply border-red-300 bg-red-50;
+  @apply border-red-300 bg-red-50;
 }
 
 /* Estilos para accesibilidad */
 .image-upload-input:focus + .image-upload-label {
-    @apply border-2 border-red-500/50;
+  @apply border-2 border-red-500/50;
 }
 
 .image-upload-input:focus-visible + .image-upload-label {
-    @apply outline-none;
+  @apply outline-none;
 }
 
 /* Estilos para modo oscuro (si se implementa) */
 @media (prefers-color-scheme: dark) {
-    .image-upload-label {
-        @apply border-gray-600 bg-gray-800 hover:bg-gray-700;
-    }
-    
-    .image-upload-text {
-        @apply text-gray-300;
-    }
-    
-    .image-upload-format {
-        @apply text-gray-400;
-    }
-    
-    .image-preview {
-        @apply border-gray-600;
-    }
+  .image-upload-label {
+    @apply border-gray-600 bg-gray-800 hover:bg-gray-700;
+  }
+
+  .image-upload-text {
+    @apply text-gray-300;
+  }
+
+  .image-upload-format {
+    @apply text-gray-400;
+  }
+
+  .image-preview {
+    @apply border-gray-600;
+  }
 }

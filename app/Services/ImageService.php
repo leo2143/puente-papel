@@ -29,8 +29,8 @@ class ImageService
         'carousel' => 'images/carousel',
         'footer' => 'images/footer',
         'utils' => 'images/utils',
-        'items' => 'images/products', // Compatibilidad con código existente
-        'icons' => 'images/users'     // Compatibilidad con código existente
+        'items' => 'images/products',
+        'icons' => 'images/users'
     ];
 
     /**

@@ -1,7 +1,7 @@
 {{-- Navegación principal --}}
 <nav class="px-4 py-3 relative" role="navigation" aria-label="Navegación principal">
     <div class="max-w-7xl mx-auto">
-        
+
         {{-- Layout móvil (como estaba originalmente) --}}
         <div class="flex items-center justify-between md:hidden">
             {{-- Botón hamburguesa --}}
@@ -31,25 +31,28 @@
             </div>
 
             {{-- Botones de acción móvil --}}
-            <div class="flex items-center space-x-2">
+            <a href="{{ route('cart.index') }}" class="flex items-center space-x-2">
                 {{-- Botón carrito móvil --}}
                 <button id="cart-btn-mobile" class="p-2 rounded-lg hover:bg-gray-200 transition-colors duration-200"
                     aria-label="Abrir carrito de compras" aria-expanded="false" aria-controls="cart-sidebar">
                     <svg class="w-10 h-10 text-red-600" fill="currentColor" viewBox="0 0 512 512" aria-hidden="true">
-                        <path d="M351.9 329.506H206.81l-3.072-12.56H368.16l26.63-116.019-217.23-26.04-9.952-58.09h-50.4v21.946h31.894l35.233 191.246a32.927 32.927 0 1 0 36.363 21.462h100.244a32.825 32.825 0 1 0 30.957-21.945zM181.427 197.45l186.51 22.358-17.258 75.195H198.917z"/>
+                        <path
+                            d="M351.9 329.506H206.81l-3.072-12.56H368.16l26.63-116.019-217.23-26.04-9.952-58.09h-50.4v21.946h31.894l35.233 191.246a32.927 32.927 0 1 0 36.363 21.462h100.244a32.825 32.825 0 1 0 30.957-21.945zM181.427 197.45l186.51 22.358-17.258 75.195H198.917z" />
                     </svg>
                 </button>
-            </div>
+            </a>
         </div>
 
         {{-- Layout desktop (barra de búsqueda arriba, navegación abajo) --}}
-        <div class="hidden md:block" >
+        <div class="hidden md:block">
             {{-- Barra de búsqueda desktop (arriba) --}}
-                                              {{-- Logo --}}
+            {{-- Logo --}}
 
             <div class="mb-4 flex items-center">
-                <a href="{{ route('home') }}" class="flex items-center text-2xl font-bold text-gray-800 hover:text-red-600 transition-colors duration-200">
-                    <img src="{{ asset('storage/images/puente_papel_icon.png') }}" alt="Puente Papel" class="w-16 h-12 mr-2">
+                <a href="{{ route('home') }}"
+                    class="flex items-center text-2xl font-bold text-gray-800 hover:text-red-600 transition-colors duration-200">
+                    <img src="{{ asset('storage/images/puente_papel_icon.png') }}" alt="Puente Papel"
+                        class="w-16 h-12 mr-2">
                 </a>
                 <div class="relative max-w-2xl mx-auto">
                     <label for="search-input-desktop" class="sr-only">Buscar</label>
@@ -70,7 +73,6 @@
             <div class="flex items-center justify-between">
                 {{-- Logo y enlaces de navegación --}}
                 <div class="flex items-center space-x-8">
-
 
                     {{-- Enlaces de navegación --}}
                     <div class="flex items-center space-x-6">
@@ -96,19 +98,22 @@
                 {{-- Botones de acción desktop --}}
                 <div class="flex items-center space-x-2">
                     {{-- Botón carrito desktop --}}
-                    <button id="cart-btn-desktop" class="p-2 rounded-lg hover:bg-gray-200 transition-colors duration-200"
+                    <a href="{{ route('cart.index') }}" id="cart-btn-desktop"
+                        class="p-2 rounded-lg hover:bg-gray-200 transition-colors duration-200"
                         aria-label="Abrir carrito de compras" aria-expanded="false" aria-controls="cart-sidebar">
-                        <svg class="w-10 h-10 text-red-600" fill="currentColor" viewBox="0 0 512 512" aria-hidden="true">
-                            <path d="M351.9 329.506H206.81l-3.072-12.56H368.16l26.63-116.019-217.23-26.04-9.952-58.09h-50.4v21.946h31.894l35.233 191.246a32.927 32.927 0 1 0 36.363 21.462h100.244a32.825 32.825 0 1 0 30.957-21.945zM181.427 197.45l186.51 22.358-17.258 75.195H198.917z"/>
+                        <svg class="w-10 h-10 text-red-600" fill="currentColor" viewBox="0 0 512 512"
+                            aria-hidden="true">
+                            <path
+                                d="M351.9 329.506H206.81l-3.072-12.56H368.16l26.63-116.019-217.23-26.04-9.952-58.09h-50.4v21.946h31.894l35.233 191.246a32.927 32.927 0 1 0 36.363 21.462h100.244a32.825 32.825 0 1 0 30.957-21.945zM181.427 197.45l186.51 22.358-17.258 75.195H198.917z" />
                         </svg>
-                    </button>
+                    </a>
 
                     {{-- Menú de usuario desktop --}}
                     @auth
                         {{-- Usuario autenticado --}}
                         <div class="relative group">
                             <input type="checkbox" id="user-dropdown-toggle-desktop" class="hidden peer">
-                            <label for="user-dropdown-toggle-desktop" 
+                            <label for="user-dropdown-toggle-desktop"
                                 class="flex items-center space-x-2 p-2 rounded-lg hover:bg-gray-200 transition-colors duration-200 cursor-pointer"
                                 aria-label="Menú de usuario">
                                 <div class="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center">
@@ -119,13 +124,16 @@
                                 <span class="text-sm font-medium text-gray-700">
                                     {{ auth()->user()->name }}
                                 </span>
-                                <svg class="w-4 h-4 text-gray-500 transition-transform duration-200 peer-checked:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                <svg class="w-4 h-4 text-gray-500 transition-transform duration-200 peer-checked:rotate-180"
+                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M19 9l-7 7-7-7"></path>
                                 </svg>
                             </label>
 
                             {{-- Dropdown menu --}}
-                            <div class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 border border-gray-200 opacity-0 invisible scale-95 -translate-y-2 transition-all duration-200 ease-out peer-checked:opacity-100 peer-checked:visible peer-checked:scale-100 peer-checked:translate-y-0">
+                            <div
+                                class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 border border-gray-200 opacity-0 invisible scale-95 -translate-y-2 transition-all duration-200 ease-out peer-checked:opacity-100 peer-checked:visible peer-checked:scale-100 peer-checked:translate-y-0">
 
                                 <div class="px-4 py-2 border-b border-gray-100">
                                     <p class="text-sm font-medium text-gray-900">{{ auth()->user()->name }}
@@ -143,12 +151,14 @@
                                 </a>
 
                                 {{-- Enlace al panel de administración para admins --}}
-                                @if(auth()->user()->role === 'admin')
+                                @if (auth()->user()->role === 'admin')
                                     <a href="{{ route('admin.dashboard') }}"
                                         class="flex items-center px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors duration-200">
-                                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                                                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
+                                            </path>
                                         </svg>
                                         Panel de Administración
                                     </a>
@@ -163,7 +173,6 @@
                                     </svg>
                                     Mis Pedidos
                                 </a>
-
 
                                 <div class="border-t border-gray-100"></div>
 
@@ -185,11 +194,11 @@
                     @else
                         {{-- Usuario no autenticado --}}
                         <div class="flex items-center space-x-2">
-                            <a href="{{ route('auth.login') }}"
+                            <a href="{{ route('auth.login.show') }}"
                                 class="px-3 py-2 text-sm font-medium text-gray-700 hover:text-red-600 transition-colors duration-200">
                                 Iniciar Sesión
                             </a>
-                            <a href="{{ route('auth.register') }}"
+                            <a href="{{ route('auth.register.show') }}"
                                 class="px-3 py-2 text-sm font-medium text-white bg-red-600 hover:bg-red-700 rounded-md transition-colors duration-200">
                                 Registrarse
                             </a>
@@ -200,7 +209,6 @@
         </div>
     </div>
 </nav>
-
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -227,6 +235,15 @@
         });
         // ===== CERRAR DROPDOWN AL HACER CLICK FUERA =====
         document.addEventListener('click', function(e) {
+            // NO interferir con enlaces de navegación
+            const clickedLink = e.target.closest('a[href]');
+            if (clickedLink && clickedLink.getAttribute('href') &&
+                clickedLink.getAttribute('href') !== '#' &&
+                !clickedLink.getAttribute('href').startsWith('#')) {
+                // Es un enlace válido, permitir navegación normal
+                return;
+            }
+
             // Si el click no es dentro de un dropdown, cerrar todos los dropdowns
             if (!e.target.closest('.group')) {
                 const checkboxes = document.querySelectorAll('.group input[type="checkbox"]');

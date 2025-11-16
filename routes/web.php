@@ -10,27 +10,33 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\BlogController as AdminBlogController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\Web\CartController;
+use App\Http\Controllers\Web\OrderController;
 
 // Rutas públicas
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/sobre-nosotros', [AboutController::class, 'index'])->name('about');
+Route::get('/about', [AboutController::class, 'index'])->name('about');
 
 // Rutas de autenticación
-Route::group(['prefix' => 'auth', 'as' => 'auth.'], function () {
-    // Rutas públicas de autenticación
-    Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
-    Route::post('/login', [AuthController::class, 'login'])->name('login');
-    Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
-    Route::post('/register', [AuthController::class, 'register'])->name('register');
+Route::prefix('auth')
+  ->name('auth.')
+  ->group(function () {
+    // Rutas públicas de autenticación (solo para invitados)
+    Route::middleware('guest')->group(function () {
+      Route::get('/login', [AuthController::class, 'showLogin'])->name('login.show');
+      Route::post('/login', [AuthController::class, 'login'])->name('login.process');
+      Route::get('/register', [AuthController::class, 'showRegister'])->name('register.show');
+      Route::post('/register', [AuthController::class, 'register'])->name('register.process');
+    });
     
     // Rutas protegidas de autenticación
     Route::middleware('auth')->group(function () {
-        Route::get('/profile', [AuthController::class, 'profile'])->name('profile');
-        Route::put('/profile', [AuthController::class, 'updateProfile'])->name('profile.update');
-        Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+      Route::get('/profile', [AuthController::class, 'profile'])->name('profile');
+      Route::put('/profile', [AuthController::class, 'updateProfile'])->name('profile.update');
+      Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     });
-});
+  });
 
 // Rutas públicas de productos y blog (solo lectura)
 Route::get('/product', [ProductController::class, 'index'])->name('product.index');
@@ -39,6 +45,32 @@ Route::get('/product/{product}', [ProductController::class, 'show'])->name('prod
 Route::get('/blog', [BlogPostController::class, 'index'])->name('blog.index');
 Route::get('/blog/{post}', [BlogPostController::class, 'show'])->name('blog.show');
 
+// Rutas del carrito de compras (públicas, manejo por sesión)
+Route::prefix('cart')
+  ->name('cart.')
+  ->group(function () {
+    Route::get('/', [CartController::class, 'index'])->name('index');
+    Route::post('/add', [CartController::class, 'add'])->name('add');
+    Route::delete('/remove/{productId}', [CartController::class, 'remove'])->name('remove');
+    Route::post('/update', [CartController::class, 'update'])->name('update');
+    Route::delete('/clear', [CartController::class, 'clear'])->name('clear');
+  });
+
+// Rutas de órdenes (requieren autenticación)
+Route::middleware('auth')->group(function () {
+  // Checkout
+  Route::get('/checkout', [OrderController::class, 'checkout'])->name('checkout');
+  
+  // Órdenes
+  Route::prefix('orders')
+    ->name('orders.')
+    ->group(function () {
+      Route::post('/', [OrderController::class, 'store'])->name('store');
+      Route::get('/', [OrderController::class, 'index'])->name('index');
+      Route::get('/{order}', [OrderController::class, 'show'])->name('show');
+    });
+});
+
 // Rutas de administración (requieren autenticación y rol admin)
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
     // Dashboard
@@ -46,6 +78,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     
     // Usuarios
     Route::resource('users', UserController::class);
+    Route::get('users/{user}/details', [UserController::class, 'show'])->name('users.show');
     Route::patch('users/{user}/toggle-status', [UserController::class, 'toggleStatus'])->name('users.toggle-status');
     
     // Productos
@@ -53,6 +86,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::get('product', [AdminProductController::class, 'index'])->name('product.index');
     
     // Blog
-    Route::resource('blog', AdminBlogController::class)->except(['index', 'show']);
+    Route::resource('blog', AdminBlogController::class)
+        ->except(['index', 'show'])
+        ->parameters(['blog' => 'post']);  // Mapea {blog} → $post para Route Model Binding
     Route::get('blog', [AdminBlogController::class, 'index'])->name('blog.index');
 });

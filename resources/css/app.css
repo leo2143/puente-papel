@@ -1,26 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Shantell+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 @import 'tailwindcss';
+@plugin '@tailwindcss/typography'; /* 👈 NUEVA LÍNEA */
 @import './image-upload.css';
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';
 @source '../**/*.js';
 
-
 @theme {
-    --font-sans: 'Roboto', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-sans: 'Roboto', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
 :root {
-    --secondary-color: #F7B4B3;
-    --secondary-50-color: #f7b4b3b8;
-    --secondary-100-color: #f7b4b399;
-    --secondary-200-color: #f7b4b366;
-    --quaternary-color: #000000;
-    --quinary-color: #c08dff;
-    --primary-color: #D90000;
+  --secondary-color: #f7b4b3;
+  --secondary-50-color: #f7b4b3b8;
+  --secondary-100-color: #f7b4b399;
+  --secondary-200-color: #f7b4b366;
+  --quaternary-color: #000000;
+  --quinary-color: #c08dff;
+  --primary-color: #d90000;
 }
 
 h1,
@@ -29,230 +28,229 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: 'Shantell Sans', cursive;
+  font-family: 'Shantell Sans', cursive;
 }
 
 .bg-primary-color {
-    background-color: var(--primary-color);
+  background-color: var(--primary-color);
 }
 
 .bg-secondary-color {
-    background-color: var(--secondary-color);
+  background-color: var(--secondary-color);
 }
 
 .text-primary-color {
-    color: var(--primary-color);
+  color: var(--primary-color);
 }
 
 .text-secondary-color {
-    color: var(--secondary-color);
+  color: var(--secondary-color);
 }
 
 .bg-secondary-50-color {
-    background-color: var(--secondary-50-color);
+  background-color: var(--secondary-50-color);
 }
 
 .bg-secondary-100-color {
-    background-color: var(--secondary-100-color);
+  background-color: var(--secondary-100-color);
 }
 
 .bg-secondary-200-color {
-    background-color: var(--secondary-200-color);
+  background-color: var(--secondary-200-color);
 }
 
 /* Estilos para formularios */
 .form-container {
-    background-color: #fef7f7; /* Fondo rosa muy claro */
-    padding: 2rem;
-    border-radius: 1rem;
-    max-width: 500px;
-    margin: 0 auto;
+  background-color: #fef7f7; /* Fondo rosa muy claro */
+  padding: 2rem;
+  border-radius: 1rem;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 .form-title {
-    font-family: 'Shantell Sans', cursive;
-    font-size: 2rem;
-    font-weight: 600;
-    color: #000000;
-    margin-bottom: 1rem;
-    text-align: center;
+  font-family: 'Shantell Sans', cursive;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #000000;
+  margin-bottom: 1rem;
+  text-align: center;
 }
 
 .form-description {
-    color: #000000;
-    font-size: 1rem;
-    line-height: 1.5;
-    margin-bottom: 2rem;
-    text-align: center;
+  color: #000000;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 2rem;
+  text-align: center;
 }
 
 .form-description .highlight {
-    color: var(--secondary-color);
-    font-weight: 500;
+  color: var(--secondary-color);
+  font-weight: 500;
 }
 
 .form-group {
-    margin-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .form-label {
-    display: block;
-    color: #000000;
-    font-size: 0.9rem;
-    font-weight: 500;
-    margin-bottom: 0.5rem;
+  display: block;
+  color: #000000;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
 }
 
 .form-input {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    background-color: #fdf2f2; /* Fondo rosa claro */
-    border: 2px solid var(--secondary-color); /* Borde rosa */
-    border-radius: 0.5rem;
-    color: #000000;
-    font-size: 1rem;
-    transition: all 0.3s ease;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: #fdf2f2; /* Fondo rosa claro */
+  border: 2px solid var(--secondary-color); /* Borde rosa */
+  border-radius: 0.5rem;
+  color: #000000;
+  font-size: 1rem;
+  transition: all 0.3s ease;
 }
 
 .form-input:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    background-color: #ffffff;
-    box-shadow: 0 0 0 3px rgba(217, 0, 0, 0.1);
+  outline: none;
+  border-color: var(--primary-color);
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(217, 0, 0, 0.1);
 }
 
 .form-input::placeholder {
-    color: #666666;
+  color: #666666;
 }
 
 .form-checkbox-container {
-    display: flex;
-    align-items: center;
-    margin-top: 1.5rem;
+  display: flex;
+  align-items: center;
+  margin-top: 1.5rem;
 }
 
 .form-checkbox {
-    width: 1.25rem;
-    height: 1.25rem;
-    background-color: #fdf2f2;
-    border: 2px solid var(--secondary-color);
-    border-radius: 0.25rem;
-    margin-right: 0.75rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: #fdf2f2;
+  border: 2px solid var(--secondary-color);
+  border-radius: 0.25rem;
+  margin-right: 0.75rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .form-checkbox:checked {
-    background-color: var(--secondary-color);
-    border-color: var(--secondary-color);
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
 }
 
 .form-checkbox:checked::after {
-    content: '✓';
-    color: #ffffff;
-    font-size: 0.875rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
+  content: '✓';
+  color: #ffffff;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
 }
 
 .form-checkbox-label {
-    color: #000000;
-    font-size: 0.9rem;
-    cursor: pointer;
+  color: #000000;
+  font-size: 0.9rem;
+  cursor: pointer;
 }
 
 .form-button {
-    width: 100%;
-    padding: 0.875rem 1.5rem;
-    background-color: var(--secondary-color);
-    color: #ffffff;
-    border: none;
-    border-radius: 0.5rem;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 1.5rem;
+  width: 100%;
+  padding: 0.875rem 1.5rem;
+  background-color: var(--secondary-color);
+  color: #ffffff;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1.5rem;
 }
 
 .form-button:hover {
-    background-color: var(--primary-color);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(217, 0, 0, 0.3);
+  background-color: var(--primary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(217, 0, 0, 0.3);
 }
 
 .form-button:active {
-    transform: translateY(0);
+  transform: translateY(0);
 }
 
 /* Estilos para el botón de subida de imagen */
 .image-upload-button {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.75rem 1.5rem;
-    background-color: #fdf2f2;
-    border: 2px solid var(--secondary-color);
-    border-radius: 0.5rem;
-    color: #000000;
-    font-size: 1rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  background-color: #fdf2f2;
+  border: 2px solid var(--secondary-color);
+  border-radius: 0.5rem;
+  color: #000000;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
 }
 
 .image-upload-button:hover {
-    background-color: var(--secondary-color);
-    color: #ffffff;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(247, 180, 179, 0.3);
+  background-color: var(--secondary-color);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(247, 180, 179, 0.3);
 }
 
 .image-upload-button:active {
-    transform: translateY(0);
+  transform: translateY(0);
 }
 
 /* Estilos para elementos decorativos */
 .decorative-shapes {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 200px;
-    height: 200px;
-    overflow: hidden;
-    pointer-events: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  pointer-events: none;
 }
 
 .decorative-shape {
-    position: absolute;
-    border-radius: 50%;
-    opacity: 0.3;
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.3;
 }
 
 .decorative-shape-1 {
-    width: 80px;
-    height: 80px;
-    background-color: #c08dff;
-    top: 20px;
-    right: 20px;
+  width: 80px;
+  height: 80px;
+  background-color: #c08dff;
+  top: 20px;
+  right: 20px;
 }
 
 .decorative-shape-2 {
-    width: 60px;
-    height: 60px;
-    background-color: #8b5cf6;
-    top: 60px;
-    right: 60px;
+  width: 60px;
+  height: 60px;
+  background-color: #8b5cf6;
+  top: 60px;
+  right: 60px;
 }
 
 .decorative-shape-3 {
-    width: 40px;
-    height: 40px;
-    background-color: #a855f7;
-    top: 100px;
-    right: 100px;
+  width: 40px;
+  height: 40px;
+  background-color: #a855f7;
+  top: 100px;
+  right: 100px;
 }
-

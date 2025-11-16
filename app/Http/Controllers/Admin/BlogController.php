@@ -85,36 +85,24 @@ class BlogController extends Controller
             'user_id' => Auth::id()
         ]);
 
-        return redirect()->route('admin.blog.index')
-            ->with('success', 'Post creado exitosamente');
+        return to_route('admin.blog.index')
+            ->with('feedback.message', 'Post creado exitosamente')
+            ->with('feedback.type', 'success');
     }
 
     /**
      * Mostrar formulario de edición
      */
-    public function edit($id)
+    public function edit(BlogPost $post)
     {
-        // Buscar el post manualmente para evitar problemas de route model binding
-        $post = BlogPost::find($id);
-        
-        if (!$post) {
-            abort(404, 'Post no encontrado');
-        }
-        
         return view('admin.blog.edit', compact('post'));
     }
 
     /**
      * Actualizar post
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, BlogPost $post)
     {
-        // Buscar el post manualmente
-        $post = BlogPost::find($id);
-        
-        if (!$post) {
-            abort(404, 'Post no encontrado');
-        }
         
         $validated = $request->validate([
             'title' => 'required|string|max:255',
@@ -155,21 +143,16 @@ class BlogController extends Controller
             'featured_image' => $featuredImageFileName,
         ]);
 
-        return redirect()->route('admin.blog.index')
-            ->with('success', 'Post actualizado exitosamente');
+        return to_route('admin.blog.index')
+            ->with('feedback.message', 'Post actualizado exitosamente')
+            ->with('feedback.type', 'success');
     }
 
     /**
      * Eliminar post
      */
-    public function destroy($id)
+    public function destroy(BlogPost $post)
     {
-        // Buscar el post manualmente
-        $post = BlogPost::find($id);
-        
-        if (!$post) {
-            abort(404, 'Post no encontrado');
-        }
         
         // Eliminar imagen destacada asociada
         if ($post->featured_image) {
@@ -178,7 +161,8 @@ class BlogController extends Controller
 
         $post->delete();
 
-        return redirect()->route('admin.blog.index')
-            ->with('success', 'Post eliminado exitosamente');
+        return to_route('admin.blog.index')
+            ->with('feedback.message', 'Post eliminado exitosamente')
+            ->with('feedback.type', 'success');
     }
 }

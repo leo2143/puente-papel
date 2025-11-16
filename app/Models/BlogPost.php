@@ -2,46 +2,80 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Services\ImageService;
 
 class BlogPost extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-    protected $fillable = [
-        'title',
-        'slug',
-        'content',
-        'featured_image',
-        'status',
-        'user_id'
+  /**
+   * Campos que se pueden asignar masivamente.
+   *
+   * @var array<int, string>
+   */
+  protected $fillable = [
+    'title',
+    'slug',
+    'content',
+    'featured_image',
+    'status',
+    'user_id'
+  ];
+
+  /**
+   * Get the attributes that should be cast.
+   *
+   * @return array<string, string>
+   */
+  protected function casts(): array
+  {
+    return [
+      'content' => 'string', // Markdown de dile-editor
     ];
+  }
 
-    // Relación con User
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
+  /**
+   * Relación belongsTo con User.
+   * Se define en el modelo que tiene la FK (tabla referenciante).
+   */
+  public function user()
+  {
+    return $this->belongsTo(User::class);
+  }
 
-    /**
-     * Get the route key for the model.
-     */
-    public function getRouteKeyName()
-    {
-        return 'id';
-    }
+  /**
+   * Accessor para obtener la URL de la imagen destacada.
+   * Usando Attribute::make() con named arguments (PHP 8+).
+   */
+  public function featuredImageUrl(): Attribute
+  {
+    return Attribute::make(
+      get: fn ($value, $attributes) => $attributes['featured_image'] 
+        ? ImageService::getUrl($attributes['featured_image'], 'blog') 
+        : null,
+    );
+  }
 
-    /**
-     * Get the featured image URL for this blog post.
-     */
-    public function getFeaturedImageUrlAttribute()
-    {
-        if (!$this->featured_image) {
-            return null;
+  public function contentHtml(): Attribute
+  {
+    return Attribute::make(
+      get: function () {
+        // Si no hay contenido, retornar string vacío
+        if (empty($this->content)) {
+          return '';
         }
 
-        return ImageService::getUrl($this->featured_image, 'blog');
-    }
+        $converter = new \League\CommonMark\CommonMarkConverter([
+          'html_input' => 'strip',         // Elimina HTML peligroso
+          'allow_unsafe_links' => false,   // Bloquea enlaces inseguros
+        ]);
+
+        return $converter->convert($this->content)->getContent();
+      }
+    );
+  }
+  
 }

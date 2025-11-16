@@ -62,31 +62,47 @@ class ProductController extends Controller
             'status' => 'required|in:active,inactive'
         ]);
 
-        // Manejar imagen usando ImageService
-        $imageFileName = null;
-        if ($request->hasFile('image')) {
-            try {
-                $imageFileName = ImageService::upload(
-                    $request->file('image'), 
-                    'products'
-                );
-            } catch (\Exception $e) {
-                return back()->withErrors(['image' => $e->getMessage()])->withInput();
+        try {
+            // Manejar imagen usando ImageService
+            $imageFileName = null;
+            if ($request->hasFile('image')) {
+                try {
+                    $imageFileName = ImageService::upload(
+                        $request->file('image'), 
+                        'products'
+                    );
+                } catch (\Exception $e) {
+                    return back()
+                        ->withInput()
+                        ->with('feedback.message', 'Error al subir la imagen: ' . $e->getMessage())
+                        ->with('feedback.type', 'danger');
+                }
             }
+
+            // Usar only() para obtener solo los campos que necesitamos (whitelisting)
+            $data = $request->only(['title', 'description', 'price', 'category', 'status']);
+            
+            // Campos adicionales
+            $data['name'] = $validated['name'] ?? $validated['title'];
+            $data['image'] = $imageFileName;
+            $data['status'] = $validated['status'] ?? 'active';
+
+            Product::create($data);
+        } catch (\Throwable $th) {
+            // Limpiar recursos si es necesario
+            if (isset($imageFileName) && $imageFileName && ImageService::exists($imageFileName, 'products')) {
+                ImageService::delete($imageFileName, 'products');
+            }
+
+            return back()
+                ->withInput()
+                ->with('feedback.message', 'Error al crear el producto')
+                ->with('feedback.type', 'danger');
         }
 
-        Product::create([
-            'title' => $validated['title'],
-            'name' => $validated['name'] ?? $validated['title'],
-            'description' => $validated['description'],
-            'price' => $validated['price'],
-            'category' => $validated['category'],
-            'image' => $imageFileName,
-            'status' => $validated['status'] ?? 'active',
-        ]);
-
-        return redirect()->route('admin.product.index')
-            ->with('success', 'Producto creado exitosamente');
+        return to_route('admin.product.index')
+            ->with('feedback.message', 'Producto creado exitosamente')
+            ->with('feedback.type', 'success');
     }
 
     /**
@@ -111,46 +127,67 @@ class ProductController extends Controller
             'description' => 'required|string',
             'price' => 'nullable|numeric|min:0',
             'category' => 'nullable|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5120', // 5MB
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5120',
             'status' => 'required|in:active,inactive'
+        ], [
+            'title.required' => 'El título es obligatorio.',
+            'description.required' => 'La descripción es obligatoria.',
+            'price.numeric' => 'El precio debe ser un número.',
+            'status.required' => 'El estado es obligatorio.',
         ]);
 
-        // Manejar imagen usando ImageService
-        $imageFileName = $product->image;
-        
-        // Si se sube una nueva imagen
-        if ($request->hasFile('image')) {
-            try {
-                $imageFileName = ImageService::upload(
-                    $request->file('image'), 
-                    'products',
-                    $product->image // Imagen anterior para eliminar
-                );
-            } catch (\Exception $e) {
-                return back()->withErrors(['image' => $e->getMessage()])->withInput();
+        try {
+            // Manejar imagen usando ImageService
+            $imageFileName = $product->image;
+            $oldCover = null;
+            
+            // Si se sube una nueva imagen
+            if ($request->hasFile('image')) {
+                $oldCover = $product->image;
+                try {
+                    $imageFileName = ImageService::upload(
+                        $request->file('image'), 
+                        'products',
+                        $product->image
+                    );
+                } catch (\Exception $e) {
+                    return back()
+                        ->withInput()
+                        ->with('feedback.message', 'Error al subir la imagen: ' . $e->getMessage())
+                        ->with('feedback.type', 'danger');
+                }
             }
-        }
-        
-        // Si se marca para eliminar la imagen
-        if ($request->has('image_delete') && $request->image_delete) {
-            if ($product->image) {
-                ImageService::delete($product->image, 'products');
+            
+            // Si se marca para eliminar la imagen
+            if ($request->has('image_delete') && $request->image_delete) {
+                if ($product->image && ImageService::exists($product->image, 'products')) {
+                    ImageService::delete($product->image, 'products');
+                }
+                $imageFileName = null;
             }
-            $imageFileName = null;
+
+            // Usar only() para obtener solo los campos que necesitamos
+            $data = $request->only(['title', 'description', 'price', 'category', 'status']);
+            $data['name'] = $validated['name'] ?? $validated['title'];
+            $data['image'] = $imageFileName;
+            $data['status'] = $validated['status'] ?? 'active';
+
+            $product->update($data);
+
+            // Eliminar imagen antigua si se subió una nueva
+            if ($oldCover !== null && $oldCover !== $imageFileName && ImageService::exists($oldCover, 'products')) {
+                ImageService::delete($oldCover, 'products');
+            }
+        } catch (\Throwable $th) {
+            return back()
+                ->withInput()
+                ->with('feedback.message', 'Error al actualizar el producto')
+                ->with('feedback.type', 'danger');
         }
 
-        $product->update([
-            'title' => $validated['title'],
-            'name' => $validated['name'] ?? $validated['title'],
-            'description' => $validated['description'],
-            'price' => $validated['price'],
-            'category' => $validated['category'],
-            'image' => $imageFileName,
-            'status' => $validated['status'] ?? 'active',
-        ]);
-
-        return redirect()->route('admin.product.index')
-            ->with('success', 'Producto actualizado exitosamente');
+        return to_route('admin.product.index')
+            ->with('feedback.message', 'Producto actualizado exitosamente')
+            ->with('feedback.type', 'success');
     }
 
     /**
@@ -158,14 +195,21 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        // Eliminar imagen asociada
-        if ($product->image) {
-            ImageService::delete($product->image, 'products');
+        try {
+            // Eliminar imagen asociada
+            if ($product->image && ImageService::exists($product->image, 'products')) {
+                ImageService::delete($product->image, 'products');
+            }
+
+            $product->delete();
+
+            return to_route('admin.product.index')
+                ->with('feedback.message', 'Producto <b>' . e($product->title) . '</b> eliminado exitosamente')
+                ->with('feedback.type', 'success');
+        } catch (\Throwable $th) {
+            return to_route('admin.product.index')
+                ->with('feedback.message', 'Error al eliminar el producto')
+                ->with('feedback.type', 'danger');
         }
-
-        $product->delete();
-
-        return redirect()->route('admin.product.index')
-            ->with('success', 'Producto eliminado exitosamente');
     }
 }

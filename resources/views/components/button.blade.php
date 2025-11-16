@@ -39,15 +39,14 @@ switch ($buttonVariant) {
 }
 ?>
 
-<button
-    id="btn"
-    onclick="{{ $onclick ?? '' }}"
-    type="{{ $type ?? 'submit' }}"
+<button id="btn" onclick="{{ $onclick ?? '' }}" type="{{ $type ?? 'submit' }}"
     class="bg-{{ $variant ?? 'primary' }}-color text-quinary-color text-amber-50 px-4 py-2 rounded-md transition-all duration-300 relative overflow-hidden {{ $buttonSize }}"
     {{ $attributes }}>
 
     <span class="relative z-10">{{ $slot }}</span>
-    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 transform -skew-x-12 -translate-x-full shimmer"></div>
+    <div
+        class="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 transform -skew-x-12 -translate-x-full shimmer">
+    </div>
 </button>
 
 <script>

@@ -79,7 +79,8 @@ class NavLink extends Component
         public string $route,
         // private string $route,
     )
-    {}
+  {
+  }
 
     /**
      * Get the view / contents that represent the component.

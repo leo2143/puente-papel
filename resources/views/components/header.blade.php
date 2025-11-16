@@ -82,7 +82,8 @@
                         class="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 transition-colors duration-200 group {{ request()->routeIs('blog.*') ? 'bg-red-50 text-red-600' : 'text-gray-700' }}">
                         <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path>
+                                d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z">
+                            </path>
                         </svg>
                         <span class="group-hover:text-red-600 transition-colors duration-200">Blog</span>
                     </a>
@@ -155,7 +156,8 @@
                         <button id="services-toggle"
                             class="w-full flex items-center justify-between p-3 rounded-lg hover:bg-gray-100 transition-colors duration-200 text-gray-700">
                             <div class="flex items-center space-x-3">
-                                <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z">
                                     </path>
@@ -186,15 +188,18 @@
                     <div class="border-t border-gray-200 my-4"></div>
 
                     {{-- Panel de Administración para admins --}}
-                    @if(auth()->user()->role === 'admin')
+                    @if (auth()->user()->role === 'admin')
                         <li class="mobile-menu-item">
                             <a href="{{ route('admin.dashboard') }}"
                                 class="flex items-center space-x-3 p-3 rounded-lg hover:bg-red-50 transition-colors duration-200 group {{ request()->routeIs('admin.*') ? 'bg-red-50 text-red-600' : 'text-gray-700' }}">
-                                <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                                        d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
+                                    </path>
                                 </svg>
-                                <span class="group-hover:text-red-600 transition-colors duration-200 font-medium">Panel de Administración</span>
+                                <span class="group-hover:text-red-600 transition-colors duration-200 font-medium">Panel de
+                                    Administración</span>
                             </a>
                         </li>
                     @endif
@@ -205,7 +210,8 @@
                             @csrf
                             <button type="submit"
                                 class="w-full flex items-center space-x-3 p-3 rounded-lg hover:bg-red-50 transition-colors duration-200 group text-left text-red-600">
-                                <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
                                     </path>
@@ -217,7 +223,7 @@
                 @else
                     {{-- Iniciar Sesión --}}
                     <li class="mobile-menu-item">
-                        <a href="{{ route('auth.login') }}"
+                        <a href="{{ route('auth.login.show') }}"
                             class="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 transition-colors duration-200 group">
                             <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -231,7 +237,7 @@
 
                     {{-- Registrarse --}}
                     <li class="mobile-menu-item">
-                        <a href="{{ route('auth.register') }}"
+                        <a href="{{ route('auth.register.show') }}"
                             class="flex items-center space-x-3 p-3 rounded-lg bg-red-600 text-white hover:bg-red-700 transition-colors duration-200 group">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -246,7 +252,6 @@
                 {{-- Servicios (con dropdown) --}}
                 <li class="mobile-menu-item">
 
-
                     {{-- Submenú de servicios --}}
                     <div id="services-submenu" class="hidden mt-2 ml-6 space-y-1">
                         <a href="{{ route('blog.index') }}"
@@ -260,7 +265,6 @@
                     </div>
                 </li>
 
-                
             </ul>
         </div>
 
@@ -275,14 +279,10 @@
     </div>
 </div>
 
-<header class="bg-secondary-color/30 backdrop-blur-sm backdrop-saturate-150 shadow-lg border-b border-white/20 relative z-50">
+<header
+    class="bg-secondary-color/30 backdrop-blur-sm backdrop-saturate-150 shadow-lg border-b border-white/20 relative z-50">
     {{-- Navegación principal --}}
     <x-nav />
-
-    {{-- Breadcrumbs
-    @isset($breadcrumbs)
-        <x-breadcrumbs :breadcrumbs="$breadcrumbs" />
-    @endisset --}}
 </header>
 
 <script>
@@ -414,7 +414,7 @@
         const accountToggle = document.getElementById('account-toggle');
         const accountSubmenu = document.getElementById('account-submenu');
         const accountArrow = document.getElementById('account-arrow');
-        
+
         if (accountToggle && accountSubmenu && accountArrow) {
             accountToggle.addEventListener('click', function() {
                 const isHidden = accountSubmenu.classList.contains('hidden');

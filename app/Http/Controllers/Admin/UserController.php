@@ -42,9 +42,18 @@ class UserController extends Controller
         return view('admin.users.index', compact('users'));
     }
 
-    /**
-     * Mostrar formulario de creación
-     */
+    public function show(User $user){
+        $user->load(['orders.orderItems.product']);
+
+        $totalPurchases = $user->orders->count();
+        $totalSpent = $user->orders->sum('total_amount');
+
+        return view('admin.users.show', compact('user', 'totalPurchases', 'totalSpent'));
+    }
+
+        /**
+         * Mostrar formulario de creación
+         */
     public function create()
     {
         return view('admin.users.create');
@@ -63,20 +72,27 @@ class UserController extends Controller
             'password' => 'required|string|min:8|confirmed',
             'role' => 'required|in:admin,user',
             'is_active' => 'boolean'
+        ], [
+            'name.required' => 'El nombre es obligatorio.',
+            'email.required' => 'El correo electrónico es obligatorio.',
+            'email.email' => 'El correo electrónico debe ser válido.',
+            'email.unique' => 'Este correo electrónico ya está registrado.',
+            'password.required' => 'La contraseña es obligatoria.',
+            'password.min' => 'La contraseña debe tener al menos :min caracteres.',
+            'password.confirmed' => 'Las contraseñas no coinciden.',
+            'role.required' => 'El rol es obligatorio.',
         ]);
 
-        User::create([
-            'name' => $validated['name'],
-            'last_name' => $validated['last_name'],
-            'email' => $validated['email'],
-            'phone' => $validated['phone'],
-            'password' => Hash::make($validated['password']),
-            'role' => $validated['role'],
-            'is_active' => $validated['is_active'] ?? true,
-        ]);
+        // Usar only() para obtener solo los campos que necesitamos (whitelisting)
+        $data = $request->only(['name', 'last_name', 'email', 'phone', 'role', 'is_active']);
+        $data['password'] = Hash::make($validated['password']);
+        $data['is_active'] = $validated['is_active'] ?? true;
 
-        return redirect()->route('admin.users.index')
-            ->with('success', 'Usuario creado exitosamente');
+        User::create($data);
+
+        return to_route('admin.users.index')
+            ->with('feedback.message', 'Usuario creado exitosamente')
+            ->with('feedback.type', 'success');
     }
 
     /**
@@ -100,25 +116,29 @@ class UserController extends Controller
             'password' => 'nullable|string|min:8|confirmed',
             'role' => 'required|in:admin,user',
             'is_active' => 'boolean'
+        ], [
+            'name.required' => 'El nombre es obligatorio.',
+            'email.required' => 'El correo electrónico es obligatorio.',
+            'email.email' => 'El correo electrónico debe ser válido.',
+            'email.unique' => 'Este correo electrónico ya está registrado.',
+            'password.min' => 'La contraseña debe tener al menos :min caracteres.',
+            'password.confirmed' => 'Las contraseñas no coinciden.',
+            'role.required' => 'El rol es obligatorio.',
         ]);
 
-        $updateData = [
-            'name' => $validated['name'],
-            'last_name' => $validated['last_name'],
-            'email' => $validated['email'],
-            'phone' => $validated['phone'],
-            'role' => $validated['role'],
-            'is_active' => $validated['is_active'] ?? true,
-        ];
+        // Usar only() para obtener solo los campos que necesitamos
+        $data = $request->only(['name', 'last_name', 'email', 'phone', 'role', 'is_active']);
+        $data['is_active'] = $validated['is_active'] ?? true;
 
         if (!empty($validated['password'])) {
-            $updateData['password'] = Hash::make($validated['password']);
+            $data['password'] = Hash::make($validated['password']);
         }
 
-        $user->update($updateData);
+        $user->update($data);
 
-        return redirect()->route('admin.users.index')
-            ->with('success', 'Usuario actualizado exitosamente');
+        return to_route('admin.users.index')
+            ->with('feedback.message', 'Usuario actualizado exitosamente')
+            ->with('feedback.type', 'success');
     }
 
     /**
@@ -150,7 +170,8 @@ class UserController extends Controller
 
         $user->delete();
 
-        return redirect()->route('admin.users.index')
-            ->with('success', 'Usuario eliminado exitosamente');
+        return to_route('admin.users.index')
+            ->with('feedback.message', 'Usuario eliminado exitosamente')
+            ->with('feedback.type', 'success');
     }
 }

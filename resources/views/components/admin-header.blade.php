@@ -27,7 +27,8 @@
                     </span>
                 </div>
                 <div>
-                    <p class="text-gray-800 font-medium">{{ auth()->user()->name }} {{ auth()->user()->last_name ?? '' }}</p>
+                    <p class="text-gray-800 font-medium">{{ auth()->user()->name }}
+                        {{ auth()->user()->last_name ?? '' }}</p>
                     <p class="text-sm text-red-600 font-medium">Administrador</p>
                     <p class="text-sm text-gray-500">{{ auth()->user()->email }}</p>
                 </div>
@@ -131,25 +132,30 @@
     </div>
 </div>
 
-<header class="bg-secondary-color/30 backdrop-blur-sm backdrop-saturate-150 shadow-lg border-b border-white/20 relative z-50">
+<header
+    class="bg-secondary-color/30 backdrop-blur-sm backdrop-saturate-150 shadow-lg border-b border-white/20 relative z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center py-4">
             {{-- Logo, título y botones --}}
             <div class="flex items-center space-x-4">
                 {{-- Botón menú móvil --}}
-                <button id="admin-mobile-menu-btn" class="lg:hidden p-2 rounded-lg hover:bg-white/20 transition-colors duration-200"
+                <button id="admin-mobile-menu-btn"
+                    class="lg:hidden p-2 rounded-lg hover:bg-white/20 transition-colors duration-200"
                     aria-label="Abrir menú">
                     <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16">
                         </path>
                     </svg>
                 </button>
 
                 {{-- Botón expandir sidebar (solo desktop) --}}
-                <button id="expand-sidebar-btn" class="hidden lg:block p-2 rounded-lg hover:bg-white/20 transition-colors duration-200"
+                <button id="expand-sidebar-btn"
+                    class="hidden lg:block p-2 rounded-lg hover:bg-white/20 transition-colors duration-200"
                     aria-label="Expandir sidebar">
                     <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16">
                         </path>
                     </svg>
                 </button>
@@ -162,7 +168,8 @@
                     </a>
                     <span class="text-gray-400 hidden sm:block">|</span>
                     <h1 class="text-xl font-semibold text-gray-700 hidden sm:block">Panel de Administración</h1>
-                    <span class="lg:hidden text-xs bg-red-100 text-red-600 px-2 py-1 rounded-full font-medium">Admin</span>
+                    <span
+                        class="lg:hidden text-xs bg-red-100 text-red-600 px-2 py-1 rounded-full font-medium">Admin</span>
                 </div>
             </div>
 
@@ -187,7 +194,8 @@
 
             {{-- Botón de usuario móvil --}}
             <div class="lg:hidden">
-                <button id="admin-user-menu-btn" class="p-2 rounded-lg hover:bg-white/20 transition-colors duration-200"
+                <button id="admin-user-menu-btn"
+                    class="p-2 rounded-lg hover:bg-white/20 transition-colors duration-200"
                     aria-label="Menú de usuario">
                     <div class="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center">
                         <span class="text-white text-xs font-medium">
@@ -201,136 +209,136 @@
 </header>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Variables del menú móvil admin
-    const adminMobileMenuBtn = document.getElementById('admin-mobile-menu-btn');
-    const adminMobileNavigation = document.getElementById('admin-mobile-navigation');
-    const closeAdminMobileMenu = document.getElementById('close-admin-mobile-menu');
-    const adminMobileOverlay = document.getElementById('admin-mobile-overlay');
-    const adminUserMenuBtn = document.getElementById('admin-user-menu-btn');
-    const expandSidebarBtn = document.getElementById('expand-sidebar-btn');
+    document.addEventListener('DOMContentLoaded', function() {
+        // Variables del menú móvil admin
+        const adminMobileMenuBtn = document.getElementById('admin-mobile-menu-btn');
+        const adminMobileNavigation = document.getElementById('admin-mobile-navigation');
+        const closeAdminMobileMenu = document.getElementById('close-admin-mobile-menu');
+        const adminMobileOverlay = document.getElementById('admin-mobile-overlay');
+        const adminUserMenuBtn = document.getElementById('admin-user-menu-btn');
+        const expandSidebarBtn = document.getElementById('expand-sidebar-btn');
 
-    // Función para abrir el menú admin
-    function openAdminMobileMenu() {
-        adminMobileNavigation.classList.remove('-translate-x-full');
-        adminMobileNavigation.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden'; // Prevenir scroll del body
+        // Función para abrir el menú admin
+        function openAdminMobileMenu() {
+            adminMobileNavigation.classList.remove('-translate-x-full');
+            adminMobileNavigation.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden'; // Prevenir scroll del body
 
-        // Animación de entrada del menú
-        gsap.fromTo(adminMobileNavigation, {
-            x: -320,
-            opacity: 0
-        }, {
-            x: 0,
-            opacity: 1,
-            duration: 0.3,
-            ease: "power2.out"
-        });
-
-        // Animación de los elementos del menú
-        gsap.fromTo('.admin-mobile-menu-item', {
-            x: -20,
-            opacity: 0
-        }, {
-            x: 0,
-            opacity: 1,
-            duration: 0.4,
-            stagger: 0.1,
-            ease: "power2.out",
-            delay: 0.1
-        });
-    }
-
-    // Función para cerrar el menú admin
-    function closeAdminMobileMenuFunc() {
-        // Animación de salida
-        gsap.to(adminMobileNavigation, {
-            x: -320,
-            opacity: 0,
-            duration: 0.3,
-            ease: "power2.out",
-            onComplete: () => {
-                // Restaurar estado inicial
-                adminMobileNavigation.classList.add('-translate-x-full');
-                adminMobileNavigation.setAttribute('aria-hidden', 'true');
-                document.body.style.overflow = ''; // Restaurar scroll del body
-
-                // Resetear transformaciones de GSAP para la próxima apertura
-                gsap.set(adminMobileNavigation, {
-                    clearProps: "transform,opacity"
-                });
-            }
-        });
-    }
-
-    // Event listeners
-    if (adminMobileMenuBtn) {
-        adminMobileMenuBtn.addEventListener('click', function() {
-            gsap.to(this, {
-                scale: 0.9,
-                duration: 0.1,
-                yoyo: true,
-                repeat: 1
+            // Animación de entrada del menú
+            gsap.fromTo(adminMobileNavigation, {
+                x: -320,
+                opacity: 0
+            }, {
+                x: 0,
+                opacity: 1,
+                duration: 0.3,
+                ease: "power2.out"
             });
-            openAdminMobileMenu();
-        });
-    }
 
-    if (closeAdminMobileMenu) {
-        closeAdminMobileMenu.addEventListener('click', closeAdminMobileMenuFunc);
-    }
-
-    if (adminMobileOverlay) {
-        adminMobileOverlay.addEventListener('click', closeAdminMobileMenuFunc);
-    }
-
-    // Botón de usuario móvil (abre el mismo menú)
-    if (adminUserMenuBtn) {
-        adminUserMenuBtn.addEventListener('click', function() {
-            gsap.to(this, {
-                scale: 0.9,
-                duration: 0.1,
-                yoyo: true,
-                repeat: 1
+            // Animación de los elementos del menú
+            gsap.fromTo('.admin-mobile-menu-item', {
+                x: -20,
+                opacity: 0
+            }, {
+                x: 0,
+                opacity: 1,
+                duration: 0.4,
+                stagger: 0.1,
+                ease: "power2.out",
+                delay: 0.1
             });
-            openAdminMobileMenu();
-        });
-    }
-
-    // Botón expandir sidebar (solo desktop)
-    if (expandSidebarBtn) {
-        expandSidebarBtn.addEventListener('click', function() {
-            gsap.to(this, {
-                scale: 0.9,
-                duration: 0.1,
-                yoyo: true,
-                repeat: 1
-            });
-            
-            // Llamar a la función toggleSidebar del layout admin
-            if (window.toggleAdminSidebar) {
-                window.toggleAdminSidebar();
-            }
-        });
-    }
-
-    // Cerrar menú con tecla Escape
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && !adminMobileNavigation.classList.contains('-translate-x-full')) {
-            closeAdminMobileMenuFunc();
         }
-    });
 
-    // Animación de entrada para el header
-    gsap.fromTo('header', {
-        opacity: 0,
-        y: -20
-    }, {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        ease: "power2.out",
-        clearProps: "transform,opacity" // Limpiar propiedades después de la animación
+        // Función para cerrar el menú admin
+        function closeAdminMobileMenuFunc() {
+            // Animación de salida
+            gsap.to(adminMobileNavigation, {
+                x: -320,
+                opacity: 0,
+                duration: 0.3,
+                ease: "power2.out",
+                onComplete: () => {
+                    // Restaurar estado inicial
+                    adminMobileNavigation.classList.add('-translate-x-full');
+                    adminMobileNavigation.setAttribute('aria-hidden', 'true');
+                    document.body.style.overflow = ''; // Restaurar scroll del body
+
+                    // Resetear transformaciones de GSAP para la próxima apertura
+                    gsap.set(adminMobileNavigation, {
+                        clearProps: "transform,opacity"
+                    });
+                }
+            });
+        }
+
+        // Event listeners
+        if (adminMobileMenuBtn) {
+            adminMobileMenuBtn.addEventListener('click', function() {
+                gsap.to(this, {
+                    scale: 0.9,
+                    duration: 0.1,
+                    yoyo: true,
+                    repeat: 1
+                });
+                openAdminMobileMenu();
+            });
+        }
+
+        if (closeAdminMobileMenu) {
+            closeAdminMobileMenu.addEventListener('click', closeAdminMobileMenuFunc);
+        }
+
+        if (adminMobileOverlay) {
+            adminMobileOverlay.addEventListener('click', closeAdminMobileMenuFunc);
+        }
+
+        // Botón de usuario móvil (abre el mismo menú)
+        if (adminUserMenuBtn) {
+            adminUserMenuBtn.addEventListener('click', function() {
+                gsap.to(this, {
+                    scale: 0.9,
+                    duration: 0.1,
+                    yoyo: true,
+                    repeat: 1
+                });
+                openAdminMobileMenu();
+            });
+        }
+
+        // Botón expandir sidebar (solo desktop)
+        if (expandSidebarBtn) {
+            expandSidebarBtn.addEventListener('click', function() {
+                gsap.to(this, {
+                    scale: 0.9,
+                    duration: 0.1,
+                    yoyo: true,
+                    repeat: 1
+                });
+
+                // Llamar a la función toggleSidebar del layout admin
+                if (window.toggleAdminSidebar) {
+                    window.toggleAdminSidebar();
+                }
+            });
+        }
+
+        // Cerrar menú con tecla Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && !adminMobileNavigation.classList.contains('-translate-x-full')) {
+                closeAdminMobileMenuFunc();
+            }
+        });
+
+        // Animación de entrada para el header
+        gsap.fromTo('header', {
+            opacity: 0,
+            y: -20
+        }, {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            ease: "power2.out",
+            clearProps: "transform,opacity" // Limpiar propiedades después de la animación
+        });
     });
-});
 </script>

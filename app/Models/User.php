@@ -71,4 +71,12 @@ class User extends Authenticatable implements JWTSubject
             'email' => $this->email,
         ];
     }
+
+    /**
+     * Relación: Un usuario tiene muchas órdenes.
+     */
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }

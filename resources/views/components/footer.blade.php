@@ -16,11 +16,12 @@
                 {{-- Columna 1: Información de la empresa --}}
                 <div class="space-y-4">
                     <div class="flex items-center space-x-2">
-                        <img src="{{ asset('storage/images/puente_papel_icon.png') }}" alt="Puente Papel" class="w-10 h-8">
-                        <h2
+                        <img src="{{ asset('storage/images/puente_papel_icon.png') }}" alt="Puente Papel"
+                            class="w-10 h-8">
+                        <span
                             class="text-xl font-bold bg-gradient-to-r from-pink-400 to-red-400 bg-clip-text text-transparent">
                             Puente Papel
-                        </h2>
+                        </span>
                     </div>
                     <p class="text-gray-300 text-sm leading-relaxed">
                         Conectamos ideas a través del papel. Especialistas en materiales educativos y recursos
@@ -79,13 +80,15 @@
                     <ul class="space-y-2">
                         <li><a href="#"
                                 class="text-gray-300 hover:text-pink-400 transition-colors duration-200 text-sm">Material
-                                Educativo</a></li>
+                                Educativo</a>
+                        </li>
                         <li><a href="#"
                                 class="text-gray-300 hover:text-pink-400 transition-colors duration-200 text-sm">Libros</a>
                         </li>
                         <li><a href="#"
                                 class="text-gray-300 hover:text-pink-400 transition-colors duration-200 text-sm">Recursos
-                                Didácticos</a></li>
+                                Didácticos</a>
+                        </li>
                         <li><a href="#"
                                 class="text-gray-300 hover:text-pink-400 transition-colors duration-200 text-sm">Pictogramas</a>
                         </li>
@@ -241,13 +244,16 @@
             });
         });
 
-        // Animación de pulso en el logo
-        gsap.to('footer .w-8.h-8.bg-gradient-to-r', {
-            scale: 1.1,
-            duration: 2,
-            ease: "power2.inOut",
-            yoyo: true,
-            repeat: -1
-        });
+        // Animación de pulso en el título del logo
+        const logoTitle = document.querySelector('footer h2.bg-gradient-to-r');
+        if (logoTitle) {
+            gsap.to(logoTitle, {
+                scale: 1.05,
+                duration: 2,
+                ease: "power2.inOut",
+                yoyo: true,
+                repeat: -1
+            });
+        }
     });
 </script>

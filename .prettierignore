@@ -1,3 +1,31 @@
+# UI Components (no formatear)
 resources/js/components/ui/*
 resources/js/ziggy.js
 resources/views/mail/*
+
+# Dependencies
+/node_modules
+/vendor
+
+# Build outputs
+/public/build
+/public/hot
+/public/storage
+
+# Storage y cache
+/storage
+/bootstrap/cache
+
+# Environment
+.env
+.env.*
+*.log
+
+# Archivos minificados
+*.min.js
+*.min.css
+
+# Otros
+.phpunit.result.cache
+composer.lock
+package-lock.json

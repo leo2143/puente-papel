@@ -49,15 +49,7 @@ $currentImageIndex = 0;
                                     alt="{{ $productData['title'] }} - Imagen {{ $index + 1 }}"
                                     class="w-full h-full object-cover">
 
-                                {{-- Overlay de texto (como en la imagen original) --}}
-                                @if ($index === 0)
-                                    <div class="absolute top-4 left-4 right-4">
-                                        <div class="bg-orange-500 text-white px-4 py-2 rounded-lg text-center">
-                                            <p class="text-sm font-semibold">6 EFEMERIDES ESCOLARES</p>
-                                            <p class="text-xs">NARRADAS CON PICTOGRAMAS</p>
-                                        </div>
-                                    </div>
-                                @endif
+                                ¿
                             </div>
                         @endforeach
                     </div>
@@ -94,45 +86,76 @@ $currentImageIndex = 0;
             <div class="space-y-6">
                 {{-- Título y Precio --}}
                 <div>
-                    <h1 class="text-3xl font-bold text-gray-900 mb-2">
-                        {{ $productData['title'] ?? 'Título del producto' }}</h1>
-                    <p class="text-2xl font-semibold text-red-600">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-2">
+                        {{ $productData['title'] ?? 'Título del producto' }}</h2>
+                    <p class="text-2xl font-semibold text-gray-900">
                         ${{ number_format($productData['price'], 0, ',', '.') }}</p>
                     <a href="#" class="text-red-600 text-sm hover:underline">Ver medios de pagos</a>
                 </div>
 
                 {{-- Selector de Cantidad --}}
-                <div class="flex items-center space-x-4">
-                    <label for="quantity" class="text-gray-700 font-medium">Cantidad:</label>
-                    <div class="relative">
-                        <select id="quantity"
-                            class="appearance-none bg-pink-100 border-2 border-pink-300 rounded-xl px-4 py-2 pr-8 text-gray-800 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all duration-300">
-                            @for ($i = 1; $i <= 10; $i++)
-                                <option value="{{ $i }}"
-                                    {{ $i === $productData['quantity'] ? 'selected' : '' }}>{{ $i }}
-                                </option>
-                            @endfor
-                        </select>
-                        <div class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-                            <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M19 9l-7 7-7-7"></path>
-                            </svg>
+                @if ($product && $product->is_active && $product->stock > 0)
+                    <div class="flex items-center space-x-4">
+                        <label for="quantity_{{ $product->id }}" class="text-gray-700 font-medium">Cantidad:</label>
+                        <div class="relative">
+                            <select id="quantity_{{ $product->id }}" name="quantity"
+                                class="quantity-selector appearance-none bg-pink-100 border-2 border-pink-300 rounded-xl px-4 py-2 pr-8 text-gray-800 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all duration-300">
+                                @for ($i = 1; $i <= min(10, $product->stock); $i++)
+                                    <option value="{{ $i }}">{{ $i }}</option>
+                                @endfor
+                            </select>
+                            <div class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                                <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </div>
                         </div>
+                        <span class="text-sm text-gray-700">(Stock: {{ $product->stock }})</span>
                     </div>
-                </div>
+                @endif
 
                 {{-- Botones de Acción --}}
-                <div class="space-y-3">
-                    <button
-                        class="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 hover:shadow-lg">
-                        Comprar ahora
-                    </button>
-                    <button
-                        class="w-full bg-pink-100 hover:bg-pink-200 text-gray-800 font-semibold py-3 px-6 rounded-xl transition-all duration-300 border-2 border-pink-300 hover:shadow-lg">
-                        Añadir al carrito
-                    </button>
-                </div>
+                @if ($product && $product->is_active && $product->stock > 0)
+                    <div class="space-y-3">
+                        <form action="{{ route('cart.add') }}" method="POST" class="add-to-cart-form">
+                            @csrf
+                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                            <input type="hidden" name="quantity" value="1"
+                                id="hidden_quantity_{{ $product->id }}">
+                            <input type="hidden" name="buy_now" value="1">
+                            <button type="submit"
+                                class="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 hover:shadow-lg">
+                                Comprar ahora
+                            </button>
+                        </form>
+                        <form action="{{ route('cart.add') }}" method="POST" class="add-to-cart-form">
+                            @csrf
+                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                            <input type="hidden" name="quantity" value="1"
+                                id="hidden_quantity_cart_{{ $product->id }}">
+                            <button type="submit"
+                                class="w-full bg-pink-100 hover:bg-pink-200 text-gray-800 font-semibold py-3 px-6 rounded-xl transition-all duration-300 border-2 border-pink-300 hover:shadow-lg">
+                                Añadir al carrito
+                            </button>
+                        </form>
+                    </div>
+                @elseif ($product && !$product->is_active)
+                    <div class="space-y-3">
+                        <button disabled
+                            class="w-full bg-gray-300 text-gray-500 font-semibold py-3 px-6 rounded-xl cursor-not-allowed">
+                            Producto no disponible
+                        </button>
+                    </div>
+                @elseif ($product && $product->stock <= 0)
+                    <div class="space-y-3">
+                        <button disabled
+                            class="w-full bg-gray-300 text-gray-500 font-semibold py-3 px-6 rounded-xl cursor-not-allowed">
+                            Sin stock disponible
+                        </button>
+                    </div>
+                @endif
 
                 {{-- Características del Producto --}}
                 <div class="bg-pink-100 rounded-xl p-4 border-2 border-pink-300">
@@ -316,6 +339,36 @@ $currentImageIndex = 0;
 
         // Auto-slide opcional (descomenta si quieres que cambie automáticamente)
         // setInterval(nextImage, 5000);
+
+        // Sincronizar cantidad seleccionada con inputs hidden
+        const quantitySelector = document.getElementById('quantity_{{ $product ? $product->id : '' }}');
+        const hiddenQuantityBuy = document.getElementById(
+            'hidden_quantity_{{ $product ? $product->id : '' }}');
+        const hiddenQuantityCart = document.getElementById(
+            'hidden_quantity_cart_{{ $product ? $product->id : '' }}');
+
+        if (quantitySelector && hiddenQuantityBuy && hiddenQuantityCart) {
+            quantitySelector.addEventListener('change', function() {
+                hiddenQuantityBuy.value = this.value;
+                hiddenQuantityCart.value = this.value;
+            });
+        }
+
+        // Manejar envío de formularios de agregar al carrito
+        const addToCartForms = document.querySelectorAll('.add-to-cart-form');
+        addToCartForms.forEach(form => {
+            form.addEventListener('submit', function(e) {
+                const submitButton = form.querySelector('button[type="submit"]');
+                const originalText = submitButton.textContent;
+
+                // Deshabilitar botón y mostrar estado de carga
+                submitButton.disabled = true;
+                submitButton.textContent = 'Agregando...';
+
+                // El formulario se enviará normalmente, Laravel manejará la respuesta
+                // Si hay error, el botón se habilitará de nuevo en la recarga
+            });
+        });
     });
 </script>
 
