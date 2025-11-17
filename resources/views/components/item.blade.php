@@ -54,31 +54,7 @@ $currentImageIndex = 0;
                         @endforeach
                     </div>
 
-                    {{-- Flechas de navegación --}}
-                    <button id="prev-btn"
-                        class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full p-2 shadow-lg transition-all duration-300 z-10">
-                        <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7">
-                            </path>
-                        </svg>
-                    </button>
-
-                    <button id="next-btn"
-                        class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full p-2 shadow-lg transition-all duration-300 z-10">
-                        <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
-                            </path>
-                        </svg>
-                    </button>
-
-                    {{-- Indicadores de imagen --}}
-                    <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-                        @foreach ($productData['images'] as $index => $image)
-                            <button
-                                class="image-indicator w-3 h-3 rounded-full {{ $index === 0 ? 'bg-white' : 'bg-white bg-opacity-50' }} transition-all duration-300"
-                                data-index="{{ $index }}"></button>
-                        @endforeach
-                    </div>
+             
                 </div>
             </div>
 
@@ -105,11 +81,7 @@ $currentImageIndex = 0;
                                 @endfor
                             </select>
                             <div class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-                                <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M19 9l-7 7-7-7"></path>
-                                </svg>
+                                <img src="{{ asset('storage/icons-svg/chevron-down.svg') }}" alt="" class="w-4 h-4 text-gray-600" aria-hidden="true">
                             </div>
                         </div>
                         <span class="text-sm text-gray-700">(Stock: {{ $product->stock }})</span>

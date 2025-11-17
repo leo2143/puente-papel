@@ -10,7 +10,7 @@
 </head>
 
 <body class="h-full relative">
-    <h1>Puente Papel </h1>
+    <h1 class = "hidden">Puente Papel </h1>
     <canvas id="make-me-cool" class="fixed inset-0 w-full h-full z-0"></canvas>
 
     <div id="app" class="relative z-10 h-full w-full">

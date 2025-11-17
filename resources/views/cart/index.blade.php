@@ -71,13 +71,7 @@
                                         <td class="py-4 px-2 text-center">
                                             <button type="button" onclick="removeProduct({{ $productId }})"
                                                 class="text-red-600 hover:text-red-800 hover:bg-red-50 px-3 py-1 rounded transition-colors">
-                                                <svg class="w-5 h-5" fill="none" stroke="currentColor"
-                                                    viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        stroke-width="2"
-                                                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
-                                                    </path>
-                                                </svg>
+                                                <img src="{{ asset('storage/icons-svg/trash.svg') }}" alt="" class="w-5 h-5" aria-hidden="true">
                                             </button>
                                         </td>
                                     </tr>
@@ -125,11 +119,7 @@
         @else
             <div class="bg-pink-50 px-8 py-12 rounded-2xl max-w-2xl mx-auto border-2 border-pink-200">
                 <div class="text-center">
-                    <svg class="w-24 h-24 mx-auto text-gray-400 mb-4" fill="none" stroke="currentColor"
-                        viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-                    </svg>
+                    <img src="{{ asset('storage/icons-svg/shopping-bag.svg') }}" alt="" class="w-24 h-24 mx-auto text-gray-400 mb-4" aria-hidden="true">
                     <h2 class="text-2xl font-bold text-gray-800 mb-4">Tu carrito está vacío</h2>
                     <p class="text-gray-600 mb-6">Agrega productos al carrito para comenzar a comprar.</p>
                     <a href="{{ route('product.index') }}"

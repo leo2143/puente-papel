@@ -13,18 +13,14 @@ $slides = [['url' => asset('storage/carrusel/carrusel-7.png')], ['url' => asset(
     <button id="prev-slide"
         class="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer hover:bg-black/40 transition-colors"
         aria-label="Imagen anterior">
-        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-        </svg>
+        <img src="{{ asset('storage/icons-svg/chevron-left.svg') }}" alt="" class="w-8 h-8" aria-hidden="true">
     </button>
 
     {{-- Flecha derecha --}}
     <button id="next-slide"
         class="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] right-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer hover:bg-black/40 transition-colors"
         aria-label="Imagen siguiente">
-        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-        </svg>
+        <img src="{{ asset('storage/icons-svg/chevron-right.svg') }}" alt="" class="w-8 h-8" aria-hidden="true">
     </button>
 
 </div>

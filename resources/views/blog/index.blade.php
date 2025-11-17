@@ -49,19 +49,9 @@
                                 {{ Str::limit(strip_tags($post->content), 120) }}
                             </p>
 
-                            {{-- Meta información --}}
-                            <div class="flex items-center justify-between text-sm text-gray-500">
+                            <div class="flex items-center justify-left text-sm text-gray-500">
                                 <div class="flex items-center space-x-2">
-                                    @if ($post->user)
-                                        <div
-                                            class="w-6 h-6 bg-pink-300 rounded-full flex items-center justify-center border border-pink-400">
-                                            <span class="text-gray-800 text-xs font-medium">
-                                                {{ substr($post->user->name, 0, 1) }}
-                                            </span>
-                                        </div>
-                                        <span>{{ $post->user->name }}</span>
-                                    @endif
-                                </div>
+                                    </div>
                                 <time datetime="{{ $post->created_at->format('Y-m-d') }}">
                                     {{ $post->created_at->format('d M Y') }}
                                 </time>

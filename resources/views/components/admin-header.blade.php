@@ -11,10 +11,7 @@
             <h2 class="text-xl font-bold text-gray-800">Panel Admin</h2>
             <button id="close-admin-mobile-menu" class="p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200"
                 aria-label="Cerrar menú">
-                <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
-                    </path>
-                </svg>
+                <img src="{{ asset('storage/icons-svg/close.svg') }}" alt="" class="w-6 h-6 text-gray-600" aria-hidden="true">
             </button>
         </div>
 
@@ -42,10 +39,7 @@
                 <li class="admin-mobile-menu-item">
                     <a href="{{ route('admin.dashboard') }}"
                         class="flex items-center space-x-3 p-3 rounded-lg hover:bg-red-50 transition-colors duration-200 group {{ request()->routeIs('admin.dashboard') ? 'bg-red-50 text-red-600' : 'text-gray-700' }}">
-                        <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"></path>
-                        </svg>
+                        <img src="{{ asset('storage/icons-svg/dashboard.svg') }}" alt="" class="w-5 h-5 text-red-600" aria-hidden="true">
                         <span class="group-hover:text-red-600 transition-colors duration-200">Dashboard</span>
                     </a>
                 </li>
@@ -54,10 +48,7 @@
                 <li class="admin-mobile-menu-item">
                     <a href="{{ route('admin.product.index') }}"
                         class="flex items-center space-x-3 p-3 rounded-lg hover:bg-red-50 transition-colors duration-200 group {{ request()->routeIs('admin.product.*') ? 'bg-red-50 text-red-600' : 'text-gray-700' }}">
-                        <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-                        </svg>
+                        <img src="{{ asset('storage/icons-svg/shopping-bag.svg') }}" alt="" class="w-5 h-5 text-red-600" aria-hidden="true">
                         <span class="group-hover:text-red-600 transition-colors duration-200">Productos</span>
                     </a>
                 </li>
@@ -66,11 +57,7 @@
                 <li class="admin-mobile-menu-item">
                     <a href="{{ route('admin.blog.index') }}"
                         class="flex items-center space-x-3 p-3 rounded-lg hover:bg-red-50 transition-colors duration-200 group {{ request()->routeIs('admin.blog.*') ? 'bg-red-50 text-red-600' : 'text-gray-700' }}">
-                        <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z">
-                            </path>
-                        </svg>
+                        <img src="{{ asset('storage/icons-svg/newspaper.svg') }}" alt="" class="w-5 h-5 text-red-600" aria-hidden="true">
                         <span class="group-hover:text-red-600 transition-colors duration-200">Blog</span>
                     </a>
                 </li>
@@ -79,11 +66,7 @@
                 <li class="admin-mobile-menu-item">
                     <a href="{{ route('admin.users.index') }}"
                         class="flex items-center space-x-3 p-3 rounded-lg hover:bg-red-50 transition-colors duration-200 group {{ request()->routeIs('admin.users.*') ? 'bg-red-50 text-red-600' : 'text-gray-700' }}">
-                        <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z">
-                            </path>
-                        </svg>
+                        <img src="{{ asset('storage/icons-svg/users.svg') }}" alt="" class="w-5 h-5 text-red-600" aria-hidden="true">
                         <span class="group-hover:text-red-600 transition-colors duration-200">Usuarios</span>
                     </a>
                 </li>
@@ -95,10 +78,7 @@
                 <li class="admin-mobile-menu-item">
                     <a href="{{ route('home') }}"
                         class="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 transition-colors duration-200 group text-gray-600">
-                        <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-                        </svg>
+                        <img src="{{ asset('storage/icons-svg/arrow-left.svg') }}" alt="" class="w-5 h-5 text-gray-600" aria-hidden="true">
                         <span class="group-hover:text-gray-800 transition-colors duration-200">Volver al sitio</span>
                     </a>
                 </li>
@@ -109,11 +89,7 @@
                         @csrf
                         <button type="submit"
                             class="w-full flex items-center space-x-3 p-3 rounded-lg hover:bg-red-50 transition-colors duration-200 group text-left text-red-600">
-                            <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
-                                </path>
-                            </svg>
+                            <img src="{{ asset('storage/icons-svg/logout.svg') }}" alt="" class="w-5 h-5 text-red-600" aria-hidden="true">
                             <span class="group-hover:text-red-700 transition-colors duration-200">Cerrar Sesión</span>
                         </button>
                     </form>
@@ -142,22 +118,14 @@
                 <button id="admin-mobile-menu-btn"
                     class="lg:hidden p-2 rounded-lg hover:bg-white/20 transition-colors duration-200"
                     aria-label="Abrir menú">
-                    <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4 6h16M4 12h16M4 18h16">
-                        </path>
-                    </svg>
+                    <img src="{{ asset('storage/icons-svg/menu-hamburger.svg') }}" alt="" class="w-6 h-6 text-gray-800" aria-hidden="true">
                 </button>
 
                 {{-- Botón expandir sidebar (solo desktop) --}}
                 <button id="expand-sidebar-btn"
                     class="hidden lg:block p-2 rounded-lg hover:bg-white/20 transition-colors duration-200"
                     aria-label="Expandir sidebar">
-                    <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4 6h16M4 12h16M4 18h16">
-                        </path>
-                    </svg>
+                    <img src="{{ asset('storage/icons-svg/menu-hamburger.svg') }}" alt="" class="w-6 h-6 text-gray-800" aria-hidden="true">
                 </button>
 
                 {{-- Logo y título --}}
@@ -327,18 +295,6 @@
             if (e.key === 'Escape' && !adminMobileNavigation.classList.contains('-translate-x-full')) {
                 closeAdminMobileMenuFunc();
             }
-        });
-
-        // Animación de entrada para el header
-        gsap.fromTo('header', {
-            opacity: 0,
-            y: -20
-        }, {
-            opacity: 1,
-            y: 0,
-            duration: 0.6,
-            ease: "power2.out",
-            clearProps: "transform,opacity" // Limpiar propiedades después de la animación
         });
     });
 </script>
