@@ -102,17 +102,10 @@
                             class="px-6 py-3 bg-yellow-500 hover:bg-yellow-600 text-white font-semibold rounded-lg transition-colors w-full sm:w-auto">
                             Actualizar Cantidades
                         </button>
-                        @auth
-                            <a href="{{ route('checkout') }}"
-                                class="px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg transition-colors text-center">
-                                Finalizar Compra
-                            </a>
-                        @else
-                            <a href="{{ route('auth.login.show') }}"
-                                class="px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg transition-colors text-center">
-                                Iniciar Sesión para Comprar
-                            </a>
-                        @endauth
+                        <a href="{{ route('checkout') }}"
+                            class="px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg transition-colors text-center">
+                            Finalizar Compra
+                        </a>
                     </div>
                 </form>
             </div>

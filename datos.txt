@@ -1,0 +1,9 @@
+Carrera: Diseño y programacion web
+Materia: Portales y Comercio Electrónico
+Cuatrimestre: 2do Cuatrimestre
+Año: 2025
+Turno: Noche
+Comisión: DWN4AV
+Apellido y Nombre: Orellana Leonardo
+Docente: Santiago Gallino
+Carácter de entrega: 2do parcial
