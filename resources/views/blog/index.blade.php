@@ -3,8 +3,7 @@
 
     {{-- Header del blog --}}
     <section class="max-w-7xl mx-auto px-4 py-8">
-            <h2 class="hidden">Blog</h2>
-
+        <h2 class="hidden">Blog</h2>
 
         {{-- Lista de posts --}}
         @if ($posts->count() > 0)
@@ -47,7 +46,7 @@
 
                             <div class="flex items-center justify-left text-sm text-gray-500">
                                 <div class="flex items-center space-x-2">
-                                    </div>
+                                </div>
                                 <time datetime="{{ $post->created_at->format('Y-m-d') }}">
                                     {{ $post->created_at->format('d M Y') }}
                                 </time>

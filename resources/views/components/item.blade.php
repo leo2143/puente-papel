@@ -54,7 +54,6 @@ $currentImageIndex = 0;
                         @endforeach
                     </div>
 
-             
                 </div>
             </div>
 
@@ -81,7 +80,8 @@ $currentImageIndex = 0;
                                 @endfor
                             </select>
                             <div class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-                                <img src="{{ asset('storage/icons-svg/chevron-down.svg') }}" alt="Selector de cantidad" title="Seleccionar cantidad" class="w-4 h-4 text-gray-600">
+                                <img src="{{ asset('storage/icons-svg/chevron-down.svg') }}" alt="Selector de cantidad"
+                                    title="Seleccionar cantidad" class="w-4 h-4 text-gray-600">
                             </div>
                         </div>
                         <span class="text-sm text-gray-700">(Stock: {{ $product->stock }})</span>

@@ -71,7 +71,8 @@
                                         <td class="py-4 px-2 text-center">
                                             <button type="button" onclick="removeProduct({{ $productId }})"
                                                 class="text-red-600 hover:text-red-800 hover:bg-red-50 px-3 py-1 rounded transition-colors">
-                                                <img src="{{ asset('storage/icons-svg/trash.svg') }}" alt="Eliminar producto" title="Eliminar producto" class="w-5 h-5">
+                                                <img src="{{ asset('storage/icons-svg/trash.svg') }}"
+                                                    alt="Eliminar producto" title="Eliminar producto" class="w-5 h-5">
                                             </button>
                                         </td>
                                     </tr>
@@ -112,7 +113,8 @@
         @else
             <div class="bg-pink-50 px-8 py-12 rounded-2xl max-w-2xl mx-auto border-2 border-pink-200">
                 <div class="text-center">
-                    <img src="{{ asset('storage/icons-svg/shopping-bag.svg') }}" alt="Carrito vacío" title="Carrito de compras vacío" class="w-24 h-24 mx-auto text-gray-400 mb-4">
+                    <img src="{{ asset('storage/icons-svg/shopping-bag.svg') }}" alt="Carrito vacío"
+                        title="Carrito de compras vacío" class="w-24 h-24 mx-auto text-gray-400 mb-4">
                     <h3 class="text-2xl font-bold text-gray-800 mb-4">Tu carrito está vacío</h3>
                     <p class="text-gray-600 mb-6">Agrega productos al carrito para comenzar a comprar.</p>
                     <a href="{{ route('product.index') }}"

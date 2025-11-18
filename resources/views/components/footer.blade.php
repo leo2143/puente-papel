@@ -104,19 +104,22 @@
                     <div class="space-y-3">
                         <div class="flex items-center space-x-3">
                             <div class="w-8 h-8 bg-pink-600 rounded-full flex items-center justify-center">
-                                <img src="{{ asset('storage/icons-svg/phone.svg') }}" alt="Teléfono" title="Teléfono de contacto" class="w-4 h-4 text-white">
+                                <img src="{{ asset('storage/icons-svg/phone.svg') }}" alt="Teléfono"
+                                    title="Teléfono de contacto" class="w-4 h-4 text-white">
                             </div>
                             <span class="text-gray-300 text-sm">+54 11 2463 6219</span>
                         </div>
                         <div class="flex items-center space-x-3">
                             <div class="w-8 h-8 bg-pink-600 rounded-full flex items-center justify-center">
-                                <img src="{{ asset('storage/icons-svg/email.svg') }}" alt="Correo electrónico" title="Correo electrónico" class="w-4 h-4 text-white">
+                                <img src="{{ asset('storage/icons-svg/email.svg') }}" alt="Correo electrónico"
+                                    title="Correo electrónico" class="w-4 h-4 text-white">
                             </div>
                             <span class="text-gray-300 text-sm">puentepapel@gmail.com</span>
                         </div>
                         <div class="flex items-start space-x-3">
                             <div class="w-8 h-8 bg-pink-600 rounded-full flex items-center justify-center mt-1">
-                                <img src="{{ asset('storage/icons-svg/location.svg') }}" alt="Ubicación" title="Ubicación" class="w-4 h-4 text-white">
+                                <img src="{{ asset('storage/icons-svg/location.svg') }}" alt="Ubicación"
+                                    title="Ubicación" class="w-4 h-4 text-white">
                             </div>
                             <span class="text-gray-300 text-sm">Buenos Aires, Argentina</span>
                         </div>

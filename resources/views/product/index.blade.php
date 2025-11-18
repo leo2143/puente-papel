@@ -2,7 +2,7 @@
     <x-slot:title>Productos</x-slot:title>
 
     <section class="container mx-auto p-8">
-            <h2 class="hidden">Productos</h2>
+        <h2 class="hidden">Productos</h2>
 
         @if (session('success'))
             <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
@@ -27,7 +27,8 @@
                                 </div>
                             @endif
 
-                            <h3 class="text-xl font-semibold mb-2 group-hover:text-red-600 transition-all duration-300 text-gray-800">
+                            <h3
+                                class="text-xl font-semibold mb-2 group-hover:text-red-600 transition-all duration-300 text-gray-800">
                                 {{ $producto->title ?? $producto->name }}
                             </h3>
                             <p class="text-gray-600 mb-4">{{ Str::limit($producto->description, 100) }}</p>

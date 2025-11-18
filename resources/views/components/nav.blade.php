@@ -7,7 +7,8 @@
             {{-- Botón hamburguesa --}}
             <button id="mobile-menu-btn" class="p-2 rounded-lg hover:bg-gray-200 transition-colors duration-200"
                 aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="mobile-navigation">
-                <img src="{{ asset('storage/icons-svg/menu-hamburger.svg') }}" alt="Abrir menú" title="Abrir menú" class="w-6 h-6 text-gray-800">
+                <img src="{{ asset('storage/icons-svg/menu-hamburger.svg') }}" alt="Abrir menú" title="Abrir menú"
+                    class="w-6 h-6 text-gray-800">
             </button>
 
             {{-- Barra de búsqueda móvil --}}
@@ -18,7 +19,8 @@
                         class="w-full px-4 py-2 pr-10 bg-pink-100 border-2 border-pink-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 text-gray-800 transition-all duration-300"
                         aria-label="Campo de búsqueda">
                     <div class="absolute inset-y-0 right-0 flex items-center pr-3">
-                        <img src="{{ asset('storage/icons-svg/search.svg') }}" alt="Buscar" title="Buscar" class="w-5 h-5 text-red-600">
+                        <img src="{{ asset('storage/icons-svg/search.svg') }}" alt="Buscar" title="Buscar"
+                            class="w-5 h-5 text-red-600">
                     </div>
                 </div>
             </div>
@@ -28,7 +30,8 @@
                 {{-- Botón carrito móvil --}}
                 <button id="cart-btn-mobile" class="p-2 rounded-lg hover:bg-gray-200 transition-colors duration-200"
                     aria-label="Abrir carrito de compras" aria-expanded="false" aria-controls="cart-sidebar">
-                    <img src="{{ asset('storage/icons-svg/shopping-cart.svg') }}" alt="Carrito de compras" title="Carrito de compras" class="w-10 h-10 text-red-600">
+                    <img src="{{ asset('storage/icons-svg/shopping-cart.svg') }}" alt="Carrito de compras"
+                        title="Carrito de compras" class="w-10 h-10 text-red-600">
                 </button>
             </a>
         </div>
@@ -50,7 +53,8 @@
                         class="w-full px-6 py-3 pr-12 bg-pink-100 border-2 border-pink-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 text-gray-800 text-lg transition-all duration-300"
                         aria-label="Campo de búsqueda">
                     <div class="absolute inset-y-0 right-0 flex items-center pr-4">
-                        <img src="{{ asset('storage/icons-svg/search.svg') }}" alt="Buscar" title="Buscar" class="w-6 h-6 text-red-600">
+                        <img src="{{ asset('storage/icons-svg/search.svg') }}" alt="Buscar" title="Buscar"
+                            class="w-6 h-6 text-red-600">
                     </div>
                 </div>
             </div>
@@ -87,7 +91,8 @@
                     <a href="{{ route('cart.index') }}" id="cart-btn-desktop"
                         class="p-2 rounded-lg hover:bg-gray-200 transition-colors duration-200"
                         aria-label="Abrir carrito de compras" aria-expanded="false" aria-controls="cart-sidebar">
-                        <img src="{{ asset('storage/icons-svg/shopping-cart.svg') }}" alt="Carrito de compras" title="Carrito de compras" class="w-10 h-10 text-red-600">
+                        <img src="{{ asset('storage/icons-svg/shopping-cart.svg') }}" alt="Carrito de compras"
+                            title="Carrito de compras" class="w-10 h-10 text-red-600">
                     </a>
 
                     {{-- Menú de usuario desktop --}}
@@ -106,7 +111,9 @@
                                 <span class="text-sm font-medium text-gray-700">
                                     {{ auth()->user()->name }}
                                 </span>
-                                <img src="{{ asset('storage/icons-svg/chevron-down.svg') }}" alt="Desplegar menú de usuario" title="Desplegar menú de usuario" class="w-4 h-4 text-gray-500 transition-transform duration-200 peer-checked:rotate-180">
+                                <img src="{{ asset('storage/icons-svg/chevron-down.svg') }}"
+                                    alt="Desplegar menú de usuario" title="Desplegar menú de usuario"
+                                    class="w-4 h-4 text-gray-500 transition-transform duration-200 peer-checked:rotate-180">
                             </label>
 
                             {{-- Dropdown menu --}}
@@ -121,7 +128,8 @@
 
                                 <a href="{{ route('auth.profile') }}"
                                     class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200">
-                                    <img src="{{ asset('storage/icons-svg/user.svg') }}" alt="Mi Perfil" title="Mi Perfil" class="w-4 h-4 mr-2">
+                                    <img src="{{ asset('storage/icons-svg/user.svg') }}" alt="Mi Perfil"
+                                        title="Mi Perfil" class="w-4 h-4 mr-2">
                                     Mi Perfil
                                 </a>
 
@@ -129,14 +137,17 @@
                                 @if (auth()->user()->role === 'admin')
                                     <a href="{{ route('admin.dashboard') }}"
                                         class="flex items-center px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors duration-200">
-                                        <img src="{{ asset('storage/icons-svg/shield-check.svg') }}" alt="Panel de Administración" title="Panel de Administración" class="w-4 h-4 mr-2">
+                                        <img src="{{ asset('storage/icons-svg/shield-check.svg') }}"
+                                            alt="Panel de Administración" title="Panel de Administración"
+                                            class="w-4 h-4 mr-2">
                                         Panel de Administración
                                     </a>
                                 @endif
 
                                 <a href="#"
                                     class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200">
-                                    <img src="{{ asset('storage/icons-svg/clipboard.svg') }}" alt="Mis Pedidos" title="Mis Pedidos" class="w-4 h-4 mr-2">
+                                    <img src="{{ asset('storage/icons-svg/clipboard.svg') }}" alt="Mis Pedidos"
+                                        title="Mis Pedidos" class="w-4 h-4 mr-2">
                                     Mis Pedidos
                                 </a>
 
@@ -146,7 +157,8 @@
                                     @csrf
                                     <button type="submit"
                                         class="flex items-center w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors duration-200">
-                                        <img src="{{ asset('storage/icons-svg/logout.svg') }}" alt="Cerrar Sesión" title="Cerrar Sesión" class="w-4 h-4 mr-2">
+                                        <img src="{{ asset('storage/icons-svg/logout.svg') }}" alt="Cerrar Sesión"
+                                            title="Cerrar Sesión" class="w-4 h-4 mr-2">
                                         Cerrar Sesión
                                     </button>
                                 </form>

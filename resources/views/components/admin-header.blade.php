@@ -11,7 +11,8 @@
             <span class="text-xl font-bold text-gray-800">Panel Admin</span>
             <button id="close-admin-mobile-menu" class="p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200"
                 aria-label="Cerrar menú">
-                <img src="{{ asset('storage/icons-svg/close.svg') }}" alt="Cerrar menú" title="Cerrar menú" class="w-6 h-6 text-gray-600">
+                <img src="{{ asset('storage/icons-svg/close.svg') }}" alt="Cerrar menú" title="Cerrar menú"
+                    class="w-6 h-6 text-gray-600">
             </button>
         </div>
 
@@ -39,7 +40,8 @@
                 <li class="admin-mobile-menu-item">
                     <a href="{{ route('admin.dashboard') }}"
                         class="flex items-center space-x-3 p-3 rounded-lg hover:bg-red-50 transition-colors duration-200 group {{ request()->routeIs('admin.dashboard') ? 'bg-red-50 text-red-600' : 'text-gray-700' }}">
-                        <img src="{{ asset('storage/icons-svg/dashboard.svg') }}" alt="Dashboard" title="Panel de control" class="w-5 h-5 text-red-600">
+                        <img src="{{ asset('storage/icons-svg/dashboard.svg') }}" alt="Dashboard"
+                            title="Panel de control" class="w-5 h-5 text-red-600">
                         <span class="group-hover:text-red-600 transition-colors duration-200">Dashboard</span>
                     </a>
                 </li>
@@ -48,7 +50,8 @@
                 <li class="admin-mobile-menu-item">
                     <a href="{{ route('admin.product.index') }}"
                         class="flex items-center space-x-3 p-3 rounded-lg hover:bg-red-50 transition-colors duration-200 group {{ request()->routeIs('admin.product.*') ? 'bg-red-50 text-red-600' : 'text-gray-700' }}">
-                        <img src="{{ asset('storage/icons-svg/shopping-bag.svg') }}" alt="Productos" title="Administrar productos" class="w-5 h-5 text-red-600">
+                        <img src="{{ asset('storage/icons-svg/shopping-bag.svg') }}" alt="Productos"
+                            title="Administrar productos" class="w-5 h-5 text-red-600">
                         <span class="group-hover:text-red-600 transition-colors duration-200">Productos</span>
                     </a>
                 </li>
@@ -57,7 +60,8 @@
                 <li class="admin-mobile-menu-item">
                     <a href="{{ route('admin.blog.index') }}"
                         class="flex items-center space-x-3 p-3 rounded-lg hover:bg-red-50 transition-colors duration-200 group {{ request()->routeIs('admin.blog.*') ? 'bg-red-50 text-red-600' : 'text-gray-700' }}">
-                        <img src="{{ asset('storage/icons-svg/newspaper.svg') }}" alt="Blog" title="Administrar blog" class="w-5 h-5 text-red-600">
+                        <img src="{{ asset('storage/icons-svg/newspaper.svg') }}" alt="Blog"
+                            title="Administrar blog" class="w-5 h-5 text-red-600">
                         <span class="group-hover:text-red-600 transition-colors duration-200">Blog</span>
                     </a>
                 </li>
@@ -66,7 +70,8 @@
                 <li class="admin-mobile-menu-item">
                     <a href="{{ route('admin.users.index') }}"
                         class="flex items-center space-x-3 p-3 rounded-lg hover:bg-red-50 transition-colors duration-200 group {{ request()->routeIs('admin.users.*') ? 'bg-red-50 text-red-600' : 'text-gray-700' }}">
-                        <img src="{{ asset('storage/icons-svg/users.svg') }}" alt="Usuarios" title="Administrar usuarios" class="w-5 h-5 text-red-600">
+                        <img src="{{ asset('storage/icons-svg/users.svg') }}" alt="Usuarios"
+                            title="Administrar usuarios" class="w-5 h-5 text-red-600">
                         <span class="group-hover:text-red-600 transition-colors duration-200">Usuarios</span>
                     </a>
                 </li>
@@ -78,7 +83,8 @@
                 <li class="admin-mobile-menu-item">
                     <a href="{{ route('home') }}"
                         class="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 transition-colors duration-200 group text-gray-600">
-                        <img src="{{ asset('storage/icons-svg/arrow-left.svg') }}" alt="Volver al sitio" title="Volver al sitio" class="w-5 h-5 text-gray-600">
+                        <img src="{{ asset('storage/icons-svg/arrow-left.svg') }}" alt="Volver al sitio"
+                            title="Volver al sitio" class="w-5 h-5 text-gray-600">
                         <span class="group-hover:text-gray-800 transition-colors duration-200">Volver al sitio</span>
                     </a>
                 </li>
@@ -89,7 +95,8 @@
                         @csrf
                         <button type="submit"
                             class="w-full flex items-center space-x-3 p-3 rounded-lg hover:bg-red-50 transition-colors duration-200 group text-left text-red-600">
-                            <img src="{{ asset('storage/icons-svg/logout.svg') }}" alt="Cerrar Sesión" title="Cerrar Sesión" class="w-5 h-5 text-red-600">
+                            <img src="{{ asset('storage/icons-svg/logout.svg') }}" alt="Cerrar Sesión"
+                                title="Cerrar Sesión" class="w-5 h-5 text-red-600">
                             <span class="group-hover:text-red-700 transition-colors duration-200">Cerrar Sesión</span>
                         </button>
                     </form>
@@ -118,14 +125,16 @@
                 <button id="admin-mobile-menu-btn"
                     class="lg:hidden p-2 rounded-lg hover:bg-white/20 transition-colors duration-200"
                     aria-label="Abrir menú">
-                    <img src="{{ asset('storage/icons-svg/menu-hamburger.svg') }}" alt="Abrir menú" title="Abrir menú de administración" class="w-6 h-6 text-gray-800">
+                    <img src="{{ asset('storage/icons-svg/menu-hamburger.svg') }}" alt="Abrir menú"
+                        title="Abrir menú de administración" class="w-6 h-6 text-gray-800">
                 </button>
 
                 {{-- Botón expandir sidebar (solo desktop) --}}
                 <button id="expand-sidebar-btn"
                     class="hidden lg:block p-2 rounded-lg hover:bg-white/20 transition-colors duration-200"
                     aria-label="Expandir sidebar">
-                    <img src="{{ asset('storage/icons-svg/menu-hamburger.svg') }}" alt="Expandir sidebar" title="Expandir sidebar" class="w-6 h-6 text-gray-800">
+                    <img src="{{ asset('storage/icons-svg/menu-hamburger.svg') }}" alt="Expandir sidebar"
+                        title="Expandir sidebar" class="w-6 h-6 text-gray-800">
                 </button>
 
                 {{-- Logo y título --}}

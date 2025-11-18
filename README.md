@@ -93,6 +93,11 @@ Puente Papel es una plataforma web que ofrece libros y material didáctico adapt
    ```bash
    php artisan serve
    ```
+10. **Formatear el codigo**
+
+```bash
+npm run format
+```
 
 ## 👥 Usuarios de prueba
 

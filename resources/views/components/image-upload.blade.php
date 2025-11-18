@@ -16,7 +16,8 @@
 
     {{-- Botón de upload --}}
     <label for="{{ $inputId }}" class="image-upload-button">
-        <img src="{{ asset('storage/icons-svg/upload.svg') }}" alt="Subir archivo" title="Subir archivo" class="w-5 h-5 mr-2">
+        <img src="{{ asset('storage/icons-svg/upload.svg') }}" alt="Subir archivo" title="Subir archivo"
+            class="w-5 h-5 mr-2">
         Haz clic para subir
     </label>
 </div>
