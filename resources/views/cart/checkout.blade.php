@@ -9,7 +9,7 @@
 
     <section class="container mx-auto p-8">
         <div class="bg-pink-50 px-8 py-6 rounded-2xl max-w-6xl mx-auto mb-8">
-            <h1 class="text-3xl font-bold text-gray-800">Resumen de Compra</h1>
+            <h2 class="text-3xl font-bold text-gray-800">Resumen de Compra</h2>
         </div>
 
         {{-- Mensajes de feedback --}}
@@ -24,7 +24,7 @@
             <div class="max-w-6xl mx-auto space-y-6">
                 {{-- Datos del comprador --}}
                 <div class="bg-white rounded-2xl shadow-lg p-6 border-2 border-pink-200">
-                    <h2 class="text-xl font-bold text-gray-800 mb-4">Datos del Comprador</h2>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Datos del Comprador</h3>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <div>
                             <p class="text-sm text-gray-600">Nombre completo</p>
@@ -43,7 +43,7 @@
 
                 {{-- Resumen de productos --}}
                 <div class="bg-white rounded-2xl shadow-lg p-6 border-2 border-pink-200">
-                    <h2 class="text-xl font-bold text-gray-800 mb-4">Resumen de Productos</h2>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Resumen de Productos</h3>
                     <div class="overflow-x-auto">
                         <table class="w-full">
                             <thead>
@@ -74,7 +74,7 @@
                                             @endif
                                         </td>
                                         <td class="py-4 px-2">
-                                            <h3 class="font-semibold text-gray-800">{{ $item['name'] }}</h3>
+                                            <h4 class="font-semibold text-gray-800">{{ $item['name'] }}</h4>
                                             @if ($product && $product->stock < $item['quantity'])
                                                 <p class="text-sm text-red-600 mt-1">
                                                     ⚠️ Stock insuficiente (disponible: {{ $product->stock }})
@@ -127,7 +127,7 @@
         @else
             <div class="bg-pink-50 px-8 py-12 rounded-2xl max-w-2xl mx-auto border-2 border-pink-200">
                 <div class="text-center">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-4">No hay productos para finalizar la compra</h2>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">No hay productos para finalizar la compra</h3>
                     <p class="text-gray-600 mb-6">Tu carrito está vacío. Agrega productos antes de proceder al checkout.
                     </p>
                     <a href="{{ route('cart.index') }}"

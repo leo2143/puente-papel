@@ -6,7 +6,7 @@
 
     <section class="container mx-auto p-8 px-4 sm:px-6 lg:px-8">
         <div class="bg-pink-50 px-8 py-6 rounded-2xl max-w-6xl mx-auto mb-8">
-            <h1 class="text-3xl font-bold text-gray-800">Detalle de Orden #{{ $order->id }}</h1>
+            <h2 class="text-3xl font-bold text-gray-800">Detalle de Orden #{{ $order->id }}</h2>
             <p class="text-gray-600 mt-2">Realizada el {{ $order->created_at->format('d/m/Y \a \l\a\s H:i') }}</p>
         </div>
 
@@ -49,7 +49,7 @@
             {{-- Datos del comprador --}}
             @if ($order->user)
                 <div class="bg-white rounded-2xl shadow-lg p-6 border-2 border-pink-200">
-                    <h2 class="text-xl font-bold text-gray-800 mb-4">Datos del Comprador</h2>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Datos del Comprador</h3>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <div>
                             <p class="text-sm text-gray-600">Nombre completo</p>
@@ -70,7 +70,7 @@
 
             {{-- Productos de la orden --}}
             <div class="bg-white rounded-2xl shadow-lg p-6 border-2 border-pink-200">
-                <h2 class="text-xl font-bold text-gray-800 mb-4">Productos Comprados</h2>
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Productos Comprados</h3>
                 <div class="overflow-x-auto">
                     <table class="w-full">
                         <thead>
@@ -98,9 +98,9 @@
                                         @endif
                                     </td>
                                     <td class="py-4 px-2">
-                                        <h3 class="font-semibold text-gray-800">
+                                        <h4 class="font-semibold text-gray-800">
                                             {{ $item->product->name ?? ($item->product->title ?? 'Producto eliminado') }}
-                                        </h3>
+                                        </h4>
                                         @if (!$item->product)
                                             <p class="text-sm text-red-600">Este producto ya no está disponible</p>
                                         @endif

@@ -2,7 +2,7 @@
     <x-slot:title>Inicio</x-slot:title>
 
     <x-image-slides />
-
+    
     {{-- Productos Destacados --}}
     @if ($featuredProducts->count() > 0)
         <section class="max-w-7xl mx-auto mb-12">

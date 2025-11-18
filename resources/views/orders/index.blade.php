@@ -6,7 +6,7 @@
 
     <section class="container mx-auto p-8 px-4 sm:px-6 lg:px-8">
         <div class="bg-pink-50 px-8 py-6 rounded-2xl max-w-6xl mx-auto mb-8">
-            <h1 class="text-3xl font-bold text-gray-800">Mis Órdenes</h1>
+            <h2 class="text-3xl font-bold text-gray-800">Mis Órdenes</h2>
             <p class="text-gray-600 mt-2">Historial de todas tus compras realizadas</p>
         </div>
 

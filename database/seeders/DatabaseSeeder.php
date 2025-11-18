@@ -47,6 +47,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             ProductSeeder::class,
             BlogPostSeeder::class,
+            OrderSeeder::class,
         ]);
     }
 }

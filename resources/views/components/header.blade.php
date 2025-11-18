@@ -8,10 +8,10 @@
     <div class="relative w-80 h-screen bg-white shadow-2xl z-[999999]">
         {{-- Header del menú --}}
         <div class="flex items-center justify-between p-6 border-b border-gray-200 z-[999999]">
-            <h2 class="text-xl font-bold text-gray-800">Menú</h2>
+            <span class="text-xl font-bold text-gray-800">Menú</span>
             <button id="close-mobile-menu" class="p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200"
                 aria-label="Cerrar menú">
-                <img src="{{ asset('storage/icons-svg/close.svg') }}" alt="" class="w-6 h-6 text-gray-600" aria-hidden="true">
+                <img src="{{ asset('storage/icons-svg/close.svg') }}" alt="Cerrar menú" title="Cerrar menú" class="w-6 h-6 text-gray-600">
             </button>
         </div>
 
@@ -32,7 +32,7 @@
             @else
                 <div class="flex items-center space-x-4">
                     <div class="w-12 h-12 bg-gray-300 rounded-full flex items-center justify-center">
-                        <img src="{{ asset('storage/icons-svg/user.svg') }}" alt="" class="w-6 h-6 text-gray-600" aria-hidden="true">
+                        <img src="{{ asset('storage/icons-svg/user.svg') }}" alt="Usuario invitado" title="Usuario invitado" class="w-6 h-6 text-gray-600">
                     </div>
                     <div>
                         <p class="text-gray-800 font-medium">Invitado</p>
@@ -49,7 +49,7 @@
                 <li class="mobile-menu-item">
                     <a href="{{ route('home') }}"
                         class="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 transition-colors duration-200 group {{ request()->routeIs('home') ? 'bg-red-50 text-red-600' : 'text-gray-700' }}">
-                        <img src="{{ asset('storage/icons-svg/home.svg') }}" alt="" class="w-5 h-5 text-red-600" aria-hidden="true">
+                        <img src="{{ asset('storage/icons-svg/home.svg') }}" alt="Inicio" title="Inicio" class="w-5 h-5 text-red-600">
                         <span class="group-hover:text-red-600 transition-colors duration-200">Inicio</span>
                     </a>
                 </li>
@@ -58,7 +58,7 @@
                 <li class="mobile-menu-item">
                     <a href="{{ route('product.index') }}"
                         class="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 transition-colors duration-200 group {{ request()->routeIs('product.*') ? 'bg-red-50 text-red-600' : 'text-gray-700' }}">
-                        <img src="{{ asset('storage/icons-svg/shopping-bag.svg') }}" alt="" class="w-5 h-5 text-red-600" aria-hidden="true">
+                        <img src="{{ asset('storage/icons-svg/shopping-bag.svg') }}" alt="Productos" title="Productos" class="w-5 h-5 text-red-600">
                         <span class="group-hover:text-red-600 transition-colors duration-200">Productos</span>
                     </a>
                 </li>
@@ -67,7 +67,7 @@
                 <li class="mobile-menu-item">
                     <a href="{{ route('blog.index') }}"
                         class="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 transition-colors duration-200 group {{ request()->routeIs('blog.*') ? 'bg-red-50 text-red-600' : 'text-gray-700' }}">
-                        <img src="{{ asset('storage/icons-svg/newspaper.svg') }}" alt="" class="w-5 h-5 text-red-600" aria-hidden="true">
+                        <img src="{{ asset('storage/icons-svg/newspaper.svg') }}" alt="Blog" title="Blog" class="w-5 h-5 text-red-600">
                         <span class="group-hover:text-red-600 transition-colors duration-200">Blog</span>
                     </a>
                 </li>
@@ -76,7 +76,7 @@
                 <li class="mobile-menu-item">
                     <a href="{{ route('about') }}"
                         class="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 transition-colors duration-200 group {{ request()->routeIs('about') ? 'bg-red-50 text-red-600' : 'text-gray-700' }}">
-                        <img src="{{ asset('storage/icons-svg/user.svg') }}" alt="" class="w-5 h-5 text-red-600" aria-hidden="true">
+                        <img src="{{ asset('storage/icons-svg/user.svg') }}" alt="Acerca de" title="Acerca de" class="w-5 h-5 text-red-600">
                         <span class="group-hover:text-red-600 transition-colors duration-200">Acerca de</span>
                     </a>
                 </li>
@@ -88,10 +88,10 @@
                         <button id="account-toggle"
                             class="w-full flex items-center justify-between p-3 rounded-lg hover:bg-gray-100 transition-colors duration-200 text-gray-700">
                             <div class="flex items-center space-x-3">
-                                <img src="{{ asset('storage/icons-svg/user.svg') }}" alt="" class="w-5 h-5 text-red-600" aria-hidden="true">
+                                <img src="{{ asset('storage/icons-svg/user.svg') }}" alt="Mi Cuenta" title="Mi Cuenta" class="w-5 h-5 text-red-600">
                                 <span>Mi Cuenta</span>
                             </div>
-                            <img src="{{ asset('storage/icons-svg/chevron-down.svg') }}" alt="" id="account-arrow" class="w-4 h-4 transform transition-transform duration-200">
+                            <img src="{{ asset('storage/icons-svg/chevron-down.svg') }}" alt="Desplegar menú" title="Desplegar menú" id="account-arrow" class="w-4 h-4 transform transition-transform duration-200">
                         </button>
 
                         {{-- Submenú de cuenta --}}
@@ -115,7 +115,7 @@
                     <li class="mobile-menu-item">
                         <a href="#"
                             class="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 transition-colors duration-200 group text-gray-700">
-                            <img src="{{ asset('storage/icons-svg/question-circle.svg') }}" alt="" class="w-5 h-5 text-red-600" aria-hidden="true">
+                            <img src="{{ asset('storage/icons-svg/question-circle.svg') }}" alt="Ayuda" title="Ayuda" class="w-5 h-5 text-red-600">
                             <span class="group-hover:text-red-600 transition-colors duration-200">Ayuda</span>
                         </a>
                     </li>
@@ -125,10 +125,10 @@
                         <button id="services-toggle"
                             class="w-full flex items-center justify-between p-3 rounded-lg hover:bg-gray-100 transition-colors duration-200 text-gray-700">
                             <div class="flex items-center space-x-3">
-                                <img src="{{ asset('storage/icons-svg/star.svg') }}" alt="" class="w-5 h-5 text-red-600" aria-hidden="true">
+                                <img src="{{ asset('storage/icons-svg/star.svg') }}" alt="Servicios" title="Servicios" class="w-5 h-5 text-red-600">
                                 <span>Servicios</span>
                             </div>
-                            <img src="{{ asset('storage/icons-svg/chevron-down.svg') }}" alt="" id="services-arrow" class="w-4 h-4 transform transition-transform duration-200">
+                            <img src="{{ asset('storage/icons-svg/chevron-down.svg') }}" alt="Desplegar servicios" title="Desplegar servicios" id="services-arrow" class="w-4 h-4 transform transition-transform duration-200">
                         </button>
 
                         {{-- Submenú de servicios --}}
@@ -152,7 +152,7 @@
                         <li class="mobile-menu-item">
                             <a href="{{ route('admin.dashboard') }}"
                                 class="flex items-center space-x-3 p-3 rounded-lg hover:bg-red-50 transition-colors duration-200 group {{ request()->routeIs('admin.*') ? 'bg-red-50 text-red-600' : 'text-gray-700' }}">
-                                <img src="{{ asset('storage/icons-svg/shield-check.svg') }}" alt="" class="w-5 h-5 text-red-600" aria-hidden="true">
+                                <img src="{{ asset('storage/icons-svg/shield-check.svg') }}" alt="Panel de Administración" title="Panel de Administración" class="w-5 h-5 text-red-600">
                                 <span class="group-hover:text-red-600 transition-colors duration-200 font-medium">Panel de
                                     Administración</span>
                             </a>
@@ -165,7 +165,7 @@
                             @csrf
                             <button type="submit"
                                 class="w-full flex items-center space-x-3 p-3 rounded-lg hover:bg-red-50 transition-colors duration-200 group text-left text-red-600">
-                                <img src="{{ asset('storage/icons-svg/logout.svg') }}" alt="" class="w-5 h-5 text-red-600" aria-hidden="true">
+                                <img src="{{ asset('storage/icons-svg/logout.svg') }}" alt="Cerrar Sesión" title="Cerrar Sesión" class="w-5 h-5 text-red-600">
                                 <span class="group-hover:text-red-700 transition-colors duration-200">Cerrar Sesión</span>
                             </button>
                         </form>
@@ -175,7 +175,7 @@
                     <li class="mobile-menu-item">
                         <a href="{{ route('auth.login.show') }}"
                             class="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 transition-colors duration-200 group">
-                            <img src="{{ asset('storage/icons-svg/login.svg') }}" alt="" class="w-5 h-5 text-red-600" aria-hidden="true">
+                            <img src="{{ asset('storage/icons-svg/login.svg') }}" alt="Iniciar Sesión" title="Iniciar Sesión" class="w-5 h-5 text-red-600">
                             <span class="text-gray-800 group-hover:text-red-600 transition-colors duration-200">Iniciar
                                 Sesión</span>
                         </a>
@@ -185,7 +185,7 @@
                     <li class="mobile-menu-item">
                         <a href="{{ route('auth.register.show') }}"
                             class="flex items-center space-x-3 p-3 rounded-lg bg-red-600 text-white hover:bg-red-700 transition-colors duration-200 group">
-                            <img src="{{ asset('storage/icons-svg/user-plus.svg') }}" alt="" class="w-5 h-5" aria-hidden="true">
+                            <img src="{{ asset('storage/icons-svg/user-plus.svg') }}" alt="Registrarse" title="Registrarse" class="w-5 h-5">
                             <span>Registrarse</span>
                         </a>
                     </li>

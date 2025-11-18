@@ -3,12 +3,8 @@
 
     {{-- Header del blog --}}
     <section class="max-w-7xl mx-auto px-4 py-8">
-        <div class="bg-pink-50 px-8 py-6 rounded-2xl max-w-4xl mx-auto mb-12 border-2 border-pink-200">
-            <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4 text-center">Blog</h2>
-            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                Descubre artículos, consejos y recursos educativos para el desarrollo infantil
-            </p>
-        </div>
+            <h2 class="hidden">Blog</h2>
+
 
         {{-- Lista de posts --}}
         @if ($posts->count() > 0)
