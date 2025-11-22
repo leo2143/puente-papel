@@ -1,9 +1,4 @@
-<?php
-/** @var array $cart */
-/** @var \Illuminate\Database\Eloquent\Collection $products */
-/** @var float $total */
-/** @var \App\Models\User $user */
-?>
+
 <x-layouts.main>
     <x-slot:title>Checkout - Puente Papel</x-slot:title>
 

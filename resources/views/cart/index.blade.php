@@ -1,7 +1,3 @@
-<?php
-/** @var array $cart */
-/** @var float $total */
-?>
 <x-layouts.main>
     <x-slot:title>Carrito de Compras - Puente Papel</x-slot:title>
 
@@ -69,7 +65,8 @@
                                             </span>
                                         </td>
                                         <td class="py-4 px-2 text-center">
-                                            <button type="button" onclick="removeProduct({{ $productId }})"
+                                            <button type="button" 
+                                                onclick="document.getElementById('delete-form-{{ $productId }}').submit();"
                                                 class="text-red-600 hover:text-red-800 hover:bg-red-50 px-3 py-1 rounded transition-colors">
                                                 <img src="{{ asset('storage/icons-svg/trash.svg') }}"
                                                     alt="Eliminar producto" title="Eliminar producto" class="w-5 h-5">
@@ -95,10 +92,6 @@
                             class="px-6 py-3 bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold rounded-lg transition-colors text-center">
                             Seguir Comprando
                         </a>
-                        <button type="button" onclick="clearCart()"
-                            class="px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg transition-colors w-full sm:w-auto">
-                            Vaciar Carrito
-                        </button>
                         <button type="submit" form="cart-form"
                             class="px-6 py-3 bg-yellow-500 hover:bg-yellow-600 text-white font-semibold rounded-lg transition-colors w-full sm:w-auto">
                             Actualizar Cantidades
@@ -108,6 +101,28 @@
                             Finalizar Compra
                         </a>
                     </div>
+                </form>
+
+                {{-- Formularios ocultos para eliminar productos individuales --}}
+                @foreach ($cart as $productId => $item)
+                    <form id="delete-form-{{ $productId }}" 
+                        action="{{ route('cart.remove', $productId) }}" 
+                        method="POST" 
+                        style="display: none;"
+                        onsubmit="return confirm('¿Estás seguro de eliminar este producto del carrito?')">
+                        @csrf
+                        @method('DELETE')
+                    </form>
+                @endforeach
+
+                {{-- Formulario separado para vaciar carrito --}}
+                <form action="{{ route('cart.clear') }}" method="POST" class="mt-4">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" onclick="return confirm('¿Estás seguro de vaciar el carrito?')"
+                        class="w-full px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg transition-colors">
+                        Vaciar Carrito
+                    </button>
                 </form>
             </div>
         @else
@@ -126,69 +141,3 @@
         @endif
     </section>
 </x-layouts.main>
-
-<script>
-    /**
-     * Eliminar un producto del carrito
-     */
-    function removeProduct(productId) {
-        if (!confirm('¿Estás seguro de eliminar este producto del carrito?')) {
-            return;
-        }
-
-        // Crear formulario dinámico para enviar DELETE request
-        const form = document.createElement('form');
-        form.method = 'POST';
-        form.action = '{{ route('cart.remove', ':id') }}'.replace(':id', productId);
-
-        // Agregar CSRF token
-        const csrfInput = document.createElement('input');
-        csrfInput.type = 'hidden';
-        csrfInput.name = '_token';
-        csrfInput.value = '{{ csrf_token() }}';
-        form.appendChild(csrfInput);
-
-        // Agregar método spoofing para DELETE
-        const methodInput = document.createElement('input');
-        methodInput.type = 'hidden';
-        methodInput.name = '_method';
-        methodInput.value = 'DELETE';
-        form.appendChild(methodInput);
-
-        // Agregar formulario al body y enviarlo
-        document.body.appendChild(form);
-        form.submit();
-    }
-
-    /**
-     * Vaciar completamente el carrito
-     */
-    function clearCart() {
-        if (!confirm('¿Estás seguro de vaciar el carrito?')) {
-            return;
-        }
-
-        // Crear formulario dinámico para enviar DELETE request
-        const form = document.createElement('form');
-        form.method = 'POST';
-        form.action = '{{ route('cart.clear') }}';
-
-        // Agregar CSRF token
-        const csrfInput = document.createElement('input');
-        csrfInput.type = 'hidden';
-        csrfInput.name = '_token';
-        csrfInput.value = '{{ csrf_token() }}';
-        form.appendChild(csrfInput);
-
-        // Agregar método spoofing para DELETE
-        const methodInput = document.createElement('input');
-        methodInput.type = 'hidden';
-        methodInput.name = '_method';
-        methodInput.value = 'DELETE';
-        form.appendChild(methodInput);
-
-        // Agregar formulario al body y enviarlo
-        document.body.appendChild(form);
-        form.submit();
-    }
-</script>

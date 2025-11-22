@@ -82,13 +82,20 @@ class CartController extends Controller
     session(['cart' => $cart]);
 
     // Si el request tiene 'buy_now', redirigir al checkout (requiere autenticación)
-    if ($request->has('buy_now') && $request->boolean('buy_now')) {
+    if ($request->has('buy_now')) {
       if (!Auth::check()) {
         return to_route('auth.login.show')
           ->with('feedback.message', 'Por favor, inicia sesión para continuar con la compra.')
           ->with('feedback.type', 'info');
       }
       return to_route('checkout')
+        ->with('feedback.message', 'Producto agregado al carrito.')
+        ->with('feedback.type', 'success');
+    }
+
+    // Si presionó "Añadir al carrito", redirigir al carrito
+    if ($request->has('add_to_cart')) {
+      return to_route('cart.index')
         ->with('feedback.message', 'Producto agregado al carrito.')
         ->with('feedback.type', 'success');
     }
