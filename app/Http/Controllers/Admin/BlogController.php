@@ -38,7 +38,7 @@ class BlogController extends Controller
             $query->where('status', $request->status);
         }
 
-        $posts = $query->latest()->paginate(15);
+        $posts = $query->latest()->paginate(15)->withQueryString();
 
         return view('admin.blog.index', compact('posts'));
     }

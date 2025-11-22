@@ -10,9 +10,31 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $product = Product::latest()->get();
+        $query = Product::query();
+
+        // Filtro de categoría
+        if ($request->filled('category')) {
+            $query->where('category', $request->category);
+        }
+
+        // Filtro de búsqueda (por si lo agregas después)
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                  ->orWhere('title', 'like', "%{$search}%")
+                  ->orWhere('description', 'like', "%{$search}%");
+            });
+        }
+
+        $product = $query->where('status', 'active')
+            ->where('is_active', true)
+            ->latest()
+            ->paginate(12)
+            ->withQueryString();
+
         return view('product.index', compact('product'));
     }
 
