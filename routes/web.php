@@ -12,6 +12,8 @@ use App\Http\Controllers\Admin\BlogController as AdminBlogController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Web\CartController;
 use App\Http\Controllers\Web\OrderController;
+use App\Http\Middleware\VerifyMercadoPagoPaymentSignature;
+use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 
 // Rutas públicas
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -56,6 +58,12 @@ Route::prefix('cart')
     Route::delete('/clear', [CartController::class, 'clear'])->name('clear');
   });
 
+// Webhook de Mercado Pago (FUERA de auth - viene del servidor de MP)
+Route::post('/mp/confirmar-pago', [OrderController::class, 'verifyPayment'])
+  ->middleware(VerifyMercadoPagoPaymentSignature::class)
+  ->withoutMiddleware(VerifyCsrfToken::class)
+  ->name('orders.mp.verify-payment');
+
 // Rutas de órdenes (requieren autenticación)
 Route::middleware('auth')->group(function () {
   // Checkout
@@ -69,6 +77,11 @@ Route::middleware('auth')->group(function () {
       Route::get('/', [OrderController::class, 'index'])->name('index');
       Route::get('/{order}', [OrderController::class, 'show'])->name('show');
     });
+  
+  // Callbacks de Mercado Pago (retorno del usuario)
+  Route::get('/mp/success', [OrderController::class, 'mpSuccess'])->name('orders.mp.success');
+  Route::get('/mp/failure', [OrderController::class, 'mpFailure'])->name('orders.mp.failure');
+  Route::get('/mp/pending', [OrderController::class, 'mpPending'])->name('orders.mp.pending');
 });
 
 // Rutas de administración (requieren autenticación y rol admin)

@@ -144,6 +144,11 @@ class AuthController extends Controller
      */
     public function logout(Request $request)
     {
+        // Si no hay usuario autenticado, redirigir al home
+        if (!Auth::check()) {
+            return to_route('home');
+        }
+
         try {
             $token = session('jwt_token');
             

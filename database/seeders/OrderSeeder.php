@@ -21,6 +21,8 @@ class OrderSeeder extends Seeder
             $orders = [
                 [
                     'user_id' => $user->id,
+                    'status' => 'paid',
+                    'payment_id' => '71528493021',
                     'items' => [
                         ['product_index' => 0, 'quantity' => 2],
                         ['product_index' => 1, 'quantity' => 1], 
@@ -28,6 +30,8 @@ class OrderSeeder extends Seeder
                 ],
                 [
                     'user_id' => $user->id,
+                    'status' => 'paid',
+                    'payment_id' => '71528493022',
                     'items' => [
                         ['product_index' => 2, 'quantity' => 1], 
                         ['product_index' => 3, 'quantity' => 3], 
@@ -36,6 +40,8 @@ class OrderSeeder extends Seeder
                 ],
                 [
                     'user_id' => $user->id,
+                    'status' => 'pending',
+                    'payment_id' => null,
                     'items' => [
                         ['product_index' => 5, 'quantity' => 1],
                     ],
@@ -47,7 +53,9 @@ class OrderSeeder extends Seeder
                 
                 $order = Order::create([
                     'user_id' => $orderData['user_id'],
-                    'total_amount' => 0, 
+                    'total_amount' => 0,
+                    'status' => $orderData['status'],
+                    'payment_id' => $orderData['payment_id'],
                 ]);
 
                 foreach ($orderData['items'] as $itemData) {

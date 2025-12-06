@@ -144,7 +144,7 @@
                                     </a>
                                 @endif
 
-                                <a href="#"
+                                <a href="{{ route('orders.index') }}"
                                     class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200">
                                     <img src="{{ asset('storage/icons-svg/clipboard.svg') }}" alt="Mis Pedidos"
                                         title="Mis Pedidos" class="w-4 h-4 mr-2">

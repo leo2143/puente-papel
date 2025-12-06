@@ -109,12 +109,12 @@
                                 class="block p-3 rounded-lg hover:bg-gray-100 transition-colors duration-200 text-gray-700 {{ request()->routeIs('auth.profile') ? 'bg-red-50 text-red-600' : '' }}">
                                 Mi Perfil
                             </a>
-                            <a href="#"
-                                class="block p-3 rounded-lg hover:bg-gray-100 transition-colors duration-200 text-gray-700">
+                            <a href="{{ route('orders.index') }}"
+                                class="block p-3 rounded-lg hover:bg-gray-100 transition-colors duration-200 text-gray-700 {{ request()->routeIs('orders.*') ? 'bg-red-50 text-red-600' : '' }}">
                                 Mis Pedidos
                             </a>
-                            <a href="#"
-                                class="block p-3 rounded-lg hover:bg-gray-100 transition-colors duration-200 text-gray-700">
+                            <a href="{{ route('cart.index') }}"
+                                class="block p-3 rounded-lg hover:bg-gray-100 transition-colors duration-200 text-gray-700 {{ request()->routeIs('cart.*') ? 'bg-red-50 text-red-600' : '' }}">
                                 Carrito
                             </a>
                         </div>

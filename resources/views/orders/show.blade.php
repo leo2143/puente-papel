@@ -33,9 +33,32 @@
                     </div>
                     <div>
                         <p class="text-sm text-gray-600">Estado</p>
-                        <span class="inline-block px-3 py-1 bg-green-100 text-green-800 rounded-lg font-semibold">
-                            Completada
-                        </span>
+                        @switch($order->status)
+                            @case('paid')
+                                <span class="inline-block px-3 py-1 bg-green-100 text-green-800 rounded-lg font-semibold">
+                                    Pagada
+                                </span>
+                                @break
+                            @case('pending')
+                                <span class="inline-block px-3 py-1 bg-yellow-100 text-yellow-800 rounded-lg font-semibold">
+                                    Pendiente de pago
+                                </span>
+                                @break
+                            @case('failed')
+                                <span class="inline-block px-3 py-1 bg-red-100 text-red-800 rounded-lg font-semibold">
+                                    Pago fallido
+                                </span>
+                                @break
+                            @case('cancelled')
+                                <span class="inline-block px-3 py-1 bg-gray-100 text-gray-800 rounded-lg font-semibold">
+                                    Cancelada
+                                </span>
+                                @break
+                            @default
+                                <span class="inline-block px-3 py-1 bg-gray-100 text-gray-600 rounded-lg font-semibold">
+                                    {{ ucfirst($order->status) }}
+                                </span>
+                        @endswitch
                     </div>
                     <div>
                         <p class="text-sm text-gray-600">Total</p>
@@ -43,6 +66,12 @@
                             ${{ number_format($order->total_amount, 2, ',', '.') }}
                         </p>
                     </div>
+                    @if($order->payment_id)
+                    <div>
+                        <p class="text-sm text-gray-600">ID de Pago (Mercado Pago)</p>
+                        <p class="font-mono text-gray-800">{{ $order->payment_id }}</p>
+                    </div>
+                    @endif
                 </div>
             </div>
 

@@ -27,6 +27,7 @@
                                 <th class="text-left py-4 px-2 font-semibold text-gray-800">Orden #</th>
                                 <th class="text-left py-4 px-2 font-semibold text-gray-800">Fecha</th>
                                 <th class="text-left py-4 px-2 font-semibold text-gray-800">Productos</th>
+                                <th class="text-center py-4 px-2 font-semibold text-gray-800">Estado</th>
                                 <th class="text-right py-4 px-2 font-semibold text-gray-800">Total</th>
                                 <th class="text-center py-4 px-2 font-semibold text-gray-800">Acciones</th>
                             </tr>
@@ -49,6 +50,34 @@
                                                 </div>
                                             @endforeach
                                         </div>
+                                    </td>
+                                    <td class="py-4 px-2 text-center">
+                                        @switch($order->status)
+                                            @case('paid')
+                                                <span class="inline-block px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-semibold">
+                                                    Pagada
+                                                </span>
+                                                @break
+                                            @case('pending')
+                                                <span class="inline-block px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-semibold">
+                                                    Pendiente
+                                                </span>
+                                                @break
+                                            @case('failed')
+                                                <span class="inline-block px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm font-semibold">
+                                                    Fallida
+                                                </span>
+                                                @break
+                                            @case('cancelled')
+                                                <span class="inline-block px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm font-semibold">
+                                                    Cancelada
+                                                </span>
+                                                @break
+                                            @default
+                                                <span class="inline-block px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-sm font-semibold">
+                                                    {{ ucfirst($order->status) }}
+                                                </span>
+                                        @endswitch
                                     </td>
                                     <td class="py-4 px-2 text-right">
                                         <span class="font-bold text-gray-800 text-lg">
