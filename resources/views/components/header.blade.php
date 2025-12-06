@@ -209,22 +209,6 @@
                     </li>
                 @endauth
 
-                {{-- Servicios (con dropdown) --}}
-                <li class="mobile-menu-item">
-
-                    {{-- Submenú de servicios --}}
-                    <div id="services-submenu" class="hidden mt-2 ml-6 space-y-1">
-                        <a href="{{ route('blog.index') }}"
-                            class="block p-3 rounded-lg bg-red-600 text-white hover:bg-red-700 transition-colors duration-200">
-                            Blog
-                        </a>
-                        <a href="#"
-                            class="block p-3 rounded-lg bg-red-600 text-white hover:bg-red-700 transition-colors duration-200">
-                            Búsqueda bibliográfica
-                        </a>
-                    </div>
-                </li>
-
             </ul>
         </div>
 

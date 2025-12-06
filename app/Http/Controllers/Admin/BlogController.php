@@ -60,7 +60,16 @@ class BlogController extends Controller
             'title' => 'required|string|max:255',
             'content' => 'required|string',
             'status' => 'required|in:draft,published',
-            'featured_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5120', // 5MB
+            'featured_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5120',
+        ], [
+            'title.required' => 'El título es obligatorio.',
+            'title.max' => 'El título no debe exceder :max caracteres.',
+            'content.required' => 'El contenido es obligatorio.',
+            'status.required' => 'El estado es obligatorio.',
+            'status.in' => 'El estado debe ser borrador o publicado.',
+            'featured_image.image' => 'El archivo debe ser una imagen.',
+            'featured_image.mimes' => 'La imagen debe ser de tipo: jpeg, png, jpg, gif o webp.',
+            'featured_image.max' => 'La imagen no debe exceder 5MB.',
         ]);
 
         // Manejar imagen destacada usando ImageService
@@ -108,7 +117,16 @@ class BlogController extends Controller
             'title' => 'required|string|max:255',
             'content' => 'required|string',
             'status' => 'required|in:draft,published',
-            'featured_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5120', // 5MB
+            'featured_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5120',
+        ], [
+            'title.required' => 'El título es obligatorio.',
+            'title.max' => 'El título no debe exceder :max caracteres.',
+            'content.required' => 'El contenido es obligatorio.',
+            'status.required' => 'El estado es obligatorio.',
+            'status.in' => 'El estado debe ser borrador o publicado.',
+            'featured_image.image' => 'El archivo debe ser una imagen.',
+            'featured_image.mimes' => 'La imagen debe ser de tipo: jpeg, png, jpg, gif o webp.',
+            'featured_image.max' => 'La imagen no debe exceder 5MB.',
         ]);
 
         // Manejar imagen destacada usando ImageService

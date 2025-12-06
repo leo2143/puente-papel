@@ -1,8 +1,6 @@
 <x-layouts.admin>
     <x-slot:title>Crear Post</x-slot:title>
 
-    @endphp
-
     {{-- Header --}}
     <div class="flex items-center justify-between mb-8">
         <div>

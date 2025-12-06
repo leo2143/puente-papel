@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\BlogPost;
+use App\Models\Order;
+use App\Models\OrderItem;
 use App\Models\User;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB as FacadesDB;
 
 class AdminController extends Controller
 {
@@ -26,6 +28,12 @@ class AdminController extends Controller
             'posts' => BlogPost::count(),
             'users' => User::count(),
             'published_posts' => BlogPost::where('status', 'published')->count(),
+            'total_sales' => Order::where('status', 'paid')->sum('total_amount'),
+            'top_product' => Product::select('products.*', FacadesDB::raw('SUM(order_items.quantity) as total_sold'))
+                ->join('order_items', 'products.id', '=', 'order_items.product_id')
+                ->groupBy('products.id')
+                ->orderByDesc('total_sold')
+                ->first(),
         ];
 
         // Actividad reciente (últimos 5 posts)

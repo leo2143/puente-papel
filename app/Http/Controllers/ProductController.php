@@ -56,6 +56,15 @@ class ProductController extends Controller
             'description' => 'required|string',
             'price' => 'required|numeric|min:0',
             'category' => 'required|string|max:100',
+        ], [
+            'name.required' => 'El nombre es obligatorio.',
+            'name.max' => 'El nombre no debe exceder :max caracteres.',
+            'description.required' => 'La descripción es obligatoria.',
+            'price.required' => 'El precio es obligatorio.',
+            'price.numeric' => 'El precio debe ser un número.',
+            'price.min' => 'El precio no puede ser negativo.',
+            'category.required' => 'La categoría es obligatoria.',
+            'category.max' => 'La categoría no debe exceder :max caracteres.',
         ]);
 
         Product::create($request->all());
@@ -90,6 +99,15 @@ class ProductController extends Controller
             'description' => 'required|string',
             'price' => 'required|numeric|min:0',
             'category' => 'required|string|max:100',
+        ], [
+            'name.required' => 'El nombre es obligatorio.',
+            'name.max' => 'El nombre no debe exceder :max caracteres.',
+            'description.required' => 'La descripción es obligatoria.',
+            'price.required' => 'El precio es obligatorio.',
+            'price.numeric' => 'El precio debe ser un número.',
+            'price.min' => 'El precio no puede ser negativo.',
+            'category.required' => 'La categoría es obligatoria.',
+            'category.max' => 'La categoría no debe exceder :max caracteres.',
         ]);
 
         $product->update($request->all());

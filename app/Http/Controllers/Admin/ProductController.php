@@ -58,8 +58,21 @@ class ProductController extends Controller
             'description' => 'required|string',
             'price' => 'nullable|numeric|min:0',
             'category' => 'nullable|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5120', // 5MB
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5120',
             'status' => 'required|in:active,inactive'
+        ], [
+            'title.required' => 'El título es obligatorio.',
+            'title.max' => 'El título no debe exceder :max caracteres.',
+            'name.max' => 'El nombre no debe exceder :max caracteres.',
+            'description.required' => 'La descripción es obligatoria.',
+            'price.numeric' => 'El precio debe ser un número.',
+            'price.min' => 'El precio no puede ser negativo.',
+            'category.max' => 'La categoría no debe exceder :max caracteres.',
+            'image.image' => 'El archivo debe ser una imagen.',
+            'image.mimes' => 'La imagen debe ser de tipo: jpeg, png, jpg, gif o webp.',
+            'image.max' => 'La imagen no debe exceder 5MB.',
+            'status.required' => 'El estado es obligatorio.',
+            'status.in' => 'El estado debe ser activo o inactivo.',
         ]);
 
         try {
@@ -131,9 +144,17 @@ class ProductController extends Controller
             'status' => 'required|in:active,inactive'
         ], [
             'title.required' => 'El título es obligatorio.',
+            'title.max' => 'El título no debe exceder :max caracteres.',
+            'name.max' => 'El nombre no debe exceder :max caracteres.',
             'description.required' => 'La descripción es obligatoria.',
             'price.numeric' => 'El precio debe ser un número.',
+            'price.min' => 'El precio no puede ser negativo.',
+            'category.max' => 'La categoría no debe exceder :max caracteres.',
+            'image.image' => 'El archivo debe ser una imagen.',
+            'image.mimes' => 'La imagen debe ser de tipo: jpeg, png, jpg, gif o webp.',
+            'image.max' => 'La imagen no debe exceder 5MB.',
             'status.required' => 'El estado es obligatorio.',
+            'status.in' => 'El estado debe ser activo o inactivo.',
         ]);
 
         try {

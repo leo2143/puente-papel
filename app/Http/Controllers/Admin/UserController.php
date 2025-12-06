@@ -74,13 +74,18 @@ class UserController extends Controller
             'is_active' => 'boolean'
         ], [
             'name.required' => 'El nombre es obligatorio.',
+            'name.max' => 'El nombre no debe exceder :max caracteres.',
+            'last_name.max' => 'El apellido no debe exceder :max caracteres.',
             'email.required' => 'El correo electrónico es obligatorio.',
             'email.email' => 'El correo electrónico debe ser válido.',
             'email.unique' => 'Este correo electrónico ya está registrado.',
+            'email.max' => 'El correo electrónico no debe exceder :max caracteres.',
+            'phone.max' => 'El teléfono no debe exceder :max caracteres.',
             'password.required' => 'La contraseña es obligatoria.',
             'password.min' => 'La contraseña debe tener al menos :min caracteres.',
             'password.confirmed' => 'Las contraseñas no coinciden.',
             'role.required' => 'El rol es obligatorio.',
+            'role.in' => 'El rol debe ser admin o usuario.',
         ]);
 
         // Usar only() para obtener solo los campos que necesitamos (whitelisting)
@@ -118,12 +123,17 @@ class UserController extends Controller
             'is_active' => 'boolean'
         ], [
             'name.required' => 'El nombre es obligatorio.',
+            'name.max' => 'El nombre no debe exceder :max caracteres.',
+            'last_name.max' => 'El apellido no debe exceder :max caracteres.',
             'email.required' => 'El correo electrónico es obligatorio.',
             'email.email' => 'El correo electrónico debe ser válido.',
             'email.unique' => 'Este correo electrónico ya está registrado.',
+            'email.max' => 'El correo electrónico no debe exceder :max caracteres.',
+            'phone.max' => 'El teléfono no debe exceder :max caracteres.',
             'password.min' => 'La contraseña debe tener al menos :min caracteres.',
             'password.confirmed' => 'Las contraseñas no coinciden.',
             'role.required' => 'El rol es obligatorio.',
+            'role.in' => 'El rol debe ser admin o usuario.',
         ]);
 
         // Usar only() para obtener solo los campos que necesitamos
