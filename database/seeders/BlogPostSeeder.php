@@ -10,7 +10,7 @@ class BlogPostSeeder extends Seeder
 {
     public function run()
     {
-        // Obtener el primer usuario (debe existir por el DatabaseSeeder)
+        // Obtener el primer usuario
         $user = User::first();
 
         if (!$user) {

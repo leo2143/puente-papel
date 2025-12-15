@@ -3,13 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\BlogPost;
-use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class BlogPostController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Renderiza la lista de posts disponibles
      */
     public function index()
     {
@@ -21,11 +19,10 @@ class BlogPostController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Renderiza un post particular.
      */
     public function show(BlogPost $post)
     {
-        // Solo mostrar posts publicados
         if ($post->status !== 'published') {
             abort(404);
         }

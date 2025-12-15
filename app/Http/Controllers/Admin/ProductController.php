@@ -7,7 +7,6 @@ use App\Models\Product;
 use App\Services\ImageService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -76,7 +75,6 @@ class ProductController extends Controller
         ]);
 
         try {
-            // Manejar imagen usando ImageService
             $imageFileName = null;
             if ($request->hasFile('image')) {
                 try {
@@ -92,17 +90,14 @@ class ProductController extends Controller
                 }
             }
 
-            // Usar only() para obtener solo los campos que necesitamos (whitelisting)
             $data = $request->only(['title', 'description', 'price', 'category', 'status']);
             
-            // Campos adicionales
             $data['name'] = $validated['name'] ?? $validated['title'];
             $data['image'] = $imageFileName;
             $data['status'] = $validated['status'] ?? 'active';
 
             Product::create($data);
         } catch (\Throwable $th) {
-            // Limpiar recursos si es necesario
             if (isset($imageFileName) && $imageFileName && ImageService::exists($imageFileName, 'products')) {
                 ImageService::delete($imageFileName, 'products');
             }

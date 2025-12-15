@@ -31,11 +31,9 @@ class OrderController extends Controller
 
       $user = Auth::user();
 
-      // Obtener información completa de los productos para validar stock
       $productIds = array_keys($cart);
       $products = Product::whereIn('id', $productIds)->get()->keyBy('id');
 
-      // Validar stock antes de continuar
       foreach ($cart as $productId => $item) {
         $product = $products->get($productId);
         
@@ -52,40 +50,31 @@ class OrderController extends Controller
         }
       }
 
-      // Calcular total
       $total = 0;
       foreach ($cart as $item) {
         $total += $item['price'] * $item['quantity'];
       }
 
-      // Crear la orden en estado "pending" usando transacción
       $order = DB::transaction(function () use ($cart, $user, $total, $products) {
-        // Crear la orden
         $order = Order::create([
           'user_id' => $user->id,
           'total_amount' => $total,
           'status' => 'pending',
         ]);
 
-        // Crear los items de la orden y reservar stock
         foreach ($cart as $productId => $item) {
-          $product = $products->get($productId);
-
           OrderItem::create([
             'order_id' => $order->id,
             'product_id' => $productId,
             'quantity' => $item['quantity'],
             'price' => $item['price'],
           ]);
-
-          // Reservar stock (descontar)
-          $product->decrement('stock', $item['quantity']);
         }
 
         return $order;
       });
 
-      // Crear preferencia de Mercado Pago
+      // preferencia de Mercado Pago
       MercadoPagoConfig::setAccessToken(config('mercadopago.access_token'));
       $preferenceFactory = new PreferenceClient();
 
@@ -100,19 +89,14 @@ class OrderController extends Controller
 
       $preference = $preferenceFactory->create([
         'items' => $items,
-        'external_reference' => (string) $order->id, // ¡Vincula el pago con la orden!
+        'external_reference' => (string) $order->id,
         'back_urls' => [
-          // 'success' => route('orders.mp.success'),
           'success' => 'https://uncarted-ernest-disingenuous.ngrok-free.dev/mp/success',
-
           'failure' => route('orders.mp.failure'),
           'pending' => route('orders.mp.pending'),
         ],
         'auto_return' => 'approved',
       ]);
-
-      // Limpiar el carrito (la orden ya está creada)
-      session(['cart' => []]);
 
       return view('cart.checkout', [
         'cart' => $cart,
@@ -151,16 +135,14 @@ class OrderController extends Controller
     $user = Auth::user();
 
     try {
-      // Usar transacción para asegurar atomicidad
       $order = DB::transaction(function () use ($cart, $user) {
-        // Obtener productos del carrito para validar stock
+
         $productIds = array_keys($cart);
         $products = Product::whereIn('id', $productIds)
-          ->lockForUpdate() // Bloquear registros para evitar condiciones de carrera
+          ->lockForUpdate()
           ->get()
           ->keyBy('id');
 
-        // Validar stock antes de procesar
         foreach ($cart as $productId => $item) {
           $product = $products->get($productId);
 
@@ -180,35 +162,25 @@ class OrderController extends Controller
           }
         }
 
-        // Calcular total
         $total = 0;
         foreach ($cart as $item) {
           $total += $item['price'] * $item['quantity'];
         }
 
-        // Crear la orden
         $order = Order::create([
           'user_id' => $user->id,
           'total_amount' => $total,
         ]);
 
-        // Crear los items de la orden y actualizar stock
         foreach ($cart as $productId => $item) {
-          $product = $products->get($productId);
-
-          // Crear OrderItem con precio histórico
           OrderItem::create([
             'order_id' => $order->id,
             'product_id' => $productId,
             'quantity' => $item['quantity'],
-            'price' => $item['price'], // Precio al momento de la compra
+            'price' => $item['price'], 
           ]);
-
-          // Reducir stock del producto
-          $product->decrement('stock', $item['quantity']);
         }
 
-        // Limpiar el carrito solo si todo fue exitoso
         session(['cart' => []]);
 
         return $order;
@@ -232,7 +204,7 @@ class OrderController extends Controller
   public function index()
   {
     $orders = Order::where('user_id', Auth::id())
-      ->with(['orderItems.product']) // Eager loading para evitar N+1 queries
+      ->with(['orderItems.product'])
       ->orderBy('created_at', 'desc')
       ->paginate(10);
 
@@ -246,12 +218,10 @@ class OrderController extends Controller
    */
   public function show(Order $order)
   {
-    // Verificar que la orden pertenezca al usuario autenticado
     if ($order->user_id !== Auth::id()) {
       abort(403, 'No tienes permiso para ver esta orden.');
     }
 
-    // Cargar relaciones con eager loading
     $order->load(['orderItems.product', 'user']);
 
     return view('orders.show', [
@@ -291,7 +261,6 @@ class OrderController extends Controller
         return response()->json(['status' => 'order not found'], 200);
       }
 
-      // Mapear estado de MP a nuestro estado
       $mpStatus = $payment->status;
       $newStatus = match($mpStatus) {
         'approved' => 'paid',
@@ -300,6 +269,8 @@ class OrderController extends Controller
         default => 'pending',
       };
 
+      $previousStatus = $order->status;
+      
       $order->update([
         'status' => $newStatus,
         'payment_id' => (string) $paymentId,
@@ -307,11 +278,11 @@ class OrderController extends Controller
 
       Log::info('Orden actualizada');
 
-      // Si el pago falló, devolver el stock
-      if ($newStatus === 'failed' && $order->status !== 'failed') {
+      if ($newStatus === 'paid' && $previousStatus !== 'paid') {
         foreach ($order->orderItems as $item) {
-          $item->product->increment('stock', $item->quantity);
+          $item->product->decrement('stock', $item->quantity);
         }
+        Log::info('Stock descontado para orden: ' . $order->id);
       }
 
       return response()->json(['status' => 'ok'], 200);
@@ -338,14 +309,23 @@ class OrderController extends Controller
     // Buscar la orden
     $order = Order::where('id', $externalReference)
       ->where('user_id', Auth::id())
+      ->with('orderItems.product')
       ->first();
 
     if ($order) {
       if ($order->status === 'pending' && $paymentId) {
-        $order->update([
-          'status' => 'paid',
-          'payment_id' => $paymentId,
-        ]);
+        DB::transaction(function () use ($order, $paymentId) {
+          $order->update([
+            'status' => 'paid',
+            'payment_id' => $paymentId,
+          ]);
+
+          foreach ($order->orderItems as $item) {
+            $item->product->decrement('stock', $item->quantity);
+          }
+        });
+
+        session(['cart' => []]);
       }
 
       return to_route('orders.show', ['order' => $order->id])
@@ -370,11 +350,6 @@ class OrderController extends Controller
       ->first();
 
     if ($order && $order->status === 'pending') {
-
-      foreach ($order->orderItems as $item) {
-        $item->product->increment('stock', $item->quantity);
-      }
-      
       $order->update(['status' => 'failed']);
     }
 
@@ -395,6 +370,8 @@ class OrderController extends Controller
       ->first();
 
     if ($order) {
+      session(['cart' => []]);
+      
       return to_route('orders.show', ['order' => $order->id])
         ->with('feedback.message', 'Tu pago está pendiente de confirmación. Te notificaremos cuando se acredite.')
         ->with('feedback.type', 'warning');

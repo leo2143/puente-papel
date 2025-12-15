@@ -1,14 +1,3 @@
-@props([
-    'name' => 'image',
-    'required' => false,
-    'accept' => 'image/*',
-    'class' => '',
-])
-
-@php
-    $inputId = 'image-upload-' . uniqid();
-@endphp
-
 <div class="image-upload-container {{ $class }}">
     {{-- Input file oculto --}}
     <input type="file" id="{{ $inputId }}" name="{{ $name }}" class="hidden" accept="{{ $accept }}"

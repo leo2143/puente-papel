@@ -23,7 +23,6 @@ class UserController extends Controller
     {
         $query = User::query();
 
-        // Filtro de búsqueda
         if ($request->filled('search')) {
             $search = $request->search;
             $query->where(function ($q) use ($search) {
@@ -32,7 +31,6 @@ class UserController extends Controller
             });
         }
 
-        // Filtro de rol
         if ($request->filled('role')) {
             $query->where('role', $request->role);
         }
@@ -51,9 +49,9 @@ class UserController extends Controller
         return view('admin.users.show', compact('user', 'totalPurchases', 'totalSpent'));
     }
 
-        /**
-         * Mostrar formulario de creación
-         */
+    /**
+     * Mostrar formulario de creación
+     */
     public function create()
     {
         return view('admin.users.create');
@@ -88,7 +86,6 @@ class UserController extends Controller
             'role.in' => 'El rol debe ser admin o usuario.',
         ]);
 
-        // Usar only() para obtener solo los campos que necesitamos (whitelisting)
         $data = $request->only(['name', 'last_name', 'email', 'phone', 'role', 'is_active']);
         $data['password'] = Hash::make($validated['password']);
         $data['is_active'] = $validated['is_active'] ?? true;

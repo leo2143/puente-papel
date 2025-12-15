@@ -1,8 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Shantell+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 @import 'tailwindcss';
-@plugin '@tailwindcss/typography'; /* 👈 NUEVA LÍNEA */
-@import './image-upload.css';
+@plugin '@tailwindcss/typography';
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';
@@ -187,7 +186,12 @@ h6 {
   transform: translateY(0);
 }
 
-/* Estilos para el botón de subida de imagen */
+/* Estilos para subida de imagen */
+.image-upload-container {
+  position: relative;
+  width: 100%;
+}
+
 .image-upload-button {
   display: inline-flex;
   align-items: center;

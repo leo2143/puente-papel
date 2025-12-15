@@ -17,15 +17,15 @@ document.addEventListener('DOMContentLoaded', function () {
       colors: ['#fca5a5', '#fca5a5', '#f9a8d4', '#fca5a5', '#f9a8d4', '#fca5a5', '#f87171'],
 
       triangleSize: 100,
-      // Configuraciones optimizadas para fondo
+      // Configuraciones para fondo
       maxFps: 60,
       automaticResize: true,
       // Partículas sutiles para el fondo
       particleSettings: {
         count: [1, 1],
         color: '#ffffff',
-        radius: [1.5, 1.5], // Aumenté el radio para que se vean mejor
-        opacity: [0.5, 0.5], // Aumenté la opacidad para que se vean más
+        radius: [1.5, 1.5],
+        opacity: [0.5, 0.5],
         interval: [8000, 15000],
       },
     };

@@ -38,8 +38,7 @@ class BlogPost extends Model
   }
 
   /**
-   * Relación belongsTo con User.
-   * Se define en el modelo que tiene la FK (tabla referenciante).
+   * Relación con User.
    */
   public function user()
   {
@@ -69,8 +68,8 @@ class BlogPost extends Model
         }
 
         $converter = new \League\CommonMark\CommonMarkConverter([
-          'html_input' => 'strip',         // Elimina HTML peligroso
-          'allow_unsafe_links' => false,   // Bloquea enlaces inseguros
+          'html_input' => 'strip',
+          'allow_unsafe_links' => false,
         ]);
 
         return $converter->convert($this->content)->getContent();

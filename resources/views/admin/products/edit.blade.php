@@ -115,7 +115,7 @@
                     <label class="block text-sm font-medium text-gray-800 mb-2">
                         Imagen del Producto
                     </label>
-                    <x-image-upload name="image" type="products" :currentImage="$product->image" class="w-full" />
+                    <x-image-upload name="image" class="w-full" />
                 </div>
 
                 {{-- Acciones --}}

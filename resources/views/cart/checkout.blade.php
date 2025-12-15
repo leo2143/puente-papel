@@ -104,27 +104,16 @@
                 </div>
 
                 {{-- Botones de acción --}}
-                <div class="flex flex-col sm:flex-row gap-4 justify-end">
-                    <a href="{{ route('cart.index') }}"
-                        class="px-6 py-3 bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold rounded-lg transition-colors text-center">
-                        Volver al Carrito
-                    </a>
-                    {{-- <form action="{{ route('orders.store') }}" method="POST"
-                        onsubmit="return confirm('¿Confirmar la compra?');">
+                <div class="flex flex-col items-center md:flex-row md:justify-end gap-4">
+                    <form action="{{ route('orders.store') }}" method="POST" class="w-full md:w-auto">
                         @csrf
-                        <button type="submit"
-                            class="w-full sm:w-auto px-8 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg transition-colors text-lg">
-                            Confirmar Compra
-                        </button>
-                    </form> --}}
-                    <form action="{{ route('orders.store') }}" method="POST"
-                        onsubmit="return confirm('¿Confirmar la compra?');">
-                        @csrf
-                        <button type="submit"
-                            id = "mercadopago_payment_button">
-                            Confirmar Compra
+                        <button type="submit" id="mercadopago_payment_button" class="w-full md:w-auto">
                         </button>
                     </form>
+                    <a href="{{ route('cart.index') }}"
+                        class="w-full md:w-auto px-6 py-3 bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold rounded-lg transition-colors text-center">
+                        Volver al Carrito
+                    </a>
                 </div>
             </div>
         @else

@@ -66,7 +66,7 @@
                     <label for="featured_image" class="block text-sm font-medium text-gray-800 mb-2">
                         Imagen Destacada
                     </label>
-                    <x-image-upload name="featured_image" type="blog" class="w-full" />
+                    <x-image-upload name="featured_image" class="w-full" />
                 </div>
 
                 {{-- Acciones --}}

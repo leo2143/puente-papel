@@ -72,7 +72,6 @@ class BlogController extends Controller
             'featured_image.max' => 'La imagen no debe exceder 5MB.',
         ]);
 
-        // Manejar imagen destacada usando ImageService
         $featuredImageFileName = null;
         if ($request->hasFile('featured_image')) {
             try {
@@ -88,7 +87,7 @@ class BlogController extends Controller
         BlogPost::create([
             'title' => $validated['title'],
             'slug' => Str::slug($validated['title']),
-            'content' => $validated['content'], // JSON del Editor.js
+            'content' => $validated['content'], 
             'status' => $validated['status'],
             'featured_image' => $featuredImageFileName,
             'user_id' => Auth::id()
@@ -129,16 +128,14 @@ class BlogController extends Controller
             'featured_image.max' => 'La imagen no debe exceder 5MB.',
         ]);
 
-        // Manejar imagen destacada usando ImageService
         $featuredImageFileName = $post->featured_image;
         
-        // Si se sube una nueva imagen
         if ($request->hasFile('featured_image')) {
             try {
                 $featuredImageFileName = ImageService::upload(
                     $request->file('featured_image'), 
                     'blog',
-                    $post->featured_image // Imagen anterior para eliminar
+                    $post->featured_image
                 );
             } catch (\Exception $e) {
                 return back()->withErrors(['featured_image' => $e->getMessage()])->withInput();

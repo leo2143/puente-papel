@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\BlogPost;
 use App\Models\Order;
-use App\Models\OrderItem;
 use App\Models\User;
 use Illuminate\Support\Facades\DB as FacadesDB;
 
