@@ -17,7 +17,7 @@
         <section class="max-w-7xl mx-auto mb-12">
             <x-product-grid :product="$communicationProducts" title="Comunicación y Lenguaje"
                 subtitle="Productos educativos para el desarrollo del lenguaje y la comunicación"
-                see-more-url="{{ route('product.index', ['category' => 'comunicacion']) }}" 
+                see-more-url="{{ route('product.index', ['category' => 'comunicacion']) }}"
                 see-more-text="Ver más de comunicación" :columns="2" />
         </section>
     @endif
@@ -27,11 +27,10 @@
         <section class="max-w-7xl mx-auto mb-12">
             <x-product-grid :product="$readingProducts" title="Lectura y Comprensión"
                 subtitle="Recursos para fomentar el amor por la lectura y mejorar la comprensión"
-                see-more-url="{{ route('product.index', ['category' => 'lectura']) }}" 
+                see-more-url="{{ route('product.index', ['category' => 'lectura']) }}"
                 see-more-text="Ver más de lectura" :columns="4" />
         </section>
     @endif
-        
 
     {{-- Fallback: Si no hay productos, mostrar mensaje --}}
     @if (

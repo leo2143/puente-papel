@@ -65,7 +65,7 @@
                                             </span>
                                         </td>
                                         <td class="py-4 px-2 text-center">
-                                            <button type="button" 
+                                            <button type="button"
                                                 onclick="document.getElementById('delete-form-{{ $productId }}').submit();"
                                                 class="text-red-600 hover:text-red-800 hover:bg-red-50 px-3 py-1 rounded transition-colors">
                                                 <img src="{{ asset('storage/icons-svg/trash.svg') }}"
@@ -105,10 +105,8 @@
 
                 {{-- Formularios ocultos para eliminar productos individuales --}}
                 @foreach ($cart as $productId => $item)
-                    <form id="delete-form-{{ $productId }}" 
-                        action="{{ route('cart.remove', $productId) }}" 
-                        method="POST" 
-                        style="display: none;"
+                    <form id="delete-form-{{ $productId }}" action="{{ route('cart.remove', $productId) }}"
+                        method="POST" style="display: none;"
                         onsubmit="return confirm('¿Estás seguro de eliminar este producto del carrito?')">
                         @csrf
                         @method('DELETE')

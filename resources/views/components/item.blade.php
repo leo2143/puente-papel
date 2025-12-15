@@ -47,7 +47,7 @@ $currentImageIndex = 0;
                                 class="image-slide absolute inset-0 transition-all duration-500 ease-in-out {{ $index === 0 ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-full' }}">
                                 <img src="{{ $image }}"
                                     alt="{{ $productData['title'] }} - Imagen {{ $index + 1 }}"
-                                    class="w-full h-full object-cover">  
+                                    class="w-full h-full object-cover">
                             </div>
                         @endforeach
                     </div>
@@ -71,10 +71,11 @@ $currentImageIndex = 0;
                     <form action="{{ route('cart.add') }}" method="POST">
                         @csrf
                         <input type="hidden" name="product_id" value="{{ $product->id }}">
-                        
+
                         {{-- Selector de cantidad --}}
                         <div class="flex items-center gap-3 mb-4">
-                            <label for="quantity_{{ $product->id }}" class="text-gray-700 font-medium">Cantidad:</label>
+                            <label for="quantity_{{ $product->id }}"
+                                class="text-gray-700 font-medium">Cantidad:</label>
                             <select id="quantity_{{ $product->id }}" name="quantity"
                                 class="appearance-none bg-pink-100 border-2 border-pink-300 rounded-xl px-4 py-2 pr-8 text-gray-800 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-pink-500">
                                 @for ($i = 1; $i <= min(10, $product->stock); $i++)
@@ -144,4 +145,3 @@ $currentImageIndex = 0;
         </div>
     </div>
 </div>
-

@@ -1,4 +1,3 @@
-
 <x-layouts.main>
     <x-slot:title>Checkout - Puente Papel</x-slot:title>
 
@@ -133,11 +132,11 @@
 
     <script src="https://sdk.mercadopago.com/js/v2"></script>
     <script>
-        const publicKey = '<?= $MPPublickey; ?>';
-        const preferenceId = '<?= $preference->id; ?>';
+        const publicKey = '<?= $MPPublickey ?>';
+        const preferenceId = '<?= $preference->id ?>';
 
         const mp = new MercadoPago(publicKey);
-        
+
         const bricksBuilder = mp.bricks();
         const renderWalletBrick = async (bricksBuilder) => {
             await bricksBuilder.create("wallet", "mercadopago_payment_button", {

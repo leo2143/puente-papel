@@ -54,27 +54,36 @@
                                     <td class="py-4 px-2 text-center">
                                         @switch($order->status)
                                             @case('paid')
-                                                <span class="inline-block px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-semibold">
+                                                <span
+                                                    class="inline-block px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-semibold">
                                                     Pagada
                                                 </span>
-                                                @break
+                                            @break
+
                                             @case('pending')
-                                                <span class="inline-block px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-semibold">
+                                                <span
+                                                    class="inline-block px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-semibold">
                                                     Pendiente
                                                 </span>
-                                                @break
+                                            @break
+
                                             @case('failed')
-                                                <span class="inline-block px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm font-semibold">
+                                                <span
+                                                    class="inline-block px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm font-semibold">
                                                     Fallida
                                                 </span>
-                                                @break
+                                            @break
+
                                             @case('cancelled')
-                                                <span class="inline-block px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm font-semibold">
+                                                <span
+                                                    class="inline-block px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm font-semibold">
                                                     Cancelada
                                                 </span>
-                                                @break
+                                            @break
+
                                             @default
-                                                <span class="inline-block px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-sm font-semibold">
+                                                <span
+                                                    class="inline-block px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-sm font-semibold">
                                                     {{ ucfirst($order->status) }}
                                                 </span>
                                         @endswitch
