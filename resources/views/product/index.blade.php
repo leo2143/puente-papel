@@ -2,7 +2,7 @@
     <x-slot:title>Productos</x-slot:title>
 
     <section class="container mx-auto p-8">
-        <h2 class="hidden">Productos</h2>
+        <h2 class="sr-only">Productos</h2>
 
         @if (session('success'))
             <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">

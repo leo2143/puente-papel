@@ -3,7 +3,7 @@
 
     {{-- Header del blog --}}
     <section class="max-w-7xl mx-auto px-4 py-8">
-        <h2 class="hidden">Blog</h2>
+        <h2 class="sr-only">Blog</h2>
 
         {{-- Lista de posts --}}
         @if ($posts->count() > 0)
