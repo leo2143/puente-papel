@@ -16,7 +16,7 @@
 
         @if (!empty($cart))
             <div class="bg-white rounded-2xl shadow-lg p-6 max-w-6xl mx-auto">
-                <form action="{{ route('cart.update') }}" method="POST" id="cart-form">
+                <form action="{{ route('cart.update') }}" method="POST" id="cart-form" novalidate>
                     @csrf
                     <div class="overflow-x-auto">
                         <table class="w-full">

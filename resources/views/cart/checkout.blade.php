@@ -105,7 +105,7 @@
 
                 {{-- Botones de acción --}}
                 <div class="flex flex-col items-center md:flex-row md:justify-end gap-4">
-                    <form action="{{ route('orders.store') }}" method="POST" class="w-full md:w-auto">
+                    <form action="{{ route('orders.store') }}" method="POST" class="w-full md:w-auto" novalidate>
                         @csrf
                         <button type="submit" id="mercadopago_payment_button" class="w-full md:w-auto">
                         </button>

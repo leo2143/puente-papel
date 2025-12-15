@@ -19,7 +19,7 @@
 
     {{-- Formulario --}}
     <div class="bg-pink-50 px-8 py-6 rounded-2xl max-w-2xl mx-auto">
-        <form action="{{ route('admin.product.update', $product) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.product.update', $product) }}" method="POST" enctype="multipart/form-data" novalidate>
             @csrf
             @method('PUT')
 

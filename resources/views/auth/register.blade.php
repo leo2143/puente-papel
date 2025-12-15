@@ -26,7 +26,7 @@
                         </div>
                     @endif
 
-                    <form class="space-y-6" action="{{ route('auth.register.process') }}" method="POST">
+                    <form class="space-y-6" action="{{ route('auth.register.process') }}" method="POST" novalidate>
                         @csrf
 
                         <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">

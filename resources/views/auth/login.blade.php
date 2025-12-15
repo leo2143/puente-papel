@@ -26,7 +26,7 @@
                         </div>
                     @endif
 
-                    <form class="space-y-6" action="{{ route('auth.login.process') }}" method="POST">
+                    <form class="space-y-6" action="{{ route('auth.login.process') }}" method="POST" novalidate>
                         @csrf
 
                         <div>

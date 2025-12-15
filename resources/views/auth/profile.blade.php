@@ -12,7 +12,7 @@
                 </div>
             @endif
 
-            <form action="{{ route('auth.profile.update') }}" method="POST" class="space-y-6">
+            <form action="{{ route('auth.profile.update') }}" method="POST" class="space-y-6" novalidate>
                 @csrf
                 @method('PUT')
 

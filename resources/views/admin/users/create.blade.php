@@ -19,7 +19,7 @@
 
     {{-- Formulario --}}
     <div class="bg-pink-50 px-8 py-6 rounded-2xl max-w-2xl mx-auto">
-        <form action="{{ route('admin.users.store') }}" method="POST">
+        <form action="{{ route('admin.users.store') }}" method="POST" novalidate>
             @csrf
 
             <div class="space-y-6">
